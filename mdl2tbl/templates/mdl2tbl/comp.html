@@ -1,0 +1,33 @@
+{% load post_extras %}
+<html>
+    <head>
+        <title>Meta-eXpress</title>
+    </head>
+    <body>
+        <h1> DA# Model Compare </h1>
+        <div class="container">
+            <table class="table table-striped"  border="1" >
+                <thead>
+                <tr>
+                    <td><B>스키마</B></td>
+                    <td><B>테이블</B></td>
+                    <td><B>컬럼</B></td>
+                    <td><B>차이  (DT|NULL|DEFT : 모델값 <=> 테이블값 </B></td>
+                </tr>
+                </thead>
+                <!-- 이 부분이 바뀌었습니다 -->
+                <tbody>
+                        {% for row in rows %}
+                        <tr>
+                            <td> {{ row.SCHEMA }} </td>
+                            <td> {{ row.TBL_NM }} </td>
+                            <td> {{ row.COL_NM }} </td>
+                            <td> {{ row.DIFF }} </td>
+                        </tr>
+                        {% endfor %}
+                <!-- 여기까지 -->
+                <tbody>
+            </table>
+        </div>        
+    </body>
+</html>

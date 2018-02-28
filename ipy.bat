@@ -1,0 +1,1 @@
+C:\Lang\Anaconda3\python.exe C:\Lang\Anaconda3\cwp.py C:\Lang\Anaconda3 "C:/Lang/Anaconda3/python.exe" "C:/Lang/Anaconda3/Scripts/ipython-script.py"

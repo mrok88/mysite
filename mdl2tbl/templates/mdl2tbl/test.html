@@ -1,0 +1,37 @@
+{% load bootstrap3 %}
+<html>
+    <head>
+        <title>Meta-eXpress</title>
+    </head>
+    <body>
+        <h1> DA# Model Compare </h1>
+        <div class="container">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <td><B>스키마</B></td>
+                    <td><B>테이블</B></td>
+                    <td><B>컬럼</B></td>
+                    <td><B>데이터타입</B></td>
+                    <td><B>널</B></td>
+                    <td><B>기본값</B></td>
+                </tr>
+                </thead>
+                <!-- 이 부분이 바뀌었습니다 -->
+                <tbody>
+                {% for row in rows %}
+                <tr>
+                    <td> {{ row.SCHEMA }} </td>
+                    <td> {{ row.TBL_NM }} </td>
+                    <td> {{ row.COL_NM }} </td>
+                    <td> {{ row.DT }} </td>
+                    <td> {{ row.NULLABLE }} </td>
+                    <td> {{ row.DEFT }} </td>
+                </tr>
+                {% endfor %}
+                <!-- 여기까지 -->
+                <tbody>
+            </table>
+        </div>        
+    </body>
+</html>
