@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'django.contrib.humanize',  # number comma
     'bootstrap3',    
     'demo',    
     'blog',	

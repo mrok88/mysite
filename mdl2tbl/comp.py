@@ -1,6 +1,6 @@
 import sys
-import ora_test
-import my_test
+from mdl2tbl import ora_test
+from mdl2tbl import my_test
 
 def mk_dict(rows):
     d = {}
@@ -28,19 +28,23 @@ def mk_comp(d1,d2):
                 comp.append ( { 'SCHEMA' : d1[pk]['SCHEMA'], 'TBL_NM' : d1[pk]['TBL_NM'] , 'COL_NM' : d1[pk]['COL_NM'] , 'DIFF' : rstr })
     return comp
 
-if  len(sys.argv) == 2 :
-    subj_area = sys.argv[1]
-else:
-    subj_area = '%'
-rows1 = ora_test.get_mdl(subj_area)
-d1 = mk_dict(rows1)
+##############################
+# TEST START 
+##############################
+if __name__ == "__main__":
+    if  len(sys.argv) == 2 :
+        subj_area = sys.argv[1]
+    else:
+        subj_area = '%'
+    rows1 = ora_test.get_mdl(subj_area)
+    d1 = mk_dict(rows1)
 
-rows2 = my_test.get_tbl(subj_area)
-d2 = mk_dict(rows2)
+    rows2 = my_test.get_tbl(subj_area)
+    d2 = mk_dict(rows2)
 
-comp = mk_comp(d1,d2)
+    comp = mk_comp(d1,d2)
 
-print(comp)
+    print(comp)
 
 
             

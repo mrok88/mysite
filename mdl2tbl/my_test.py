@@ -2,12 +2,16 @@ import os
 import pymysql
 ##############################
 # GET_TBL
+# 테이블 데이터타입, NULL여부, DEFAULT값 가져오기 
 ##############################
 def get_tbl(p_tbl_nm = "GD"):
     conn = None    
     try:
         #conn = pymysql.connect(host='localhost', user='wsyou', password='wsyou',db='test', charset='utf8')
-        conn = pymysql.connect(host='127.0.0.1', port = 3409, user='b2_dba', password='qwer1234',db='dbadev', charset='utf8')
+        if ( p_tbl_nm in ( 'ST','AT')):
+            conn = pymysql.connect(host='127.0.0.1', port = 4309, user='b2_dba', password='qwer1234',db='ltcmdba', charset='utf8')
+        else :
+            conn = pymysql.connect(host='127.0.0.1', port = 3409, user='b2_dba', password='qwer1234',db='dbadev', charset='utf8')
         try:
             curs = conn.cursor(pymysql.cursors.DictCursor)
             sql = """select table_schema `SCHEMA`
@@ -31,7 +35,7 @@ where table_schema in ( 'x'
 ,'ltcmatdev'
 ,'ltcmstdev'
 )
-  and table_schema like concat('ellt',lower(%(tbl_nm)s),'%%')
+  and table_schema like concat('____',lower(%(tbl_nm)s),'%%')
   AND table_name like concat(lower(%(tbl_nm)s),'%%')
   and table_schema not like '%%back'
 """
@@ -48,6 +52,6 @@ where table_schema in ( 'x'
 # TEST START 
 ##############################
 if __name__ == "__main__":
-    rows = get_tbl("GD")
+    rows = get_tbl("AT")
     for row in rows:
         print(row)

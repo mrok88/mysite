@@ -4,15 +4,16 @@
 
 {% block bootstrap3_content %}
     <div class="container">
-        <h1>{% block title %}(no title){% endblock %}</h1>
+        <h2>{% block subtitle %}(no subtitle){% endblock %}</h2>
 
         <p>
-            <a href="">home</a>
+            
+            <span><a href="djbs01">모델비교</a> </span>
+            <span><a href="djbs02">데이터수명주기</a></span>
         </p>
-
         {% autoescape off %}{% bootstrap_messages %}{% endautoescape %}
 
         {% block content %}(no content){% endblock %}
     </div>
-    
+
 {% endblock %}
