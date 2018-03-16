@@ -60,3 +60,5 @@ if __name__ == "__main__":
     #rows = get_capa("GD")
     for row in rows:
         print(row)
+    #tbls = set(row['TBL_NM'] for row in rows)
+    #print(tbls)

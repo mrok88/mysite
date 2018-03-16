@@ -1,4 +1,5 @@
 import os
+import sys
 import pymysql
 ##############################
 # GET_TBL
@@ -8,7 +9,7 @@ def get_tbl(p_tbl_nm = "GD"):
     conn = None    
     try:
         #conn = pymysql.connect(host='localhost', user='wsyou', password='wsyou',db='test', charset='utf8')
-        if ( p_tbl_nm in ( 'ST','AT')):
+        if ( p_tbl_nm in ( 'ST','AT','%%')):
             conn = pymysql.connect(host='127.0.0.1', port = 4309, user='b2_dba', password='qwer1234',db='ltcmdba', charset='utf8')
         else :
             conn = pymysql.connect(host='127.0.0.1', port = 3409, user='b2_dba', password='qwer1234',db='dbadev', charset='utf8')
@@ -34,6 +35,9 @@ where table_schema in ( 'x'
 ,'elltcmdev'
 ,'ltcmatdev'
 ,'ltcmstdev'
+,'elltscdev'
+,'elltccdev'
+,'elltmbdev'
 )
   and table_schema like concat('____',lower(%(tbl_nm)s),'%%')
   AND table_name like concat(lower(%(tbl_nm)s),'%%')
@@ -52,6 +56,9 @@ where table_schema in ( 'x'
 # TEST START 
 ##############################
 if __name__ == "__main__":
-    rows = get_tbl("AT")
+    sa = "CC"
+    for arg in sys.argv[1:]:
+        sa = arg
+    rows = get_tbl(sa)
     for row in rows:
         print(row)
