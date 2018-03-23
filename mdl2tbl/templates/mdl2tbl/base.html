@@ -4,15 +4,42 @@
 
 {% block bootstrap3_content %}
     <div class="container">
-        <h2>{% block subtitle %}(no subtitle){% endblock %}</h2>
-
-        <p>
-            
-            <span><a href="djbs01">모델비교</a> </span>
-            <span><a href="djbs02">데이터수명주기</a></span>
-        </p>
+        <br>
+        <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                  <!-- Brand and toggle get grouped for better mobile display -->
+                  <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                      <span class="sr-only">Toggle navigation</span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Meta-eXpress</a>
+                  </div>
+              
+                  <!-- Collect the nav links, forms, and other content for toggling -->
+                  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                      <li> <a href="djbs01"><span>모델비교</span></a></li>
+                      <li> <a href="djbs02"><span>데이터수명주기</span></a></li>                                        
+                      <!-- DA# 관련 메뉴 시작 -->
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">메뉴모음 <span class="caret"></span></a>
+                        <ul class="dropdown-menu">                             
+                          <li> <a href="djbs01"><span>모델비교</span></a></li>
+                          <li role="separator" class="divider"></li>
+                          <li> <a href="djbs02"><span>데이터수명주기</span></a></li>                              
+                        </ul>
+                      </li><!-- DA# 관련 메뉴 종료 -->
+                    </ul>
+                  </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>        
         {% autoescape off %}{% bootstrap_messages %}{% endautoescape %}
-
+        <!-- page header start -->
+        <h3>{% block subtitle %}(no subtitle){% endblock %}</h3>
+        <!-- page header end -->
         {% block content %}(no content){% endblock %}
     </div>
 

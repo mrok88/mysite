@@ -1,4 +1,5 @@
 import os
+import sys
 import cx_Oracle
 ##############################
 # GET_MDL
@@ -12,7 +13,7 @@ def get_mdl(p_tbl_nm = "GD"):
         conn = cx_Oracle.connect("MIGUSER", "mig0987", dsn)
         try:
             curs = conn.cursor()
-            sql = "SELECT * FROM comp_mdl where tbl_nm like :tbl_nm||'%' and schema like '____'||lower(substr(:tbl_nm,1,2))||'%'"
+            sql = "SELECT * FROM comp_mdl where schema like lower(:tbl_nm)||'%'"
             curs.execute(sql,{'tbl_nm': p_tbl_nm})
             recs = curs.fetchall()
             rows = []
@@ -38,7 +39,7 @@ def get_capa(p_tbl_nm = "GD"):
         conn = cx_Oracle.connect("MIGUSER", "mig0987", dsn)
         try:
             curs = conn.cursor()
-            sql = "SELECT * FROM CAPA_VIEW where TBL_NM LIKE :tbl_nm||'%' "
+            sql = "SELECT * FROM CAPA_VIEW where schema like lower(:tbl_nm)||'%' "
             curs.execute(sql,{'tbl_nm': p_tbl_nm})
             recs = curs.fetchall()
             rows = []
@@ -56,7 +57,10 @@ def get_capa(p_tbl_nm = "GD"):
 # TEST START 
 ##############################
 if __name__ == "__main__":
-    rows = get_mdl("AT")
+    sa = "CC"
+    for arg in sys.argv[1:]:
+        sa = arg  
+    rows = get_mdl(sa)
     #rows = get_capa("GD")
     for row in rows:
         print(row)

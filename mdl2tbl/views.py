@@ -30,7 +30,7 @@ def tbl_list(request):
     return render(request, 'mdl2tbl/test.html', {'rows': rows1})
 
 def comp_dict(pk="%"):
-    if (pk == None or len(pk) != 2) :
+    if (pk == None or len(pk) <= 2 ) :
         pk = '%'        
     rows1 = get_mdl(pk)
     d1 = mk_dict(rows1)
@@ -42,7 +42,7 @@ def comp_dict(pk="%"):
     return comp
 
 def comp_list(request,pk="%"):
-    if (pk == None or len(pk) != 2) :
+    if (pk == None or len(pk) <= 2) :
         pk = '%'        
     rows1 = get_mdl(pk)
     d1 = mk_dict(rows1)

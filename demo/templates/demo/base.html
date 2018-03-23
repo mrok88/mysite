@@ -4,19 +4,46 @@
 
 {% block bootstrap3_content %}
     <div class="container">
-        <h1>{% block title %}(no title){% endblock %}</h1>
+            <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                      <!-- Brand and toggle get grouped for better mobile display -->
+                      <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                          <span class="sr-only">Toggle navigation</span>
+                          <span class="icon-bar"></span>
+                          <span class="icon-bar"></span>
+                          <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#">Meta-eXpress</a>
+                      </div>
+                  
+                      <!-- Collect the nav links, forms, and other content for toggling -->
+                      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                          <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+                          <li><a href="#">Link</a></li>
+                          <!-- DA# 관련 메뉴 시작 -->
+                          <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">메뉴모음 <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                              <li><a href="#">One more separated link</a></li>                              
+                                    <li><a href="{% url 'home' %}">home</a></li>
+                                    <li><a href="{% url 'formset_default' %}">formset</a></li>
+                                    <li><a href="{% url 'form_default' %}">form</a></li>
+                                    <li><a href="{% url 'form_by_field' %}">form_by_field</a></li>
+                                    <li><a href="{% url 'form_horizontal' %}">form_horizontal</a></li>
+                                    <li><a href="{% url 'form_inline' %}">form_inline</a></li>
+                                    <li><a href="{% url 'form_with_files' %}">form_with_files</a></li>
+                                    <li><a href="{% url 'pagination' %}">pagination</a></li>
+                                    <li><a href="{% url 'misc' %}">miscellaneous</a></li>                            
+                            </ul>
+                          </li><!-- DA# 관련 메뉴 종료 -->
+                        </ul>
+                      </div><!-- /.navbar-collapse -->
+                    </div><!-- /.container-fluid -->
+                  </nav>
 
-        <p>
-            <a href="{% url 'home' %}">home</a>
-            <a href="{% url 'formset_default' %}">formset</a>
-            <a href="{% url 'form_default' %}">form</a>
-            <a href="{% url 'form_by_field' %}">form_by_field</a>
-            <a href="{% url 'form_horizontal' %}">form_horizontal</a>
-            <a href="{% url 'form_inline' %}">form_inline</a>
-            <a href="{% url 'form_with_files' %}">form_with_files</a>
-            <a href="{% url 'pagination' %}">pagination</a>
-            <a href="{% url 'misc' %}">miscellaneous</a>
-        </p>
+        <h1>{% block title %}(no title){% endblock %}</h1>
 
         {% autoescape off %}{% bootstrap_messages %}{% endautoescape %}
 

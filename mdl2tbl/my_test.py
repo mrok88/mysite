@@ -9,7 +9,7 @@ def get_tbl(p_tbl_nm = "GD"):
     conn = None    
     try:
         #conn = pymysql.connect(host='localhost', user='wsyou', password='wsyou',db='test', charset='utf8')
-        if ( p_tbl_nm in ( 'ST','AT','%%')):
+        if ( p_tbl_nm in ( 'ltcm','ltcmst','ltcmat', 'ltcmpr')):
             conn = pymysql.connect(host='127.0.0.1', port = 4309, user='b2_dba', password='qwer1234',db='ltcmdba', charset='utf8')
         else :
             conn = pymysql.connect(host='127.0.0.1', port = 3409, user='b2_dba', password='qwer1234',db='dbadev', charset='utf8')
@@ -38,9 +38,10 @@ where table_schema in ( 'x'
 ,'elltscdev'
 ,'elltccdev'
 ,'elltmbdev'
+,'ltcmprdev'
 )
-  and table_schema like concat('____',lower(%(tbl_nm)s),'%%')
-  AND table_name like concat(lower(%(tbl_nm)s),'%%')
+  and table_schema like concat(lower(%(tbl_nm)s),'%%')
+#  AND table_name like concat(lower(%(tbl_nm)s),'%%')
   and table_schema not like '%%back'
 """
             curs.execute(sql,{'tbl_nm' : p_tbl_nm})
