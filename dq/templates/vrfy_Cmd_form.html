@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% block content %} 
+<div class="modal-dialog modal-lg">
+    <div class="modal-content">        
+        <form method="post">
+            {% csrf_token %}
+            <div class="modal-header row">
+                <h3><span class="col-md-10" >{% block title %}검증명령어{% endblock %} </span>
+                    <input name="action" class="btn btn-cancel" onclick="window.history.go(-1); return false;" type="button" value="Back" />
+                    {% if row.VRFY_NO %} 
+                    <a href="{% url 'dq:vrfy_Cmd_delete' row.VRFY_CMD_NO  %}" class="btn btn-danger" role="button"  class="col-md-2" >
+                        <span class="glyphicon glyphicon-remove-sign">                            
+                        </span>Delete</a>
+                    {% endif %}
+
+                </h3>
+            </div>
+            <div class="modal-body" style="height:40em">
+                {% bootstrap_form form layout="horizontal" %}
+            </div>
+            <div class="modal-footer">
+                <input name="action" class="btn btn-cancel" onclick="window.history.go(-1); return false;" type="button" value="Back" />                    
+                <input type="submit" value="Submit" class="btn btn-primary" />
+            </div>
+        </form>
+    </div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->
+{% endblock content %}

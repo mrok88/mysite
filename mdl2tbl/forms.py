@@ -24,6 +24,8 @@ MEDIA_CHOICES = (
         ('elltgd', '상품'),
         ('elltmb', '회원'),
         ('elltom', '주문'),        
+        ('elltpy', '결제'),        
+        ('elltlo', '배송'),        
         ('elltpr', '판촉'),
         ('elltsc', '검색'),     
     )),
