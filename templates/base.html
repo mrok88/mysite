@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     {% load static %}
-    <title>Data Life Cycle 관리</title>
+    <title>{% block title %} Data Life Cycle 관리 {% endblock %}</title>
     <meta name="description" content="Data Quality Meta Manager">
     <meta name="author" content="wonseokyou">
 
@@ -37,16 +37,32 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
           <li> <a href="{% url 'mdl2tbl:djbs01' %}"><span>모델비교</span></a></li>
-          <li> <a href="{% url 'mdl2tbl:djbs02' %}"><span>데이터수명주기</span></a></li>                                        
+          <li> <a href="{% url 'mdl2tbl:djbs02' %}"><span>데이터수명주기</span></a></li>        
           <!-- DA# 관련 메뉴 시작 -->
           <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">데이터검증 <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">데이터품질메터<span class="caret"></span></a>
             <ul class="dropdown-menu">                             
               <li> <a href={% url 'dq:vrfy_list' %}><span>검증메터관리</span></a></li>
               <li role="separator" class="divider"></li>
-              <li> <a href={% url 'dq:vrfy_Cmd_list' %}><span>데이터수명주기</span></a></li>                              
+              <li> <a href={% url 'dq:vrfy_Cmd_list' %}><span>검증명령어관리</span></a></li>                              
             </ul>
-          </li><!-- DA# 관련 메뉴 종료 -->
+          </li><!-- DA# 관련 메뉴 종료 -->      
+          <!-- DA# 관련 메뉴 시작 -->
+          <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">암호화대상<span class="caret"></span></a>
+                <ul class="dropdown-menu">                             
+                    <li> <a href={% url 'mdl2tbl:djbs03' %}><span>암호화대상목록</span></a></li>
+                    <li> <a href={% url 'mdl2tbl:djbs04' %}><span>마스킹대상목록</span></a></li>
+                </ul>
+          </li><!-- DA# 관련 메뉴 종료 -->                                                     
+          <!-- DA# 관련 메뉴 시작 -->
+          <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">데이터정의서<span class="caret"></span></a>
+                <ul class="dropdown-menu">                             
+                    <li> <a href={% url 'mdl2tbl:djbs05' %}><span>테이블정의서</span></a></li>
+                    <li> <a href={% url 'mdl2tbl:djbs06' %}><span>컬럼정의서</span></a></li>
+                </ul>
+          </li><!-- DA# 관련 메뉴 종료 -->                                                     
         </ul>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->

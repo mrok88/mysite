@@ -5,6 +5,5 @@ myvenv
 db.sqlite3
 /static
 .DS_Store
-mdl2tbl/my_test.py
-mdl2tbl/ora_test.py
+mdl2tbl/conn_info.py
 mysite/settings.py

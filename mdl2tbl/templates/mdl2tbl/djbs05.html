@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load bootstrap3 %}
+{% load humanize %}
 {% block title %}{{ form.yws_gets.title }}{% endblock %} 
-{% block subtitle %} 모델 비교 ( {{ form.yws_gets.subjArea }} ) {% endblock %}
 
 {% block content %}
 <!-- datatable include start -->
@@ -19,7 +19,7 @@
 <!-- datatable include end --> 
 <div class="container">
     {# Display a form #}
-    <form action="djbs01" method="get" class="form-inline">  
+    <form action="djbs05" method="get" class="form-inline">
         <div class="form-group bootstrap3-required"> 
             <h3>{{ form.yws_gets.title }} ( {{ form.yws_gets.subjArea}} ) </h3>   
             <label for="Search">주제영역:</label>        
@@ -29,37 +29,46 @@
                 {% bootstrap_icon "star" %} 제출
                 </button>
             {% endbuttons %}
-         </div>
+        </div>
     </form>
     <p></p>
     <hr>
-
 
     <div id="container" class="dataTables_wrapper">
             <table id="example" class="display table table-striped table-bordered" cellspacing="0" width="100%" >
                 <thead>
                 <tr>
-                    <td><B>스키마</B></td>
+                    <td><B>모델명</B></td>
+                    <td><B>한글명</B></td>
                     <td><B>테이블</B></td>
-                    <td><B>컬럼</B></td>
-                    <td><B>차이  (DT|NULL|DEFT : 모델값 <=> 테이블값 )</B></td>
+                    <td><B>상태</B></td>
+                    <td><B>발생주기</B></td>
+                    <td><B>월증가건수</B></td>
+                    <td><B>보존주기</B></td>
+                    <td><B>초기건수</B></td>
+                    <td><B>테이블정의</B></td>                    
                 </tr>
                 </thead>
                 <!-- 이 부분이 바뀌었습니다 -->
                 <tbody>
                         {% for row in form.yws_rows %}
                         <tr>
-                            <td> {{ row.SCHEMA }} </td>
+                            <td> {{ row.MDL_NM }} </td>
+                            <td> {{ row.ENT_NM }} </td>
                             <td> {{ row.TBL_NM }} </td>
-                            <td> {{ row.COL_NM }} </td>
-                            <td> {{ row.DIFF }} </td>
+                            <td> {{ row.STAT }} </td>
+                            <td> {{ row.OCCUR_CYCLE }} </td>
+                            <td align="right"> {{ row.MONTHY_OCCUR_QTY|intcomma }} </td>
+                            <td> {{ row.MNGT_CYCLE }} </td>
+                            <td align="right"> {{ row.TOT_OCCUR_QTY|intcomma }} </td>
+                            <td><pre>{{ row.DEFI }}</pre></td>                            
                         </tr>
                         {% endfor %}
                 <!-- 여기까지 -->
                 <tbody>
         </table>
     </div>
-</div>    
+</div>
 <script type="text/javascript" class="init">
 $(document).ready(function() {
     $('#example').DataTable( {

@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load bootstrap3 %}
 {% load humanize %}
-{% block subtitle %} 데이터 수명주기 ( {{ form.yws_gets.subjArea}} ) {% endblock %}
+{% block title %}{{ form.yws_gets.title }}{% endblock %} 
 
 {% block content %}
 <!-- datatable include start -->
@@ -20,13 +20,16 @@
 <div class="container">
     {# Display a form #}
     <form action="djbs02" method="get" class="form-inline">
-    <label for="Search">주제영역:</label>        
-    {% bootstrap_form form layout='inline' align=right %}
-    {% buttons %}
-        <button type="submit" class="btn btn-primary" layout='inline'> 
-        {% bootstrap_icon "star" %} 제출
-        </button>
-    {% endbuttons %}
+        <div class="form-group bootstrap3-required"> 
+            <h3>{{ form.yws_gets.title }} ( {{ form.yws_gets.subjArea}} ) </h3>   
+            <label for="Search">주제영역:</label>        
+            {% bootstrap_form form layout='inline' align=right %}
+            {% buttons %}
+                <button type="submit" class="btn btn-primary" layout='inline'> 
+                {% bootstrap_icon "star" %} 제출
+                </button>
+            {% endbuttons %}
+        </div>
     </form>
     <p></p>
     <hr>

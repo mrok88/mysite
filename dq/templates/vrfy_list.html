@@ -5,76 +5,78 @@
 {% endblock %}
 
 {% block content %}
-<div class="padding-20">
-    <div class="row">
-        <div class="col-md-2">
-                <h3>{% block title %}검증{% endblock %}</h3>
+<div style="margin-left:5%;margin-right:5%">
+    <div class="padding-20">
+        <div class="row">
+            <div class="col-md-2">
+                    <h3>{% block title %}검증{% endblock %}</h3>
+            </div>
+            <div class="col-md-8">                
+                <!-- Search Bar -->
+                <form class="navbar-form navbar-left" role="search" method=GET>
+                        <div class="form-group">
+                            <label for="Search">테이블명:</label>
+                            <input type="text" class="form-control" placeholder="Search" name=qry id=qry value="{{gets.qry}}" >
+                        </div>
+                        <button type="submit" class="btn btn-default">조회</button>
+                </form>
+            </div>       
         </div>
-        <div class="col-md-8">                
-            <!-- Search Bar -->
-            <form class="navbar-form navbar-left" role="search" method=GET>
-                    <div class="form-group">
-                        <label for="Search">테이블명:</label>
-                        <input type="text" class="form-control" placeholder="Search" name=qry id=qry value="{{gets.qry}}" >
-                    </div>
-                    <button type="submit" class="btn btn-default">조회</button>
-            </form>
-        </div>       
+        <div class="row" >            
+            <div class="col-md-1">
+                    <a href="{% url 'dq:vrfy_new' %}" class="btn btn-primary" role="button" ><span class="glyphicon glyphicon-plus-sign"></span> New</a>                
+            </div> 
+        </div>
     </div>
-    <div class="row" >            
-        <div class="col-md-1">
-                <a href="{% url 'dq:vrfy_new' %}" class="btn btn-primary" role="button" ><span class="glyphicon glyphicon-plus-sign"></span> New</a>                
-        </div> 
+    <div id="content" class="padding-20">
+        <!-- HTML DATATABLE -->
+        <table class="table table-striped table-hover table-bordered" id="example">
+            <thead>
+                <tr>
+                    <th>ID</th>                
+                    <th>DB명</th>
+                    <th>스키마명</th>
+                    <th>대분류</th>
+                    <th>중분류</th>
+                    <th>테이블명</th>
+                    <th>테이블한글명</th>
+                    <th>보존기간일수</th>
+                    <th>검증유형코드</th>
+                    <!--th>검증내용</th-->
+                    <th>백업여부</th>
+                    <th>사용여부</th>
+                    <!--th>등록자아이디</th-->
+                    <!--th>등록일시</th-->
+                    <th>수정자아이디</th>
+                    <th>수정일시</th>
+                    <!--th class="hideTechDetail"></th-->
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in object_list %}
+                <tr>
+                    <td><a href="{% url 'dq:vrfy_edit' row.VRFY_NO  %}"><span class="glyphicon glyphicon-edit"></span> {{ row.VRFY_NO }}</a></td>             
+                    <td>{{ row.DB_NM }}</td>
+                    <td>{{ row.SCHEMA_NM }}</td>
+                    <td>{{ row.CLSF_NM1 }}</td>
+                    <td>{{ row.CLSF_NM2 }}</td>
+                    <td>{{ row.TABLE_NM }}</td>
+                    <td>{{ row.TABLE_HANGL_NM }}</td>
+                    <td>{{ row.PRESER_PRD_DDNUM }}</td>
+                    <td>{{ row.VRFY_TYPE_CD  }}</td>
+                    <!--td>{# row.VRFY_CNTS #}</td-->
+                    <td>{{ row.BKUP_YN }}</td>
+                    <td>{{ row.USE_YN }}</td>
+                    <!--td>{# row.RGSTR_ID #}</td-->
+                    <!--td>{# row.RGST_DTTM|date:'Y-m-d'  #}</td-->                
+                    <td>{{ row.MODR_ID }}</td>
+                    <td>{{ row.MODI_DTTM|date:'Y-m-d'  }}</td>  
+                    <!--td class="hideTechDetail">{% csrf_token %}</td-->
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
-</div>
-<div id="content" class="padding-20">
-	<!-- HTML DATATABLE -->
-	<table class="table table-striped table-hover table-bordered" id="example">
-		<thead>
-			<tr>
-                <th>ID</th>                
-				<th>DB명</th>
-				<th>스키마명</th>
-                <th>대분류</th>
-                <th>중분류</th>
-                <th>테이블명</th>
-                <th>테이블한글명</th>
-                <th>보존기간일수</th>
-                <th>검증유형코드</th>
-                <!--th>검증내용</th-->
-                <th>백업여부</th>
-                <th>사용여부</th>
-                <!--th>등록자아이디</th-->
-                <!--th>등록일시</th-->
-                <th>수정자아이디</th>
-                <th>수정일시</th>
-                <!--th class="hideTechDetail"></th-->
-			</tr>
-		</thead>
-		<tbody>
-            {% for row in object_list %}
-            <tr>
-                <td><a href="{% url 'dq:vrfy_edit' row.VRFY_NO  %}"><span class="glyphicon glyphicon-edit"></span> {{ row.VRFY_NO }}</a></td>             
-                <td>{{ row.DB_NM }}</td>
-                <td>{{ row.SCHEMA_NM }}</td>
-                <td>{{ row.CLSF_NM1 }}</td>
-                <td>{{ row.CLSF_NM2 }}</td>
-                <td>{{ row.TABLE_NM }}</td>
-                <td>{{ row.TABLE_HANGL_NM }}</td>
-                <td>{{ row.PRESER_PRD_DDNUM }}</td>
-                <td>{{ row.VRFY_TYPE_CD  }}</td>
-                <!--td>{# row.VRFY_CNTS #}</td-->
-                <td>{{ row.BKUP_YN }}</td>
-                <td>{{ row.USE_YN }}</td>
-                <!--td>{# row.RGSTR_ID #}</td-->
-                <!--td>{# row.RGST_DTTM|date:'Y-m-d'  #}</td-->                
-                <td>{{ row.MODR_ID }}</td>
-                <td>{{ row.MODI_DTTM|date:'Y-m-d'  }}</td>  
-                <!--td class="hideTechDetail">{% csrf_token %}</td-->
-            </tr>
-            {% endfor %}
-		</tbody>
-	</table>
 </div>
 
 <script type="text/javascript" class="init">

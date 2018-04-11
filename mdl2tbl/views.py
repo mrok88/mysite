@@ -15,7 +15,7 @@ from .forms import CompForm, FilesForm, ContactFormSet
 from django.views.generic.base import TemplateView
 from django.contrib import messages
 ######################################################################################
-from .ora_test import get_mdl,get_capa
+from .ora_test import get_mdl,get_capa,get_enc_list,get_mask_list,get_defi,get_defi_col
 from .my_test import get_tbl
 from .comp import mk_dict,mk_comp
 #import ora_test
@@ -74,13 +74,15 @@ class DefaultFormView(FormView):
 
 
 class Djbs01FormView(FormView):
+    '''모델비교'''
     template_name = 'mdl2tbl/djbs01.html'    
     def get_context_data(self, **kwargs):
         # form_class에 기본 get값을 설정한다.            
         self.form_class = CompForm
         gets = self.request.GET
         # yws_gets에 get값들을 복제한다.
-        self.form_class.yws_gets = gets.copy() 
+        self.form_class.yws_gets = gets.copy()
+        self.form_class.yws_gets['title'] = "모델비교"
         # 특정 default값을 가져와서 설정한다.
         for ( pk , val ) in gets.items():            
             self.form_class.base_fields[pk].initial =  val
@@ -95,13 +97,15 @@ class Djbs01FormView(FormView):
         return context
 
 class Djbs02FormView(FormView):
+    '''데이터수명주기'''
     template_name = 'mdl2tbl/djbs02.html'    
     def get_context_data(self, **kwargs):
         # form_class에 기본 get값을 설정한다.            
         self.form_class = CompForm
         gets = self.request.GET
         # yws_gets에 get값들을 복제한다.
-        self.form_class.yws_gets = gets.copy() 
+        self.form_class.yws_gets = gets.copy()
+        self.form_class.yws_gets['title'] = "데이터수명주기"
         # 특정 default값을 가져와서 설정한다.
         for ( pk , val ) in gets.items():            
             self.form_class.base_fields[pk].initial =  val
@@ -114,4 +118,72 @@ class Djbs02FormView(FormView):
 
         # context를 가져온다.
         context = super(Djbs02FormView, self).get_context_data(**kwargs)
-        return context        
+        return context
+
+class Djbs03FormView(FormView):
+    template_name = 'mdl2tbl/djbs03.html'    
+    def get_context_data(self, **kwargs): 
+        self.form_class = CompForm   
+        self.form_class.yws_gets = { 'title' : "암호화대상목록" }        
+        self.form_class.yws_rows = get_enc_list()
+        # context를 가져온다.
+        context = super(Djbs03FormView, self).get_context_data(**kwargs)
+        return context
+
+class Djbs04FormView(FormView):
+    template_name = 'mdl2tbl/djbs03.html'    
+    def get_context_data(self, **kwargs): 
+        self.form_class = CompForm   
+        self.form_class.yws_gets = { 'title' : "마스킹대상목록" }
+        self.form_class.yws_rows = get_mask_list()
+        # context를 가져온다.
+        context = super(Djbs04FormView, self).get_context_data(**kwargs)
+        return context
+
+class Djbs05FormView(FormView):
+    '''테이블정의서'''
+    template_name = 'mdl2tbl/djbs05.html'    
+    def get_context_data(self, **kwargs):
+        # form_class에 기본 get값을 설정한다.            
+        self.form_class = CompForm
+        gets = self.request.GET
+        # yws_gets에 get값들을 복제한다.
+        self.form_class.yws_gets = gets.copy()
+        self.form_class.yws_gets['title'] = "테이블정의서"
+        # 특정 default값을 가져와서 설정한다.
+        for ( pk , val ) in gets.items():            
+            self.form_class.base_fields[pk].initial =  val
+            #print('pk:val',pk,val)
+        # subjArea(subject Area) 입력값이 있으면 수행을 한다.
+        if ( len(gets) > 0 and 'subjArea' in gets ):
+            self.form_class.yws_rows = get_defi(gets['subjArea'])
+        else:
+            self.form_class.yws_rows = {}
+
+        # context를 가져온다.
+        context = super(Djbs05FormView, self).get_context_data(**kwargs)
+        return context
+
+class Djbs06FormView(FormView):
+    '''컬럼정의서'''
+    template_name = 'mdl2tbl/djbs05.html'    
+    def get_context_data(self, **kwargs):
+        # form_class에 기본 get값을 설정한다.            
+        self.form_class = CompForm
+        gets = self.request.GET
+        # yws_gets에 get값들을 복제한다.
+        self.form_class.yws_gets = gets.copy()
+        self.form_class.yws_gets['title'] = "컬럼정의서"
+        # 특정 default값을 가져와서 설정한다.
+        for ( pk , val ) in gets.items():            
+            self.form_class.base_fields[pk].initial =  val
+            #print('pk:val',pk,val)
+        # subjArea(subject Area) 입력값이 있으면 수행을 한다.
+        if ( len(gets) > 0 and 'subjArea' in gets ):
+            self.form_class.yws_rows = get_defi_col(gets['subjArea'])
+        else:
+            self.form_class.yws_rows = {}
+
+        # context를 가져온다.
+        context = super(Djbs06FormView, self).get_context_data(**kwargs)
+        return context               

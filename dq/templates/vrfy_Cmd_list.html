@@ -4,71 +4,72 @@
 {% include "datatable.html" %}
 {% endblock %}
 
-{% block content %}    
-<div class="padding-20">
-    <div class="row">
-        <div class="col-md-2">
-                <h3>{% block title %}검증명령어{% endblock %}</h3>
+{% block content %}
+<div style="margin-left:5%;margin-right:5%">
+    <div class="padding-20">
+        <div class="row">
+            <div class="col-md-2">
+                    <h3>{% block title %}검증명령어{% endblock %}</h3>
+            </div>
+            <div class="col-md-8">                
+                <!-- Search Bar -->
+                <form class="navbar-form navbar-left" role="search" method=GET>
+                        <div class="form-group">
+                            <label for="Search">테이블명:</label>
+                            <input type="text" class="form-control" placeholder="Search" name=qry id=qry value="{{gets.qry}}" >
+                        </div>
+                        <button type="submit" class="btn btn-default">조회</button>
+                </form>
+            </div>       
         </div>
-        <div class="col-md-8">                
-            <!-- Search Bar -->
-            <form class="navbar-form navbar-left" role="search" method=GET>
-                    <div class="form-group">
-                        <label for="Search">테이블명:</label>
-                        <input type="text" class="form-control" placeholder="Search" name=qry id=qry value="{{gets.qry}}" >
-                    </div>
-                    <button type="submit" class="btn btn-default">조회</button>
-            </form>
-        </div>       
+        <div class="row" >            
+            <div class="col-md-1">
+                    <a href="{% url 'dq:vrfy_Cmd_new' %}" class="btn btn-primary" role="button" ><span class="glyphicon glyphicon-plus-sign"></span> New</a>                
+            </div> 
+        </div>
     </div>
-    <div class="row" >            
-        <div class="col-md-1">
-                <a href="{% url 'dq:vrfy_Cmd_new' %}" class="btn btn-primary" role="button" ><span class="glyphicon glyphicon-plus-sign"></span> New</a>                
-        </div> 
+    <div id="content" class="padding-20">
+        <!-- HTML DATATABLE -->
+        <table class="table table-striped table-hover table-bordered" id="example">
+            <thead>
+                <tr>
+                    <th>ID</th>                
+                    <th>검증번호</th>
+                    <th>검증순번</th>
+                    <th>자동체크여부</th>
+                    <th>명령어구분코드</th>
+                    <th>명령어유형코드</th>
+                    <th>상세검증여부</th>
+                    <th>마지막수행일시</th>
+                    <!--th>등록자아이디</th-->
+                    <!--th>등록일시</th-->
+                    <th>수정자아이디</th>
+                    <th>수정일시</th>
+                    <!--th class="hideTechDetail"></th-->
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in object_list %}
+                <tr>
+                    <td><a href="{% url 'dq:vrfy_Cmd_edit' row.VRFY_CMD_NO  %}"><span class="glyphicon glyphicon-edit"></span> {{ row.VRFY_CMD_NO }}</a></td>             
+                    <td>{{ row.VRFY_NO }}</td>
+                    <td>{{ row.VRFY_SEQ }}</td>
+                    <td>{{ row.AUTO_CK_YN }}</td>
+                    <td>{{ row.CMD_DVS_CD }}</td>
+                    <td>{{ row.CMD_TYPE_CD }}</td>
+                    <td>{{ row.DTL_VRFY_YN }}</td>
+                    <td>{{ row.LAST_EXE_DTTM  }}</td>
+                    <!--td>{# row.RGSTR_ID #}</td-->
+                    <!--td>{# row.RGST_DTTM|date:'Y-m-d'  #}</td-->                
+                    <td>{{ row.MODR_ID }}</td>
+                    <td>{{ row.MODI_DTTM|date:'Y-m-d'  }}</td>  
+                    <!--td class="hideTechDetail">{% csrf_token %}</td-->
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
 </div>
-<div id="content" class="padding-20">
-	<!-- HTML DATATABLE -->
-	<table class="table table-striped table-hover table-bordered" id="example">
-		<thead>
-			<tr>
-                <th>ID</th>                
-				<th>검증번호</th>
-				<th>검증순번</th>
-                <th>자동체크여부</th>
-                <th>명령어구분코드</th>
-                <th>명령어유형코드</th>
-                <th>상세검증여부</th>
-                <th>마지막수행일시</th>
-                <!--th>등록자아이디</th-->
-                <!--th>등록일시</th-->
-                <th>수정자아이디</th>
-                <th>수정일시</th>
-                <!--th class="hideTechDetail"></th-->
-			</tr>
-		</thead>
-		<tbody>
-            {% for row in object_list %}
-            <tr>
-                <td><a href="{% url 'dq:vrfy_Cmd_edit' row.VRFY_CMD_NO  %}"><span class="glyphicon glyphicon-edit"></span> {{ row.VRFY_CMD_NO }}</a></td>             
-                <td>{{ row.VRFY_NO }}</td>
-                <td>{{ row.VRFY_SEQ }}</td>
-                <td>{{ row.AUTO_CK_YN }}</td>
-                <td>{{ row.CMD_DVS_CD }}</td>
-                <td>{{ row.CMD_TYPE_CD }}</td>
-                <td>{{ row.DTL_VRFY_YN }}</td>
-                <td>{{ row.LAST_EXE_DTTM  }}</td>
-                <!--td>{# row.RGSTR_ID #}</td-->
-                <!--td>{# row.RGST_DTTM|date:'Y-m-d'  #}</td-->                
-                <td>{{ row.MODR_ID }}</td>
-                <td>{{ row.MODI_DTTM|date:'Y-m-d'  }}</td>  
-                <!--td class="hideTechDetail">{% csrf_token %}</td-->
-            </tr>
-            {% endfor %}
-		</tbody>
-	</table>
-</div>
-
 <script type="text/javascript" class="init">
     $(document).ready(function() {
         $('#example').DataTable( {
