@@ -10,10 +10,10 @@
 {% block content %}
 <div class="container">
     {# Display a form #}
-    <form action="djbs02" method="get" class="form-inline">
+    <form action="djbs06" method="get" class="form-inline">
         <div class="form-group bootstrap3-required"> 
-            <h3>{{ form.yws_gets.title }} ( {{ form.yws_gets.subjArea}} ) </h3>   
-            <label for="Search">주제영역:</label>        
+            <h3>{{ form.yws_gets.title }} </h3>   
+            <label for="Search">테이블명:</label>        
             {% bootstrap_form form layout='inline' align=right %}
             {% buttons %}
                 <button type="submit" class="btn btn-primary" layout='inline'> 
@@ -32,11 +32,13 @@
                     <td><B>모델명</B></td>
                     <td><B>한글명</B></td>
                     <td><B>테이블</B></td>
-                    <td><B>상태</B></td>
-                    <td><B>발생주기</B></td>
-                    <td><B>월증가건수</B></td>
-                    <td><B>보존주기</B></td>
-                    <td><B>초기건수</B></td>
+                    <td><B>속성명</B></td>
+                    <td><B>컬럼명</B></td>
+                    <td><B>데이터타입</B></td>
+                    <td><B>널여부</B></td>
+                    <td><B>기본값</B></td>
+                    <td><B>순서</B></td>
+                    <td><B>컬럼정의</B></td>                    
                 </tr>
                 </thead>
                 <!-- 이 부분이 바뀌었습니다 -->
@@ -46,11 +48,13 @@
                             <td> {{ row.MDL_NM }} </td>
                             <td> {{ row.ENT_NM }} </td>
                             <td> {{ row.TBL_NM }} </td>
-                            <td> {{ row.STAT }} </td>
-                            <td> {{ row.OCCUR_CYCLE }} </td>
-                            <td align="right"> {{ row.MONTHY_OCCUR_QTY|intcomma }} </td>
-                            <td> {{ row.MNGT_CYCLE }} </td>
-                            <td align="right"> {{ row.TOT_OCCUR_QTY|intcomma }} </td>
+                            <td> {{ row.ATTR_NM }} </td>
+                            <td> {{ row.COL_NM }} </td>
+                            <td> {{ row.DT }} </td>
+                            <td> {{ row.NULLABLE }} </td>
+                            <td> {{ row.DEFT }} </td>
+                            <td> {{ row.POS }} </td>
+                            <td><pre>{{ row.DEFI }}</pre></td>                            
                         </tr>
                         {% endfor %}
                 <!-- 여기까지 -->
@@ -67,7 +71,7 @@ $(document).ready(function() {
         ],
         "paging":   false,
         "ordering" : true,
-        "order": [[ 1, "asc" ]],
+        "order": [[ 3, "asc" ],[ 9, "asc" ]],
         "info":     true
     } );
 } );

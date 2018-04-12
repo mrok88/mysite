@@ -10,7 +10,7 @@ from django.utils import timezone
 import json
 ############################## forms ##############################
 from django.views.generic import FormView
-from .forms import CompForm, FilesForm, ContactFormSet
+from .forms import CompForm, FilesForm, ContactFormSet, TableNameForm
 ############################## bootstrap 3 ##############################
 from django.views.generic.base import TemplateView
 from django.contrib import messages
@@ -166,10 +166,10 @@ class Djbs05FormView(FormView):
 
 class Djbs06FormView(FormView):
     '''컬럼정의서'''
-    template_name = 'mdl2tbl/djbs05.html'    
+    template_name = 'mdl2tbl/djbs06.html'    
     def get_context_data(self, **kwargs):
         # form_class에 기본 get값을 설정한다.            
-        self.form_class = CompForm
+        self.form_class = TableNameForm
         gets = self.request.GET
         # yws_gets에 get값들을 복제한다.
         self.form_class.yws_gets = gets.copy()
@@ -179,8 +179,8 @@ class Djbs06FormView(FormView):
             self.form_class.base_fields[pk].initial =  val
             #print('pk:val',pk,val)
         # subjArea(subject Area) 입력값이 있으면 수행을 한다.
-        if ( len(gets) > 0 and 'subjArea' in gets ):
-            self.form_class.yws_rows = get_defi_col(gets['subjArea'])
+        if ( len(gets) > 0 and 'tblNm' in gets ):
+            self.form_class.yws_rows = get_defi_col(gets['tblNm'])
         else:
             self.form_class.yws_rows = {}
 
