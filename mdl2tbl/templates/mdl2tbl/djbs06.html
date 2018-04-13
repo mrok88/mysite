@@ -52,7 +52,7 @@
                             <td> {{ row.COL_NM }} </td>
                             <td> {{ row.DT }} </td>
                             <td> {{ row.NULLABLE }} </td>
-                            <td> {{ row.DEFT }} </td>
+                            <td> {{ row.DEFT|default_if_none:"" }} </td>
                             <td> {{ row.POS }} </td>
                             <td><pre>{{ row.DEFI }}</pre></td>                            
                         </tr>
@@ -71,7 +71,7 @@ $(document).ready(function() {
         ],
         "paging":   false,
         "ordering" : true,
-        "order": [[ 3, "asc" ],[ 9, "asc" ]],
+        "order": [[ 2, "asc" ],[ 8, "asc" ]],
         "info":     true
     } );
 } );

@@ -48,7 +48,7 @@
                             <td> {{ row.ENT_NM }} </td>
                             <td> {{ row.TBL_NM }} </td>
                             <td> {{ row.STAT }} </td>
-                            <td> {{ row.OCCUR_CYCLE }} </td>
+                            <td> {{ row.OCCUR_CYCLE|default:"" }} </td>
                             <td align="right"> {{ row.MONTHY_OCCUR_QTY|intcomma }} </td>
                             <td> {{ row.MNGT_CYCLE }} </td>
                             <td align="right"> {{ row.TOT_OCCUR_QTY|intcomma }} </td>

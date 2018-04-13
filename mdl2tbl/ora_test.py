@@ -1,3 +1,8 @@
+###########################################################################
+#     Meta-eXpress 2.1 
+#     All right reserved by wonseokyou 
+#     email : wonseokyou@gmail.com 
+###########################################################################
 import os
 import sys
 import cx_Oracle
@@ -64,18 +69,34 @@ WHERE TBL_NM = upper(:tbl_nm)""",{'tbl_nm': p_tbl_nm})
 
 
 ##############################
-# GET_ENC
-# 암호화 대상에 대한 정보  
-##############################
 def get_enc_list():
-    return get_qry("SELECT * FROM DA05.암호화대상여부")
+    '''
+    암호화 대상에 대한 정보
+    '''
+    #return get_qry("SELECT * FROM DA05.암호화대상여부")
+    return get_qry("SELECT * FROM DA05.암호화")
 
 ##############################
-# GET_MASKING
-# 마스킹 대상에 대한 정보  
-##############################
 def get_mask_list():
-    return get_qry("SELECT * FROM DA05.마스킹대상여부")
+    '''
+    마스킹 대상에 대한 정보  
+    '''
+    #return get_qry("SELECT * FROM DA05.마스킹대상여부")
+    return get_qry("SELECT * FROM DA05.마스킹")
+
+##############################
+def get_emp_col():
+    '''
+    직원명 대상 컬럼목록
+    '''
+    return get_qry("SELECT * FROM DA05.직원명")    
+
+##############################
+def get_cust_col():
+    '''
+    곡객명 대상 컬럼목록
+    '''
+    return get_qry("SELECT * FROM DA05.고객명")    
      
 ##############################
 # TEST START 

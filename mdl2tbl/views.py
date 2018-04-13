@@ -1,3 +1,8 @@
+###########################################################################
+#     Meta-eXpress 2.1 
+#     All right reserved by wonseokyou 
+#     email : wonseokyou@gmail.com 
+###########################################################################
 import os
 from django.shortcuts import render, get_object_or_404
 from django.shortcuts import redirect
@@ -15,7 +20,8 @@ from .forms import CompForm, FilesForm, ContactFormSet, TableNameForm
 from django.views.generic.base import TemplateView
 from django.contrib import messages
 ######################################################################################
-from .ora_test import get_mdl,get_capa,get_enc_list,get_mask_list,get_defi,get_defi_col
+from . import ora_test as Ora
+from .ora_test import get_mdl
 from .my_test import get_tbl
 from .comp import mk_dict,mk_comp
 #import ora_test
@@ -112,7 +118,7 @@ class Djbs02FormView(FormView):
             #print('pk:val',pk,val)
         # subjArea(subject Area) 입력값이 있으면 수행을 한다.
         if ( len(gets) > 0 and 'subjArea' in gets ):
-            self.form_class.yws_rows = get_capa(gets['subjArea'])
+            self.form_class.yws_rows = Ora.get_capa(gets['subjArea'])
         else:
             self.form_class.yws_rows = {}
 
@@ -121,21 +127,21 @@ class Djbs02FormView(FormView):
         return context
 
 class Djbs03FormView(FormView):
-    template_name = 'mdl2tbl/djbs03.html'    
+    template_name = 'mdl2tbl/djbs07.html'    
     def get_context_data(self, **kwargs): 
         self.form_class = CompForm   
         self.form_class.yws_gets = { 'title' : "암호화대상목록" }        
-        self.form_class.yws_rows = get_enc_list()
+        self.form_class.yws_rows = Ora.get_enc_list()
         # context를 가져온다.
         context = super(Djbs03FormView, self).get_context_data(**kwargs)
         return context
 
 class Djbs04FormView(FormView):
-    template_name = 'mdl2tbl/djbs03.html'    
+    template_name = 'mdl2tbl/djbs07.html'    
     def get_context_data(self, **kwargs): 
         self.form_class = CompForm   
         self.form_class.yws_gets = { 'title' : "마스킹대상목록" }
-        self.form_class.yws_rows = get_mask_list()
+        self.form_class.yws_rows = Ora.get_mask_list()
         # context를 가져온다.
         context = super(Djbs04FormView, self).get_context_data(**kwargs)
         return context
@@ -156,7 +162,7 @@ class Djbs05FormView(FormView):
             #print('pk:val',pk,val)
         # subjArea(subject Area) 입력값이 있으면 수행을 한다.
         if ( len(gets) > 0 and 'subjArea' in gets ):
-            self.form_class.yws_rows = get_defi(gets['subjArea'])
+            self.form_class.yws_rows = Ora.get_defi(gets['subjArea'])
         else:
             self.form_class.yws_rows = {}
 
@@ -180,10 +186,30 @@ class Djbs06FormView(FormView):
             #print('pk:val',pk,val)
         # subjArea(subject Area) 입력값이 있으면 수행을 한다.
         if ( len(gets) > 0 and 'tblNm' in gets ):
-            self.form_class.yws_rows = get_defi_col(gets['tblNm'])
+            self.form_class.yws_rows = Ora.get_defi_col(gets['tblNm'])
         else:
             self.form_class.yws_rows = {}
 
         # context를 가져온다.
         context = super(Djbs06FormView, self).get_context_data(**kwargs)
-        return context               
+        return context
+
+class Djbs07FormView(FormView):
+    template_name = 'mdl2tbl/djbs07.html'            
+    def get_context_data(self, **kwargs): 
+        self.form_class = CompForm   
+        self.form_class.yws_gets = { 'title' : "직원명 컬럼" }
+        self.form_class.yws_rows = Ora.get_emp_col()
+        # context를 가져온다.
+        context = super(Djbs07FormView, self).get_context_data(**kwargs)
+        return context
+
+class Djbs08FormView(FormView):
+    template_name = 'mdl2tbl/djbs07.html'    
+    def get_context_data(self, **kwargs): 
+        self.form_class = CompForm   
+        self.form_class.yws_gets = { 'title' : "고객명 컬럼" }
+        self.form_class.yws_rows = Ora.get_cust_col()
+        # context를 가져온다.
+        context = super(Djbs08FormView, self).get_context_data(**kwargs)
+        return context

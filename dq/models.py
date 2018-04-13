@@ -1,3 +1,8 @@
+###########################################################################
+#     Meta-eXpress 2.1 
+#     All right reserved by wonseokyou 
+#     email : wonseokyou@gmail.com 
+###########################################################################
 from django.db import models
 
 from datetime import datetime

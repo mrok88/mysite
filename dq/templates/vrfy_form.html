@@ -6,7 +6,7 @@
         <form method="post">
             {% csrf_token %}
             <div class="modal-header row">
-                <h3><span class="col-md-10" >{% block title %}검증{% endblock %} </span>
+                <h3><span class="col-md-10" >{% block title %}검증메터{% endblock %} </span>
                     <input name="action" class="btn btn-cancel" onclick="window.history.go(-1); return false;" type="button" value="Back" />
                     {% if row.VRFY_NO %} 
                     <a href="{% url 'dq:vrfy_delete' row.VRFY_NO  %}" class="btn btn-danger" role="button"  class="col-md-2" >

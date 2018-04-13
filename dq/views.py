@@ -1,3 +1,8 @@
+###########################################################################
+#     Meta-eXpress 2.1 
+#     All right reserved by wonseokyou 
+#     email : wonseokyou@gmail.com 
+###########################################################################
 from django.forms import ModelForm
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseGone
 from django.shortcuts import render, redirect, get_object_or_404
