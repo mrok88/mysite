@@ -213,3 +213,13 @@ class Djbs08FormView(FormView):
         # context를 가져온다.
         context = super(Djbs08FormView, self).get_context_data(**kwargs)
         return context
+
+class Djbs09FormView(FormView):
+    template_name = 'mdl2tbl/djbs09.html'    
+    def get_context_data(self, **kwargs): 
+        self.form_class = CompForm   
+        self.form_class.yws_gets = { 'title' : "코드 정의서" }
+        self.form_class.yws_rows = Ora.get_cd_defi()
+        # context를 가져온다.
+        context = super(Djbs09FormView, self).get_context_data(**kwargs)
+        return context        

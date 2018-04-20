@@ -97,7 +97,14 @@ def get_cust_col():
     곡객명 대상 컬럼목록
     '''
     return get_qry("SELECT * FROM DA05.고객명")    
-     
+
+##############################
+def get_cd_defi():
+    '''
+    코드정의서
+    '''
+    return get_qry("SELECT * FROM DA05.코드정의서")  
+
 ##############################
 # TEST START 
 ##############################

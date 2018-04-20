@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+{% load humanize %}
+{% block title %}{{ form.yws_gets.title }}{% endblock %} 
+
+{% block include_datatable %}
+{% include "datatable.html" %}
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h3>{{ form.yws_gets.title }}</h3>
+    <hr>
+    <div id="container" class="dataTables_wrapper">
+            <table id="example" class="display table table-striped table-bordered" cellspacing="0" width="100%" >
+                <thead>
+                    <tr>
+                        <td><B>한글명</B></td>
+                        <td><B>컬럼명</B></td>
+                        <td><B>코드설명</B></td>
+                        <td><B>사용테이블목록</B></td>                
+                    </tr>
+                </thead>
+                <!-- 이 부분이 바뀌었습니다 -->
+                <tbody>
+                    {% for row in form.yws_rows %}
+                    <tr>
+                        <td> {{ row.DIC_LOG_NM }} </td>
+                        <td> {{ row.DIC_PHY_NM }} </td>
+                        <td style="white-space:pre-wrap; word-wrap:break-word" > {{ row.DIC_DESC }} </td>
+                        <td> {{ row.TBL_NMS|safe }} </td>             
+                    </tr>
+                    {% endfor %}
+                <!-- 여기까지 -->
+                <tbody>
+        </table>
+    </div>
+</div>
+<script type="text/javascript" class="init">
+$(document).ready(function() {
+    $('#example').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ],
+        "paging":   false,
+        "ordering" : true,
+        "order": [[ 1, "asc" ]],
+        "info":     true
+    } );
+} );
+</script>
+{% endblock content %}

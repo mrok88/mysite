@@ -19,6 +19,7 @@ urlpatterns = [
     url(r'djbs06', views.Djbs06FormView.as_view(), name='djbs06'),
     url(r'djbs07', views.Djbs07FormView.as_view(), name='djbs07'),
     url(r'djbs08', views.Djbs08FormView.as_view(), name='djbs08'),
+    url(r'djbs09', views.Djbs09FormView.as_view(), name='djbs09'),
     url(r'form', views.DefaultFormView.as_view(), name='form'),
     url(r'test/', views.tbl_list, name='tbl_list'),
     url(r'comp/(?P<pk>\w*)', views.comp_list, name='comp_list'),       

@@ -7,7 +7,8 @@
     <title>{% block title %} Data Life Cycle 관리 {% endblock %}</title>
     <meta name="description" content="Data Quality Meta Manager">
     <meta name="author" content="wonseokyou">
-
+    <meta name="email" content="wsyou@wizbase.co.kr">
+    
  <!-- jquery include start -->   
  <script src="//code.jquery.com/jquery.min.js"></script>
  
@@ -64,7 +65,8 @@
                 <ul class="dropdown-menu">                             
                     <li> <a href={% url 'mdl2tbl:djbs05' %}><span>테이블정의서</span></a></li>
                     <li> <a href={% url 'mdl2tbl:djbs06' %}><span>컬럼정의서</span></a></li>
-                </ul>
+                    <li> <a href={% url 'mdl2tbl:djbs09' %}><span>코드정의서</span></a></li>
+                  </ul>
           </li><!-- DA# 관련 메뉴 종료 -->                                                     
         </ul>
       </div><!-- /.navbar-collapse -->
