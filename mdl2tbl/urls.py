@@ -22,5 +22,6 @@ urlpatterns = [
     url(r'djbs09', views.Djbs09FormView.as_view(), name='djbs09'),
     url(r'form', views.DefaultFormView.as_view(), name='form'),
     url(r'test/', views.tbl_list, name='tbl_list'),
+    url(r'cds/', views.cd_list, name='cd_list'),    
     url(r'comp/(?P<pk>\w*)', views.comp_list, name='comp_list'),       
 ]

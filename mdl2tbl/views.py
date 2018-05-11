@@ -22,7 +22,7 @@ from django.contrib import messages
 ######################################################################################
 from . import ora_test as Ora
 from .ora_test import get_mdl
-from .my_test import get_tbl
+from .my_test import get_tbl,get_cd_list
 from .comp import mk_dict,mk_comp
 #import ora_test
 #import my_test
@@ -66,6 +66,29 @@ def form_by_field(request,pk="%"):
     form = { 'subject' : '서브젝트' , 'message' : '메세지'}
     return render(request,'mdl2tbl/form_by_field.html',{'form' : form })
 
+#ajax return function 
+def cd_list(request):
+    # context = { 'message' : [
+    #                         {'CD_NM': '신청', 'CD': '110'},
+    #                         {'CD_NM': '응모', 'CD': '120'},
+    #                         {'CD_NM': '당첨', 'CD': '130'},
+    #                         {'CD_NM': '당첨취소', 'CD': '140'},
+    #                         {'CD_NM': '당첨대기', 'CD': '150'},
+    #                         {'CD_NM': '제세공과금 입금요청', 'CD': '160'},
+    #                         {'CD_NM': '제세공과금 입금완료', 'CD': '170'},
+    #                         {'CD_NM': '당첨확정', 'CD': '175'},
+    #                         {'CD_NM': '지급요청', 'CD': '180'},
+    #                         {'CD_NM': '경품발송', 'CD': '190'},
+    #                         {'CD_NM': '지급완료', 'CD': '200'},
+    #                     ] ,
+    #             'ret'  : 'OK'
+    #         }
+    cd = request.GET['cd']
+    rows = get_cd_list(cd)
+    context = { 'message' : rows,
+                'ret'  : 'OK'
+            }    
+    return HttpResponse(json.dumps(context), content_type="application/json")    
 
 class HomePageView(TemplateView):
     template_name = 'mdl2tbl/home.html'
@@ -222,4 +245,5 @@ class Djbs09FormView(FormView):
         self.form_class.yws_rows = Ora.get_cd_defi()
         # context를 가져온다.
         context = super(Djbs09FormView, self).get_context_data(**kwargs)
-        return context        
+        return context
+

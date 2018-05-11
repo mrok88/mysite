@@ -64,8 +64,7 @@ def get_defi_col(p_tbl_nm = "GD"):
 ,ROW_NUMBER() OVER ( PARTITION BY MDL_NM, TBL_NM ORDER BY ENT_TYPE, ORD ) POS
 ,A.DEFI
 FROM DA05.컬럼정의서 A
-WHERE TBL_NM = upper(:tbl_nm)""",{'tbl_nm': p_tbl_nm})    
-
+WHERE TBL_NM = upper(:tbl_nm)""",{'tbl_nm': p_tbl_nm})
 
 
 ##############################

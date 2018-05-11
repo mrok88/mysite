@@ -8,7 +8,7 @@ import sys
 import pymysql
 from functools import reduce
 from sshtunnel import SSHTunnelForwarder
-from . import conn_info
+import conn_info
 ##############################
 # GET_TBL
 # 테이블 데이터타입, NULL여부, DEFAULT값 가져오기 

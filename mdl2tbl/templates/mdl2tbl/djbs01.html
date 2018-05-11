@@ -43,7 +43,7 @@
                             <td> {{ row.SCHEMA }} </td>
                             <td> {{ row.TBL_NM }} </td>
                             <td> {{ row.COL_NM }} </td>
-                            <td> {{ row.DIFF }} </td>
+                            <td> {{ row.DIFF|safe }} </td>
                         </tr>
                         {% endfor %}
                 <!-- 여기까지 -->
