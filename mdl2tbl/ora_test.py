@@ -105,6 +105,28 @@ def get_cd_defi():
     return get_qry("SELECT * FROM DA05.코드정의서")  
 
 ##############################
+# GET_ATTR_USE_TBL
+# 컬럼 사용 테이블
+##############################
+def get_attr_use_tbl(p_attr_nm = "GD"):
+    return get_qry("""SELECT A.ATTR_NM, A.COL_NM,       
+      A.DT ,     
+      A.TBL_NMS
+FROM DA05.컬럼사용테이블 A
+WHERE ATTR_NM LIKE :attr_nm """,{'attr_nm': p_attr_nm})
+
+##############################
+# GET_COL_USE_TBL
+# 컬럼 사용 테이블
+##############################
+def get_col_use_tbl(p_col_nm = "GD"):
+    return get_qry("""SELECT A.ATTR_NM, A.COL_NM,
+      A.DT ,     
+      A.TBL_NMS
+FROM DA05.컬럼사용테이블 A
+WHERE COL_NM LIKE :col_nm """,{'col_nm': p_col_nm})
+
+##############################
 # TEST START 
 ##############################
 if __name__ == "__main__":

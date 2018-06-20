@@ -49,7 +49,11 @@
                             <td> {{ row.ENT_NM }} </td>
                             <td> {{ row.TBL_NM }} </td>
                             <td> {{ row.ATTR_NM }} </td>
-                            <td> {{ row.COL_NM }} </td>
+                            {% if '_CD' in  row.COL_NM  %}
+                                <td onClick="javascript:get_cd_list('{{ row.ATTR_NM }}({{ row.COL_NM }}) 코드목록','{{ row.COL_NM }}')" class="yws_pnt" > {{ row.COL_NM }} </td>
+                            {% else %}
+                                <td> {{ row.COL_NM }} </td>
+                            {% endif %}
                             <td> {{ row.DT }} </td>
                             <td> {{ row.NULLABLE }} </td>
                             <td> {{ row.DEFT|default_if_none:"" }} </td>
@@ -88,4 +92,7 @@ $(document).ready(function() {
     } );
 } );
 </script>
+{% block include_cd_ajax %}
+{% include "cd_ajax.html" %}
+{% endblock %}
 {% endblock content %}

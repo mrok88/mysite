@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+ 
+<div ng-app="myApp" ng-controller="myCtrl" >
+        <button ng-click="get_cd_list('상품유형코드(GOODS_TYPE_CD) 코드목록','GOODS_TYPE_CD')">Click Me!</button>    
+{% verbatim %}    
+    <table class="display table table-striped table-bordered" >
+        <tr>
+            <th ng-click="orderByMe('CD')" >코드값</th> 
+            <th ng-click="orderByMe('CD_NM')" >코드명</th>
+        </tr>    
+        <tr ng-repeat="x in rows | orderBy:myOrderBy ">
+          <td>{{ x.CD }}</td>
+          <td>{{ x.CD_NM }}</td>
+        </tr>
+    </table>
+{% endverbatim %}
+</div>
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope, $http) {
+    $scope.get_cd_list = function(myTitle,myCD) {
+     //$http.get("mdl2tbl/cds/?cd="+myCD)
+     $http({
+        method : 'GET',
+        url : 'mdl2tbl/cds',
+        params :  { cd : myCD }
+     })
+     .then(function (response) {$scope.rows = response.data.message;});
+    }    
+    $scope.orderByMe = function(x) {
+        $scope.myOrderBy = x;
+    }    
+});
+</script>
+
+</body>
+</html>

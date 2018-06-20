@@ -15,7 +15,7 @@ from django.utils import timezone
 import json
 ############################## forms ##############################
 from django.views.generic import FormView
-from .forms import CompForm, FilesForm, ContactFormSet, TableNameForm
+from .forms import CompForm, FilesForm, ContactFormSet, TableNameForm,AttrNameForm,ColNameForm
 ############################## bootstrap 3 ##############################
 from django.views.generic.base import TemplateView
 from django.contrib import messages
@@ -24,6 +24,7 @@ from . import ora_test as Ora
 from .ora_test import get_mdl
 from .my_test import get_tbl,get_cd_list
 from .comp import mk_dict,mk_comp
+from . import comp_aurora as Aurora
 #import ora_test
 #import my_test
 
@@ -185,6 +186,7 @@ class Djbs05FormView(FormView):
             #print('pk:val',pk,val)
         # subjArea(subject Area) 입력값이 있으면 수행을 한다.
         if ( len(gets) > 0 and 'subjArea' in gets ):
+            self.form_class.yws_gets['title'] = "테이블정의서(" + gets['subjArea'] + ")"
             self.form_class.yws_rows = Ora.get_defi(gets['subjArea'])
         else:
             self.form_class.yws_rows = {}
@@ -209,6 +211,7 @@ class Djbs06FormView(FormView):
             #print('pk:val',pk,val)
         # subjArea(subject Area) 입력값이 있으면 수행을 한다.
         if ( len(gets) > 0 and 'tblNm' in gets ):
+            self.form_class.yws_gets['title'] = "컬럼정의서 (" + gets['tblNm'] + ")"
             self.form_class.yws_rows = Ora.get_defi_col(gets['tblNm'])
         else:
             self.form_class.yws_rows = {}
@@ -247,3 +250,104 @@ class Djbs09FormView(FormView):
         context = super(Djbs09FormView, self).get_context_data(**kwargs)
         return context
 
+class Djbs10FormView(FormView): 
+    '''속성사용테이블'''
+    template_name = 'mdl2tbl/djbs10.html'    
+    def get_context_data(self, **kwargs):
+        # form_class에 기본 get값을 설정한다.            
+        self.form_class = AttrNameForm
+        gets = self.request.GET
+        # yws_gets에 get값들을 복제한다.
+        self.form_class.yws_gets = gets.copy()
+        self.form_class.yws_gets['title'] = "속성사용테이블"
+        # 특정 default값을 가져와서 설정한다.
+        for ( pk , val ) in gets.items():            
+            self.form_class.base_fields[pk].initial =  val
+            #print('pk:val',pk,val)
+        # subjArea(subject Area) 입력값이 있으면 수행을 한다.
+        if ( len(gets) > 0 and 'attrNm' in gets ):
+            self.form_class.yws_gets['title'] = "속성사용테이블 (" + gets['attrNm'] + ")"
+            self.form_class.yws_rows = Ora.get_attr_use_tbl(gets['attrNm'])
+        else:
+            self.form_class.yws_rows = {}
+
+        # context를 가져온다.
+        context = super(Djbs10FormView, self).get_context_data(**kwargs)
+        return context
+
+class Djbs11FormView(FormView): 
+    '''컬럼사용테이블'''
+    template_name = 'mdl2tbl/djbs11.html'    
+    def get_context_data(self, **kwargs):
+        # form_class에 기본 get값을 설정한다.            
+        self.form_class = ColNameForm
+        gets = self.request.GET
+        # yws_gets에 get값들을 복제한다.
+        self.form_class.yws_gets = gets.copy()
+        self.form_class.yws_gets['title'] = "컬럼사용테이블"
+        # 특정 default값을 가져와서 설정한다.
+        for ( pk , val ) in gets.items():            
+            self.form_class.base_fields[pk].initial =  val
+            #print('pk:val',pk,val)
+        # subjArea(subject Area) 입력값이 있으면 수행을 한다.
+        if ( len(gets) > 0 and 'colNm' in gets ):
+            self.form_class.yws_gets['title'] = "컬럼사용테이블 (" + gets['colNm'] + ")"
+            self.form_class.yws_rows = Ora.get_col_use_tbl(gets['colNm'])
+        else:
+            self.form_class.yws_rows = {}
+
+        # context를 가져온다.
+        context = super(Djbs11FormView, self).get_context_data(**kwargs)
+        return context
+
+class Djbs12FormView(FormView): 
+    '''컬럼비교(DEV<=>TST)'''
+    template_name = 'mdl2tbl/djbs12.html'    
+    def get_context_data(self, **kwargs):
+        # form_class에 기본 get값을 설정한다.            
+        self.form_class = CompForm
+        gets = self.request.GET
+        # yws_gets에 get값들을 복제한다.
+        self.form_class.yws_gets = gets.copy()
+        self.form_class.yws_gets['title'] = "AURORA(dev<=>tst)비교"
+        # 특정 default값을 가져와서 설정한다.
+        for ( pk , val ) in gets.items():            
+            self.form_class.base_fields[pk].initial =  val
+            #print('pk:val',pk,val)
+        # subjArea(subject Area) 입력값이 있으면 수행을 한다.
+        if ( len(gets) > 0 and 'subjArea' in gets ):
+            self.form_class.yws_gets['title'] = "AURORA(dev<=>tst)비교 (" + gets['subjArea'] + ")"
+            self.form_class.yws_gets['submitUrl'] = 'djbs12'
+            self.form_class.yws_rows = Aurora.comp_dev_tst(gets['subjArea'])
+        else:
+            self.form_class.yws_rows = {}
+
+        # context를 가져온다.
+        context = super(Djbs12FormView, self).get_context_data(**kwargs)
+        return context
+
+class Djbs13FormView(FormView): 
+    '''컬럼비교(DEV<=>TST)'''
+    template_name = 'mdl2tbl/djbs12.html'    
+    def get_context_data(self, **kwargs):
+        # form_class에 기본 get값을 설정한다.            
+        self.form_class = CompForm
+        gets = self.request.GET
+        # yws_gets에 get값들을 복제한다.
+        self.form_class.yws_gets = gets.copy()
+        self.form_class.yws_gets['title'] = "AURORA인덱스(dev<=>tst)비교"
+        # 특정 default값을 가져와서 설정한다.
+        for ( pk , val ) in gets.items():            
+            self.form_class.base_fields[pk].initial =  val
+            #print('pk:val',pk,val)
+        # subjArea(subject Area) 입력값이 있으면 수행을 한다.
+        if ( len(gets) > 0 and 'subjArea' in gets ):
+            self.form_class.yws_gets['title'] = "AURORA인덱스(dev<=>tst)비교 (" + gets['subjArea'] + ")"
+            self.form_class.yws_gets['submitUrl'] = 'djbs13'
+            self.form_class.yws_rows = Aurora.comp_idx_dev_tst(gets['subjArea'])
+        else:
+            self.form_class.yws_rows = {}
+
+        # context를 가져온다.
+        context = super(Djbs13FormView, self).get_context_data(**kwargs)
+        return context          

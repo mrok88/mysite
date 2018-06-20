@@ -50,12 +50,15 @@ INSTALLED_APPS = [
 
     'django.contrib.humanize',  # number comma
     'bootstrap3',    
+    'djng',             #django-angular
+    'easy_thumbnails',  # optional, if ImageField is used
     'demo',    
     'blog',	
     'polls',
     'mdl2tbl',
     'mdl2tbl.templatetags.post_extras',
     'dq',
+
 ]
 
 MIDDLEWARE = [
@@ -141,3 +144,7 @@ BOOTSTRAP3 = {
     'required_css_class': 'bootstrap3-required',
     'javascript_in_head': True,
 }
+#django-angluar 
+FORM_RENDERER = 'djng.forms.renderers.DjangoAngularBootstrap3Templates'
+# non-bootstraip3
+#FORM_RENDERER = 'djng.forms.renderers.DjangoAngularTemplates'

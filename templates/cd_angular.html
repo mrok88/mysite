@@ -1,0 +1,71 @@
+<style>
+    .yws_pnt { cursor: pointer; }
+</style>
+<div class="span4 proj-div" data-toggle="modal" data-target="#GSCCModal">Clickable content, graphics, whatever</div>
+<div id="ywsModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;  </button>
+            <h4 class="modal-title" id="ywsModalTitle">Modal title</h4>
+        </div>
+        <div class="modal-body" id="ywsModalBody" >            
+                {% verbatim %}    
+                <table class="display table table-striped table-bordered" >
+                    <tr>
+                        <th ng-click="orderByMe('CD')" >코드값</th> 
+                        <th ng-click="orderByMe('CD_NM')" >코드명</th>
+                    </tr>    
+                    <tr ng-repeat="x in rows | orderBy:myOrderBy ">
+                      <td>{{ x.CD }}</td>
+                      <td>{{ x.CD_NM }}</td>
+                    </tr>
+                    <div ng-if="row.length == 0">
+                            <tr ng-show="!rows.length">
+                                    <td><b>데이터 없음</b></td>
+                                    <td><b>데이터 없음</b></td>                        
+                            </tr>
+                    </div>
+
+                </table>
+                {% endverbatim %}
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+        </div>
+    </div>
+</div>
+</div>
+</div> <!-- end of Angular tag -->
+<script type="text/javascript">
+    var app = angular.module('myApp', []);
+    app.controller('myCtrl', function($scope, $http) {
+        $scope.get_cd_list = function(myTitle,myCD) {
+            //$http.get("mdl2tbl/cds/?cd="+myCD)
+            $http({
+                method : 'GET',
+                url :  "{%  url 'mdl2tbl:cd_list'  %}",
+                params :  { cd : myCD }
+            })
+            .then(function (response) {
+                $scope.rows = response.data.message;
+                // $scope.content = response.data;
+                // $scope.statuscode = response.status;
+                // $scope.statustext = response.statusText; 
+            }, function(response) {
+                //Second function handles error
+                $scope.rows = { 'CD' : "데이터 없음", 'CD_NM' : '데이터 없음' };
+            });
+            showMyModal(myTitle);
+        }    
+        $scope.orderByMe = function(x) {
+            $scope.myOrderBy = x;
+        }    
+    });
+// script for modal popup 
+function showMyModal(myTitle) {            
+   $('#ywsModalTitle').html(myTitle);   
+   $('#ywsModal').modal('show');
+}
+</script>

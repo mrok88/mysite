@@ -5,19 +5,34 @@
 
 {% block include_datatable %}
 {% include "datatable.html" %}
+{% include "angular.html" %}
 {% endblock %}
 
 {% block content %}
+<div ng-app="myApp" ng-controller="myCtrl" > <!-- start of Angular tag -->
 <div class="container">
-    <h3>{{ form.yws_gets.title }}</h3>
-    <hr>
+    {# Display a form #}
+    <form action="djbs11" method="get" class="form-inline">
+        <div class="form-group bootstrap3-required"> 
+            <h3>{{ form.yws_gets.title }} </h3>   
+            <label for="Search">컬럼명:</label>        
+            {% bootstrap_form form layout='inline' align=right %}
+            {% buttons %}
+                <button type="submit" class="btn btn-primary" layout='inline'> 
+                {% bootstrap_icon "star" %} 제출
+                </button>
+            {% endbuttons %}
+        </div>
+    </form>
+    <p></p>
+    <hr>    
     <div id="container" class="dataTables_wrapper">
             <table id="example" class="display table table-striped table-bordered" cellspacing="0" width="100%" >
                 <thead>
                     <tr>
                         <td><B>한글명</B></td>
                         <td><B>컬럼명</B></td>
-                        <td><B>코드설명</B></td>
+                        <td><B>데이터타입</B></td>
                         <td><B>사용테이블목록</B></td>                
                     </tr>
                 </thead>
@@ -25,9 +40,13 @@
                 <tbody>
                     {% for row in form.yws_rows %}
                     <tr>
-                        <td> {{ row.DIC_LOG_NM }} </td>
-                        <td onClick="javascript:get_cd_list('{{ row.DIC_LOG_NM }}({{ row.DIC_PHY_NM }}) 코드목록','{{ row.DIC_PHY_NM }}')" class="yws_pnt" > {{ row.DIC_PHY_NM }} </td>
-                        <td style="white-space:pre-wrap; word-wrap:break-word" > {{ row.DIC_DESC }} </td>
+                        <td> {{ row.ATTR_NM }} </td>
+                        {% if '_CD' in  row.COL_NM  %}
+                            <td ng-click="get_cd_list('{{ row.ATTR_NM }}({{ row.COL_NM }}) 코드목록','{{ row.COL_NM }}')" class="yws_pnt" > {{ row.COL_NM }} </td>
+                        {% else %}
+                            <td> {{ row.COL_NM }} </td>
+                        {% endif %}                        
+                        <td style="white-space:pre-wrap; word-wrap:break-word" > {{ row.DT }} </td>
                         <td> {{ row.TBL_NMS|safe }} </td>             
                     </tr>
                     {% endfor %}
@@ -53,7 +72,7 @@ $(document).ready(function() {
 </script>
 
 {% block include_cd_ajax %}
-{% include "cd_ajax.html" %}
+{% include "cd_angular.html" %}
 {% endblock %}
 
 {% endblock content %}
