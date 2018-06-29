@@ -1,12 +1,36 @@
-{% extends 'blog/base.html' %}
+{% extends 'base.html' %}
+
 {% block content %}
-    {% for post in posts %}
-        <div class="post">
-            <div class="date">
-                {{ post.published_date }}
-            </div>
-            <h1><a href="{% url 'blog:post_detail' post.pk %}">{{ post.title }}</a></h1>
-            <p>{{ post.text|linebreaksbr }}</p>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6"></div>
+        <div class="col-md-6">
+            <span class="pull-right">
+                 <a class="btn btn-primary" href="{% url 'blog:post_new' %}" style="margin-bottom:5px" ><span class="glyphicon glyphicon-plus-sign"></span> New</a>
+            </span>
         </div>
-    {% endfor %}
+    </div>        
+    <table id="example" class="display table table-striped table-bordered" cellspacing="0" width="100%" >
+        <thead>
+        <tr >
+            <th style="width:10%;text-align:center" >번호</th>
+            <th style="width:50%;text-align:center">제목</th>
+            <th style="width:20%;text-align:center" >등록자</th>
+            <th style="width:20%;text-align:center" >수정일시</th>
+        </tr>
+        </thead>
+        <!-- 이 부분이 바뀌었습니다 -->
+        <tbody>
+                {% for post in posts %}
+                <tr>
+                    <td> {{ post.id }} </td>
+                    <td> <a href="{% url 'blog:post_detail' post.pk %}">{{ post.title }}</a></td>
+                    <td> {{ post.author.username }} </td>
+                    <td> {{ post.published_date }} </td>
+                </tr>
+                {% endfor %}
+        <!-- 여기까지 -->
+        <tbody>
+    </table>    
+</div>    
 {% endblock %}

@@ -1,9 +1,26 @@
-{% extends 'blog/base.html' %}
-
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+{% block include_datatable %}
+{% include "ckeditor.html" %}
+{% endblock %}
 {% block content %}
-    <h1>New post</h1>
+<div class="container">
+    <h3>편집</h3>
     <form method="POST" class="post-form">{% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="save btn btn-default">Save</button>
+        {# form.as_p #}
+        {% bootstrap_form form %}
+        <div class="row">
+                <div class="col-md-6"></div>
+                <div class="col-md-6">
+                    <span class="pull-right">
+                        <button type="submit" class="save btn btn-default">Save</button>
+                    </span>
+                </div>
+            </div>  
+        
     </form>
+</div>
+<script>
+    CKEDITOR.replace( 'id_text' );
+</script>
 {% endblock %}

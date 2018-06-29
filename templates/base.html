@@ -86,7 +86,15 @@
                     <li> <a href={% url 'mdl2tbl:djbs10' %}><span>속성사용테이블</span></a></li>
                     <li> <a href={% url 'mdl2tbl:djbs11' %}><span>컬럼사용테이블</span></a></li>
                   </ul>
-          </li><!-- DA# 관련 메뉴 종료 -->                                                     
+          </li><!-- DA# 관련 메뉴 종료 -->
+          <!-- 기타 관련 메뉴 시작 -->
+          <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">etc.<span class="caret"></span></a>
+                <ul class="dropdown-menu">                             
+                  <li> <a href="{% url 'blog:post_list' %}"><span>게시판</span></a></li>  
+                </ul>
+          </li><!-- 기타 관련 메뉴 종료 -->          
+                                                            
         </ul>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
