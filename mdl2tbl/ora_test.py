@@ -127,6 +127,50 @@ FROM DA05.컬럼사용테이블 A
 WHERE COL_NM LIKE :col_nm """,{'col_nm': p_col_nm})
 
 ##############################
+# GET_PVIEW
+# 물리모델 테이블 목록 
+# ##############################
+def get_PView(p_MDL_NM = "판촉_이벤트[PR]", p_STRU_NM = '외부참조' ):
+    return get_qry("""SELECT M.MDL_ID, M.MDL_NM, C.STRU_ID, C.STRU_NM 
+     , P.CANVAS_ID CNVAS_ID 
+FROM   (SELECT *
+        FROM   DA05.DAM_MDL_INFO M
+        WHERE  AVAL_END_DT = '99991231235959'
+         AND   MDL_NM = '""" + p_MDL_NM + """' ) M
+    ,  (SELECT * 
+        FROM DAM_MDL_CONTAINER
+        WHERE AVAL_END_DT = '99991231235959'
+         AND  STRU_NM = '""" + p_STRU_NM + """' ) C
+    ,  (SELECT *  
+        FROM DAM_PANE
+        WHERE AVAL_END_DT = '99991231235959'
+        AND TGT_DB_ID IS NOT NULL  ) P
+WHERE M.MDL_ID = C.MDL_ID
+AND C.MDL_ID = P.MDL_ID AND C.STRU_ID =  P.SBJ_FLD_ID 
+""")
+
+##############################
+# GET_PVIEW
+# 물리모델 컬럼 목록
+##############################
+def get_PView2(p_MDL_ID = "fd6e456a-347c-4c08-90bd-506e96e0e2fc" , p_CNVAS_ID = "587cb8ca-dcf5-49c0-8c72-c9a8989bee69"):
+    sql = """WITH BAS AS (
+    SELECT *
+    FROM DAG_DRAWITEM
+    WHERE  AVAL_END_DT = '99991231235959'
+    AND MDL_ID = '""" + p_MDL_ID + """'
+    AND CNVAS_ID = '""" + p_CNVAS_ID + """'
+    )
+SELECT 
+CNVAS_ID,EXTRN_OBJ_ID,BASEVAL_ITEM_ID,TXT,NODE_SEQ,EXCOL02,EXCOL05,EXCOL07
+, DRAW_ITEM_ORGIN_COORD, DRAW_ITEM_RECT, FNT, FNT_COLOR
+FROM BAS
+START WITH CLSS_DSTNCT_CD = '6'
+CONNECT BY NOCYCLE PRIOR DRAW_ITEM_ID = BASEVAL_ITEM_ID
+ORDER BY BASEVAL_ITEM_ID, node_seq NULLS LAST"""
+    return get_qry(sql)
+
+##############################
 # TEST START 
 ##############################
 if __name__ == "__main__":

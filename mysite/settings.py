@@ -19,7 +19,7 @@ pymysql.install_as_MySQLdb()
 from . import my_conn
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
+print("BASE_DIR=",BASE_DIR)
 # Include BOOTSTRAP3_FOLDER in path
 BOOTSTRAP3_FOLDER = os.path.abspath(os.path.join(BASE_DIR, '.', 'bootstrap3'))
 if BOOTSTRAP3_FOLDER not in sys.path:
@@ -58,7 +58,6 @@ INSTALLED_APPS = [
     'mdl2tbl',
     'mdl2tbl.templatetags.post_extras',
     'dq',
-
 ]
 
 MIDDLEWARE = [
@@ -134,8 +133,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
-LOGIN_REDIRECT_URL = '/'
+#STATIC_ROOT = os.path.join(BASE_DIR,"collected_statics")
+#STATICFILES_DIRS = [
+#    os.path.join(BASE_DIR, "static"),
+#]
+LOGIN_REDIRECT_URL = '/blog/'
 
 # Settings for django-bootstrap3
 BOOTSTRAP3 = {

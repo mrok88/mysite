@@ -28,6 +28,7 @@ MEDIA_CHOICES = (
         ('elltlo', '배송'),        
         ('elltpr', '판촉'),
         ('elltsc', '검색'),     
+        ('elltse', '정산'),     
     )),
     ('공통', (
         ('ltcm', '공통전체'),          

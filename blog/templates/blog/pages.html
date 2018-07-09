@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% load bootstrap3 %}
+
+{% block title %}
+    게시글
+{% endblock %}
+
+{% block content %}
+<div class="container">
+
+        <div class="row">
+            <div class="col-md-6"></div>
+            <div class="col-md-6">
+                <span class="pull-right">
+                        <!-- 검색조건 시작 -->
+                        <form action="?page={{posts.page.number}}" method="get" class="form-inline">
+                                <div class="form-group bootstrap3-required"> 
+                                    <label for="Search">검색어:</label>        
+                                    <div class="form-group bootstrap3-req">
+                                        <label class="sr-only" for="q">검색어</label>
+                                        <input type="text" name="q" placeholder="검색어" id="q" title="" class="form-control" value="{{q}}">
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-primary" layout="inline"> 
+                                        <span class="glyphicon glyphicon-search"></span> 검색
+                                        </button>
+                                    </div>
+                                    <div class="form-group">
+                                        <a class="btn btn-info" href="{% url 'blog:post_new' %}" ><span class="glyphicon glyphicon-plus-sign"></span> New</a>
+                                    </div>
+                                </div>
+                            </form> 
+                        <!-- 검색조건 종료 -->        
+                </span>
+            </div>
+        </div>
+        <br>
+        <!-- 테이블 시작 -->  
+        <table id="example" class="display table table-striped table-bordered" cellspacing="0" width="100%" >
+            <thead>
+            <tr >
+                <th style="width:10%;text-align:center" >번호</th>
+                <th style="width:50%;text-align:center">제목</th>
+                <th style="width:20%;text-align:center" >등록자</th>
+                <th style="width:20%;text-align:center" >수정일시</th>
+            </tr>
+            </thead>
+            <tbody>
+                    {% for post in posts %}
+                    <tr>
+                        <td> {{ post.id }} </td>
+                        <td> <a href="{% url 'blog:post_detail' post.pk %}">{{ post.title }}</a></td>
+                        <td> {{ post.author.username }} </td>
+                        <td> {{ post.published_date }} </td>
+                    </tr>
+                    {% endfor %}
+            <tbody>
+        </table> 
+        <!-- 테이블 종료 -->  
+        <!-- pagination 시작 -->
+        <div class="row text-center">
+        {% bootstrap_pagination posts url="?flop=flip" extra=q_str size="small" %}
+        </div>
+        <!-- pagination 종료 -->
+    </div>    
+    <hr>
+{% endblock %}

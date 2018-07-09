@@ -27,5 +27,6 @@ urlpatterns = [
     url(r'form', views.DefaultFormView.as_view(), name='form'),
     url(r'test/', views.tbl_list, name='tbl_list'),
     url(r'cds/', views.cd_list, name='cd_list'),    
-    url(r'comp/(?P<pk>\w*)', views.comp_list, name='comp_list'),       
+    url(r'comp/(?P<pk>\w*)', views.comp_list, name='comp_list'),
+    url(r'erd/(?P<pk>\w*)', views.erd_pview, name='erd_pview'),
 ]

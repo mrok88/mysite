@@ -91,11 +91,20 @@
           <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">etc.<span class="caret"></span></a>
                 <ul class="dropdown-menu">                             
-                    <li> <a href="{% url 'blog:post_list' %}"><span>게시판</span></a></li>  
+                    <li> <a href="{% url 'blog:pages' %}"><span>게시판</span></a></li>  
                     <li> <a href="{% url 'polls:index' %}"><span>투표</span></a></li>  
                   </ul>
-          </li><!-- 기타 관련 메뉴 종료 -->          
-                                                            
+          </li><!-- 기타 관련 메뉴 종료 -->                                                                 
+        </ul>
+        <!-- 오른쪽 버튼 -->
+        <ul class="nav navbar-nav navbar-right">
+          {% if user.is_active %}
+          <li><a href="{% url 'login' %}"> <span class="glyphicon glyphicon-heart"></span> {{user.username}}</a></li>
+          <li><a href="{% url 'logout' %}">Logout</a></li>
+          {% else %}
+          <li><a href="{% url 'login' %}"> <span class="glyphicon glyphicon-user"></span> Login</a></li>
+          <li><a href="{% url 'admin:index' %}">Admin</a></li>
+          {% endif %}     
         </ul>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->

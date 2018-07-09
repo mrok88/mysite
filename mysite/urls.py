@@ -21,6 +21,7 @@ urlpatterns = [
     url(r'^polls/', include('polls.urls')),
     url(r'^blog/', include('blog.urls')),
     url(r'^mdl2tbl/', include('mdl2tbl.urls')),
-    url(r'^dq/', include('dq.urls')),    
+    url(r'^dq/', include('dq.urls')), 
+    url(r'^accounts/', include('django.contrib.auth.urls')),
     url(r'^', include('demo.urls')),    
 ]

@@ -60,7 +60,6 @@ def comp_list(request,pk="%"):
     comp = mk_comp(d1,d2)
     return render(request, 'mdl2tbl/comp.html', {'rows': comp })
 
-
 def form_by_field(request,pk="%"):
     if (pk == None or len(pk) != 2) :
         pk = '%'  
@@ -350,4 +349,48 @@ class Djbs13FormView(FormView):
 
         # context를 가져온다.
         context = super(Djbs13FormView, self).get_context_data(**kwargs)
-        return context          
+        return context 
+
+
+def erd_pview(request,pk="%"):
+    if (pk == None or len(pk) <= 2) :
+        pk = '%'
+    #rs1 = Ora.get_PView('판촉_이벤트[PR]','캠페인')
+    rs1 = Ora.get_PView('데이터품질[DQ]','데이터품질')
+    mdlId = rs1[0]['MDL_ID']
+    cnvasId = rs1[0]['CNVAS_ID']
+    #print(mdlId,cnvasId)
+    rs = Ora.get_PView2(mdlId,cnvasId)
+    # 테이블을 출력하기 좋게 format을 수정 시작 
+    tbls = []
+    rows = []
+    zidx = 1
+    for row in rs:
+        seq = row['NODE_SEQ']
+        if seq == None:
+            seq = -1
+            ypos, xpos = row['DRAW_ITEM_ORGIN_COORD'].split(',')
+            r = row['EXCOL05']
+            entNm =  r.split(',')[0] if ( ',' in r ) else ""
+            cols = {'TBL_NM' : row['TXT'],'ENT_NM' : entNm, 'XPOS' : xpos , 'YPOS' : ypos , 'ZIDX' : zidx }
+            tbls.append({'cols' : cols , 'rows':rows})
+            zidx += 1
+            rows = []         
+        else :
+            r = row['EXCOL02']
+            mark,colNm,dt,dt_len,*dummy = r.split(',') if ( ',' in r ) else ["","","","",""]
+            r = row['EXCOL07']
+            AttrNm =  r.split(',')[0] if ( ',' in r ) else ""
+            if dt in ( 'INT','INTEGER','BIGINT','DECIMAL','SMALLINT'):
+                rgb = "rgb(255, 200, 200)"
+            elif dt in ( 'CHAR','VARCHAR','TEXT'):
+                rgb = "rgb(238, 238, 170)"
+            elif dt in ( 'DATE','TIME','DATETIME'):
+                rgb = "rgb(238, 216, 170)"
+            else:
+                rgb = "rgb(250, 250, 250)"
+            row1 = { 'SEQ' : seq , 'MARK' : mark , 'COL_NM' : colNm, 'DT' : dt+dt_len, 'ATTR_NM' : AttrNm, 'RGB': rgb }     
+            rows.append(row1)
+    # 테이블을 출력하기 좋게 format을 수정 종료
+    print(len(tbls))    
+    return render(request, 'mdl2tbl/erd.html', {'tbls' : tbls })

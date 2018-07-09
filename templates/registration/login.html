@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    {% if form.errors %}
+        <p>Your username and password didn't match. Please try again.</p>
+    {% endif %}
+    <div class="row">
+            <!-- left wing -->
+            <div class="col-sm-4" >
+            </div>
+            <!-- Center -->
+            <div class="col-sm-4" >
+                <form class="form-signin" id="login" role="form"  method="post" action="{% url 'login' %}" >
+                    {% csrf_token %}
+                    <h3 class="form-signin-heading">Please login</h3>
+                    <a href="#" id="flipToRecover" class="flipLink">
+                        <div id="triangle-topright"></div>
+                    </a>
+                    <input type="username" class="form-control" name="username" id="id_username" placeholder="Username" required>
+                    <input type="password" class="form-control" name="password" id="id_password" placeholder="Password" required>
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+                    <input type="hidden" name="next" value="{{ next }}" />
+                </form>
+            </div>
+            <!-- Right Wing -->
+            <div class="col-sm-4">                    
+            </div>
+        </div>  
+</div>
+{% endblock %}

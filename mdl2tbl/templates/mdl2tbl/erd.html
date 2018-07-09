@@ -1,0 +1,53 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Meta-eXpress ER-Viwer </title>
+	<meta name="viewport" content="initial-scale=1,maximum-scale=1">
+ 	
+    <link rel="stylesheet" href="{% static 'erd/style.css' %}" media="all" >
+</head>
+
+<body style="visibility: visible;">
+	<div id="area">
+    <svg width="4000px" height="4000px">
+        <defs>
+            <marker id="crowfoot" markerWidth="10" markerHeight="10" refX="0" refY="3" orient="auto" markerUnits="strokeWidth">
+            <polyline points="0,3 6,6 0,3 6,0 0,3 6,3"
+        style="fill:none;stroke:black;stroke-width:1" />
+            </marker>
+            <marker id="crowfoot1" markerWidth="10" markerHeight="10" refX="0" refY="3" orient="auto" markerUnits="strokeWidth">
+            <polyline points="0,6 5,3 0,0"
+        fill="none" stroke-width="1" stroke="black" />
+            </marker>
+            <marker id="crowfoot2" markerWidth="10" markerHeight="10" refX="5" refY="3" orient="auto" markerUnits="strokeWidth">
+            <polyline points="5,6 0,3 5,0"
+        fill="none" stroke-width="1" stroke="black" />
+            </marker>
+        </defs>
+            <polyline id='a25e5176-a907-486f-8231-7462858bb936' points="925,299 1307,299" style="fill:white;stroke:black;stroke-width:4"  marker-end="url(#crowfoot2)" />  
+            <polyline id='00770eef-c29e-4f3e-b11e-c85030b38dd2' points="1038,1515 1480,1515" style="fill:white;stroke:black;stroke-width:4"  marker-end="url(#crowfoot2)" />
+            <polyline id='91ca9003-743b-46b1-9658-bfa438d73a97' points="2307,1431 2846,1431" style="fill:white;stroke:black;stroke-width:4"  marker-end="url(#crowfoot2)" />
+            <polyline id='6319e40e-93e4-4785-8395-e8efbba8acf3' points="3316,1503 3316,1968" style="fill:white;stroke:black;stroke-width:4"  marker-end="url(#crowfoot2)" />
+            
+            <path name="arc_line" d_x="M3572 997 m -100,0" d="M3472 997  
+             a 100 100, 0, 1, 1, 100 100" style="fill:white;stroke:black;stroke-width:4" marker-end="url(#crowfoot2)"/>
+        </svg>
+    {% for tbl in tbls %}
+   <div class="table" style="z-index: {{tbl.cols.ZIDX}};left: {{tbl.cols.YPOS}}px; top: {{tbl.cols.XPOS}}px;">
+        <table style="white-space:nowrap;" >
+            <thead><tr><td class="title" colspan="3">{{tbl.cols.TBL_NM}}({{tbl.cols.ENT_NM}})</td></tr></thead> 
+            {% for row in tbl.rows %}
+            <tbody title="" style="background-color: {{row.RGB}};">
+                <tr>
+                    <td><div class="selected"> {{row.MARK}}</div>
+                    <div class="title">{{row.COL_NM}}</div></td>
+                    <td class="typehint">{{row.DT}}</td>
+                    <td class="comment">{{row.ATTR_NM}}</td>
+                </tr>
+            </tbody>
+            {% endfor %}
+        </table>
+    </div>
+    {% endfor %}
+</body>
+</html>
