@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block content %}
+<div style="margin-left:5%;margin-right:5%">
+    <div class="padding-20">
+        <div class="row">
+            <div class="col-md-2">
+                    <h3>{% block title %}검증 결과 {% endblock %}</h3>
+            </div>
+        </div>
+    </div>
+    <div id="content" class="padding-20">
+        <!-- HTML DATATABLE -->
+        {% if msg.ret == 0 %}
+          <div class="alert alert-success">
+            <strong>Success!</strong>  작업이 정상적으로 잘 수해되었습니다..
+          </div>
+        {% elif msg.ret < 10 %}  
+          <div class="alert alert-info">
+            <strong>Info!</strong> 작업 결과 아래 정보를 추가로 확인하실 것을 권고합니다.
+          </div>
+         {% elif msg.ret < 100 %}            
+          <div class="alert alert-warning">
+            <strong>Warning!</strong> 작업 결과 아래 정보를 확인절차에 따라 수행해 주시기 바랍니다.
+          </div>
+         {% else %} 
+          <div class="alert alert-danger">
+            <strong>Danger!</strong> 작업 결과 데이터 검증 문제가 발생했습니다. 즉각확인 조치 바랍니다.
+          </div> 
+         {% endif %}          
+    </div>
+    <div>
+        <table class="table table-striped table-hover table-bordered" id="example">
+                <tr>
+                    <th>검증번호</th><td>{{ row.VRFY_NO }}</td>
+                </tr>
+                <tr>
+                    <th>검증명</th><td>{{ row.VRFY_NM }}</td>
+                </tr>
+                <tr>    
+                    <th>검증SQL</th><td>{{ row.CMD_CNTS}}</td>
+                </tr>
+                <tr>    
+                    <th>검증결과</th><td>{{ msg.ret }}</td>
+                </tr>                
+        </table>
+    </div>
+</div>
+
+{% endblock content %}

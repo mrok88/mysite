@@ -13,6 +13,7 @@ from django.conf import settings
 # Create your views here.
 
 from .models import Vrfy,Vrfy_Cmd
+from .dbMysql import Ssh,Conn
 
 
 app_name ='dq'
@@ -27,21 +28,28 @@ def base(request, template_name='base.html'):
     data['object_list'] = getattr(settings, "BASE_DIR", None)
     return render(request, template_name, data)
 
-########################## vrfy ########################## 
+########################## vrfy start ########################## 
 
 class VrfyForm(ModelForm):
     class Meta:
         model = Vrfy
-        fields = ['DB_NM', 'SCHEMA_NM', 'CLSF_NM1', 'CLSF_NM2', 'TABLE_NM', 'TABLE_HANGL_NM','PRESER_PRD_DDNUM','VRFY_TYPE_CD','VRFY_CNTS','BKUP_YN','USE_YN'
+        fields = ['DB_NM', 'SCHEMA_NM', 'CLSF_NM1', 'CLSF_NM2'
+                 , 'VRFY_TYPE_DTL_CD','VRFY_NM','VRFY_EXPLN'
+                 ,'TABLE_HANGL_NM','TABLE_NM', 'REFRC_TABLE_HANGL_NM','REFRC_TABLE_NM'
+                 ,'USE_YN','CMD_TYPE_CD','CMD_CNTS'
         ,'RGSTR_ID'
         #,'RGST_DTTM'
         ,'MODR_ID'
         #,'MODI_DTTM'
         ]
+        widgets = {
+            'VRFY_EXPLN' : forms.Textarea(attrs={'rows':2}),
+            'CMD_CNTS' : forms.Textarea(attrs={'rows':7}),
+        }
 
 def vrfy_list(request, template_name='vrfy_list.html'):
     gets = request.GET
-    print(gets)
+    #print(gets)
     if ( 'qry' in gets ) :
         qry = gets['qry']
     else:
@@ -77,6 +85,40 @@ def vrfy_delete(request, pk):
         return redirect('dq:vrfy_list')
     return HttpResponse(status=405)
 
+def vrfy_run(request, pk,template_name='vrfy_run.html'):    
+    vrfy = get_object_or_404(Vrfy, pk=pk)
+    sqlStr = vrfy.CMD_CNTS
+    print("작업번호 : %s" % vrfy.VRFY_NO)
+    print("작업명  : %s" % vrfy.VRFY_NM)
+    print("작업내용 :\n %s" % sqlStr)
+    msg = { 'result' : 'NOT_OK'}
+    print(vrfy.CMD_TYPE_CD)
+    if ( vrfy.CMD_TYPE_CD == 'AURORA_SQL'):
+        ret = run_sql(vrfy.DB_NM,vrfy.SCHEMA_NM,sqlStr)
+        print(ret)
+        msg['result'] =  'OK'
+        msg['ret'] = ret
+    else:
+        msg['result'] = 'NOT_YET'
+    #print(msg)
+    return render(request, template_name, {'row' : vrfy ,'msg' : msg })
+
+def run_sql(db,schema,sqlStr):
+    ret = None 
+    try:
+        conn = Conn(db)
+        conn.ssh_start()
+        conn.dbConn()
+        conn.select_db(schema)
+        ret = conn.execute(sqlStr)
+        ret = ret[0]['CNT']
+    except Exception as e:
+        print(e)
+    finally :
+        if ( conn is not None ):
+            conn.close()
+        return ret
+########################## vrfy end ########################## 
 
 ########################## vrfy_Cmd ########################## 
 class vrfy_CmdForm(ModelForm):

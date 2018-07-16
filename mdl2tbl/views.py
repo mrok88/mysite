@@ -320,7 +320,7 @@ class Djbs12FormView(FormView):
             self.form_class.yws_rows = Aurora.comp_dev_tst(gets['subjArea'])
         else:
             self.form_class.yws_rows = {}
-
+            
         # context를 가져온다.
         context = super(Djbs12FormView, self).get_context_data(**kwargs)
         return context

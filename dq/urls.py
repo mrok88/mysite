@@ -17,6 +17,7 @@ urlpatterns = [
     url(r'^vrfy/create$', views.vrfy_create, name='vrfy_new'),
     url(r'^vrfy/update/(?P<pk>\d+)', views.vrfy_update, name='vrfy_edit'),
     url(r'^vrfy/delete/(?P<pk>\d+)', views.vrfy_delete, name='vrfy_delete'),
+    url(r'^vrfy/run/(?P<pk>\d+)', views.vrfy_run, name='vrfy_run'),
 
     #vrfyCmd test용
     url(r'^vrfy_Cmds', views.vrfy_Cmd_list, name='vrfy_Cmd_list'),

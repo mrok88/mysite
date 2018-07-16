@@ -34,17 +34,13 @@
             <thead>
                 <tr>
                     <th>ID</th>                
-                    <th>DB명</th>
-                    <th>스키마명</th>
                     <th>대분류</th>
                     <th>중분류</th>
+                    <th>검증명</th>                                   
                     <th>테이블명</th>
                     <th>테이블한글명</th>
-                    <th>보존기간일수</th>
-                    <th>검증유형코드</th>
-                    <!--th>검증내용</th-->
-                    <th>백업여부</th>
-                    <th>사용여부</th>
+                    <th>검증유형상세코드</th>
+                    <th>명령유형코드</th>
                     <!--th>등록자아이디</th-->
                     <!--th>등록일시</th-->
                     <th>수정자아이디</th>
@@ -56,17 +52,13 @@
                 {% for row in object_list %}
                 <tr>
                     <td><a href="{% url 'dq:vrfy_edit' row.VRFY_NO  %}"><span class="glyphicon glyphicon-edit"></span> {{ row.VRFY_NO }}</a></td>             
-                    <td>{{ row.DB_NM }}</td>
-                    <td>{{ row.SCHEMA_NM }}</td>
                     <td>{{ row.CLSF_NM1 }}</td>
                     <td>{{ row.CLSF_NM2 }}</td>
+                    <td>{{ row.VRFY_NM }}</td>                                    
                     <td>{{ row.TABLE_NM }}</td>
                     <td>{{ row.TABLE_HANGL_NM }}</td>
-                    <td>{{ row.PRESER_PRD_DDNUM }}</td>
-                    <td>{{ row.VRFY_TYPE_CD  }}</td>
-                    <!--td>{# row.VRFY_CNTS #}</td-->
-                    <td>{{ row.BKUP_YN }}</td>
-                    <td>{{ row.USE_YN }}</td>
+                    <td>{{ row.VRFY_TYPE_DTL_CD }}</td>                    
+                    <td>{{ row.CMD_TYPE_CD }}</td>
                     <!--td>{# row.RGSTR_ID #}</td-->
                     <!--td>{# row.RGST_DTTM|date:'Y-m-d'  #}</td-->                
                     <td>{{ row.MODR_ID }}</td>
@@ -81,14 +73,41 @@
 
 <script type="text/javascript" class="init">
     $(document).ready(function() {
-        $('#example').DataTable( {
-            dom: 'Bfrtip',
-            buttons: [
-                'copy', 'csv', 'excel', 'pdf', 'print'
+        $('#example').DataTable( {          
+            dom: 'Bfrtpi', //lBfrtpi
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ],
+            "columns": [
+                { "width": "5%" },
+                { "width": "5%" },
+                { "width": "5%" },
+                { "width": "20%" },
+                { "width": "15%" },
+                { "width": "15%" },
+                { "width": "5%" },
+                { "width": "10%" },
+                { "width": "5%" },
+                { "width": "10%" }
+            ],                  
+            "lengthMenu": [
+                [5, 15, 20, -1],
+                [5, 15, 20, "All"]
             ],
-            "paging":   false,
+            "pageLength": 15,    
+            "columnDefs": [{
+                "targets": [0],
+                "searchable": false,
+                "visible": true,
+                "width": "20%"
+            }, {
+                "targets": [ 1 ],
+                "searchable": false,
+                "visible": true,
+            }],                   
+            "paging":   true,
             "ordering" : true,
-            "order": [[ 1, "asc" ]],
+            "order": [[ 0, "desc" ]],
             "info":     true
         } );
     } );
