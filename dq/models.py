@@ -12,9 +12,8 @@ from django.core.urlresolvers import reverse
 YN_LIST = ( ('Y','Yes') ,('N','No' ))
 
 class Vrfy(models.Model):
-    VRFY_TYPE_CD_LIST = ( ('LC', 'Life_Cycle'), ('DR', 'Design_Rule'), ('BR', 'Biz_Rule'))
-    VRFY_TYPE_DTL_CD_LIST = ( ('DMN', '도메인검증'), ('REF', '참조검증'), ('NT_NML', '비정규검증'), ('BIZ_RUL', '업무규칙검증'))
-    CMD_TYPE_CD_LIST = ( ('AURORA_SQL', 'AURORA_SQL'), ('ATHENA_SQL', 'ATHENA_SQL'), ('DYNAMODB_QRY', 'DYNAMODB_QRY'), ('RED_SHIFT_QRY', 'RED_SHIFT_QRY'), ('SHELL', 'SHELL'), ('ETC', 'ETC'))
+    VRFY_TYPE_CD_LIST = ( ('DMN', '도메인검증'), ('REF', '참조검증'), ('NT_NML', '비정규검증'), ('BIZ_RUL', '업무규칙검증'))
+    CMD_TYPE_CD_LIST = ( ('AURORA_SQL', 'AURORA_SQL'), ('ATHENA_SQL', 'ATHENA_SQL'), ('DYNAMODB_QRY', 'DYNAMODB_QRY'), ('REDSHIFT_SQL', 'REDSHIFT_SQL'), ('SHELL', 'SHELL'), ('ETC', 'ETC'))
 
     VRFY_NO =  models.AutoField(verbose_name="검증번호",primary_key=True,editable=False)
 
@@ -22,7 +21,7 @@ class Vrfy(models.Model):
     SCHEMA_NM = models.CharField(verbose_name="스키마명",max_length=100)
     CLSF_NM1 = models.CharField(verbose_name="대분류명",max_length=100,default=None, blank=True, null=True)
     CLSF_NM2 = models.CharField(verbose_name="중분류명",max_length=100,default=None, blank=True, null=True)
-    VRFY_TYPE_DTL_CD = models.CharField(verbose_name="검증유형상세코드",max_length=30 ,choices=VRFY_TYPE_DTL_CD_LIST, default='BIZ_RUL')    
+    VRFY_TYPE_CD = models.CharField(verbose_name="검증유형코드",max_length=30 ,choices=VRFY_TYPE_CD_LIST, default='BIZ_RUL')    
     VRFY_NM = models.CharField(verbose_name="검증명",max_length=100)
     VRFY_EXPLN = models.TextField(verbose_name="검증설명",max_length=500,default=None, blank=True, null=True)
     TABLE_HANGL_NM = models.CharField(verbose_name="테이블한글명",max_length=100)
@@ -31,7 +30,7 @@ class Vrfy(models.Model):
     REFRC_TABLE_NM = models.CharField(verbose_name="참조테이블명",max_length=100,default=None, blank=True, null=True)
     USE_YN = models.CharField(verbose_name="사용여부",max_length=1,choices=YN_LIST, default='Y')    
     CMD_TYPE_CD = models.CharField(verbose_name="명령유형코드",max_length=30 ,choices=CMD_TYPE_CD_LIST, default='01')
-    CMD_CNTS = models.TextField(verbose_name="검증내용",max_length=14000,default=None, blank=True, null=True)
+    CMD_CNTS = models.TextField(verbose_name="명령내용",max_length=14000,default=None, blank=True, null=True)
 
     RGSTR_ID = models.CharField(verbose_name="등록자ID",max_length=30,default='DA')
     #RGST_DTTM = models.DateTimeField(verbose_name="등록일시",default=timezone.now())
@@ -49,6 +48,79 @@ class Vrfy(models.Model):
 
     def get_absolute_url(self):
         return reverse('vrfys:vrfy_edit', kwargs={'pk': self.pk})    
+
+class VrfyLog(models.Model):
+    VRFY_TYPE_CD_LIST = ( ('DMN', '도메인검증'), ('REF', '참조검증'), ('NT_NML', '비정규검증'), ('BIZ_RUL', '업무규칙검증'))
+    CMD_TYPE_CD_LIST = ( ('AURORA_SQL', 'AURORA_SQL'), ('ATHENA_SQL', 'ATHENA_SQL'), ('DYNAMODB_QRY', 'DYNAMODB_QRY'), ('REDSHIFT_SQL', 'REDSHIFT_SQL'), ('SHELL', 'SHELL'), ('ETC', 'ETC'))
+
+    VRFY_LOG_NO =  models.AutoField(verbose_name="검증로그번호",primary_key=True,editable=False)
+    VRFY_NO =  models.ForeignKey(Vrfy)
+
+    DB_NM = models.CharField(verbose_name="DB명",max_length=100)
+    SCHEMA_NM = models.CharField(verbose_name="스키마명",max_length=100)
+    VRFY_NM = models.CharField(verbose_name="검증명",max_length=100)
+    CMD_TYPE_CD = models.CharField(verbose_name="명령유형코드",max_length=30 ,choices=CMD_TYPE_CD_LIST, default='01')
+    CMD_CNTS = models.TextField(verbose_name="명령내용",max_length=14000,default=None, blank=True, null=True)
+    VRFY_RSLT_VAL = models.TextField(verbose_name="검증결과값",max_length=500,default=None, blank=True, null=True)
+    
+    RGSTR_ID = models.CharField(verbose_name="등록자ID",max_length=30,default='DA')
+    #RGST_DTTM = models.DateTimeField(verbose_name="등록일시",default=timezone.now())
+    RGST_DTTM = models.DateTimeField(verbose_name="등록일시",auto_now_add=True)
+    MODR_ID = models.CharField(verbose_name="수정자ID",max_length=30,default='DA')
+    #MODI_DTTM = models.DateTimeField(verbose_name="수정일시",editable=False)
+    MODI_DTTM = models.DateTimeField(verbose_name="수정일시",auto_now=True)
+
+
+    def __unicode__(self):
+        return self.VRFY_LOG_NO
+
+    def __str__(self):
+        return str(self.VRFY_LOG_NO) 
+
+    def get_absolute_url(self):
+        return reverse('vrfys:vrfy_run', kwargs={'pk': self.pk})
+#########################################################################################################
+class Ilm(models.Model):
+    '''정보 생명 주기 관리(Information Lifecycle Mgmt.)'''
+    ILM_TYPE_CD_LIST = ( ('ARC', '아카이빙'), ('DEL', '데이터삭제'),  ('COPY', '복제'), ('ETC', '기타'))
+    CMD_TYPE_CD_LIST = ( ('AURORA_SQL', 'AURORA_SQL'), ('ATHENA_SQL', 'ATHENA_SQL'), ('DYNAMODB_TTL', 'DYNAMODB_TTL'), ('REDSHIFT_SQL', 'REDSHIFT_SQL'), ('SHELL', 'SHELL'), ('ETC', 'ETC'))
+
+    ILM_NO =  models.AutoField(verbose_name="ILM번호",primary_key=True,editable=False)
+
+    DB_NM = models.CharField(verbose_name="DB명",max_length=100)
+    SCHEMA_NM = models.CharField(verbose_name="스키마명",max_length=100)
+    CLSF_NM1 = models.CharField(verbose_name="대분류명",max_length=100,default=None, blank=True, null=True)
+    CLSF_NM2 = models.CharField(verbose_name="중분류명",max_length=100,default=None, blank=True, null=True)
+    ILM_TYPE_CD = models.CharField(verbose_name="ILM유형코드",max_length=30 ,choices=ILM_TYPE_CD_LIST, default='BIZ_RUL')    
+    ILM_NM = models.CharField(verbose_name="ILM명",max_length=100)
+    ILM_EXPLN = models.TextField(verbose_name="ILM설명",max_length=500,default=None, blank=True, null=True)
+    TABLE_HANGL_NM = models.CharField(verbose_name="테이블한글명",max_length=100)
+    TABLE_NM = models.CharField(verbose_name="테이블명",max_length=100)
+    ILM_SEQ =  models.IntegerField(verbose_name="ILM순번")
+
+    EXPCT_CNT =  models.IntegerField(verbose_name="예상건수",default=0, null=True)
+    PRESER_PRD_VAL = models.CharField(verbose_name="보존기간값",max_length=100,default=None, blank=True, null=True)
+    
+    USE_YN = models.CharField(verbose_name="사용여부",max_length=1,choices=YN_LIST, default='Y')    
+    CMD_TYPE_CD = models.CharField(verbose_name="명령유형코드",max_length=30 ,choices=CMD_TYPE_CD_LIST, default='01')
+    CMD_CNTS = models.TextField(verbose_name="명령내용",max_length=14000,default=None, blank=True, null=True)
+
+    RGSTR_ID = models.CharField(verbose_name="등록자ID",max_length=30,default='DA')
+    #RGST_DTTM = models.DateTimeField(verbose_name="등록일시",default=timezone.now())
+    RGST_DTTM = models.DateTimeField(verbose_name="등록일시",auto_now_add=True)
+    MODR_ID = models.CharField(verbose_name="수정자ID",max_length=30,default='DA')
+    #MODI_DTTM = models.DateTimeField(verbose_name="수정일시",editable=False)
+    MODI_DTTM = models.DateTimeField(verbose_name="수정일시",auto_now=True)
+
+
+    def __unicode__(self):
+        return self.TABLE_NM
+
+    def __str__(self):
+        return str(self.ILM_NO) + ":" + self.TABLE_NM
+
+    def get_absolute_url(self):
+        return reverse('vrfys:ilm_edit', kwargs={'pk': self.pk})            
 
 class Vrfy_Cmd(models.Model):
     CMD_DVS_CD_LIST = ( ('VRFY', '검증'), ('EXE', '실행'))

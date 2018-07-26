@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'bootstrap3',    
     'djng',             #django-angular
     'easy_thumbnails',  # optional, if ImageField is used
+    'background_task', # batch job 관련 library
     'demo',    
     'blog',	
     'polls',
@@ -150,3 +151,47 @@ BOOTSTRAP3 = {
 FORM_RENDERER = 'djng.forms.renderers.DjangoAngularBootstrap3Templates'
 # non-bootstraip3
 #FORM_RENDERER = 'djng.forms.renderers.DjangoAngularTemplates'
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+    },
+    'handlers': {
+        'file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': 'logs/request.log',
+            'formatter': 'simple',
+        },
+        'debug_file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': 'logs/debug.log',
+            'formatter': 'verbose',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+        'background_task': {
+            'handlers': ['debug_file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'dq': {
+            'handlers': ['debug_file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}

@@ -2,31 +2,25 @@
 
 {% block include_datatable %}
 {% include "datatable.html" %}
-{% include "angular.html" %}
 {% endblock %}
 
-{% block content %}
+{% block content %}    
 <div style="margin-left:5%;margin-right:5%">
     <div class="padding-20">
         <div class="row">
             <div class="col-md-2">
-                    <h3>{% block title %}검증{% endblock %}</h3>
+                    <h3>{% block title %}검증로그{% endblock %}</h3>
             </div>
             <div class="col-md-8">                
                 <!-- Search Bar -->
                 <form class="navbar-form navbar-left" role="search" method=GET>
                         <div class="form-group">
-                            <label for="Search">테이블명:</label>
+                            <label for="검증번호">검증번호:</label>
                             <input type="text" class="form-control" placeholder="Search" name=qry id=qry value="{{gets.qry}}" >
                         </div>
                         <button type="submit" class="btn btn-default">조회</button>
                 </form>
             </div>       
-        </div>
-        <div class="row" >            
-            <div class="col-md-1">
-                    <a href="{% url 'dq:vrfy_new' %}" class="btn btn-primary" role="button" ><span class="glyphicon glyphicon-plus-sign"></span> New</a>                
-            </div> 
         </div>
     </div>
     <div id="content" class="padding-20">
@@ -35,15 +29,11 @@
             <thead>
                 <tr>
                     <th>ID</th>                
-                    <th>대분류</th>
-                    <th>중분류</th>
-                    <th>검증명</th> 
-                    <th>수행로그</th>                                  
-                    <th>테이블명</th>
-                    <th>테이블한글명</th>
-                    <th>검증유형상세코드</th>
+                    <th>검증번호</th>                                   
+                    <th>검증명</th>                                   
                     <th>명령유형코드</th>
-                    <th>명령수행</th>
+                    <th>수행결과</th>
+                    <th>명령내용</th>
                     <!--th>등록자아이디</th-->
                     <!--th>등록일시</th-->
                     <th>수정자아이디</th>
@@ -54,21 +44,12 @@
             <tbody>
                 {% for row in object_list %}
                 <tr>
-                    <td><a href="{% url 'dq:vrfy_edit' row.VRFY_NO  %}"><span class="glyphicon glyphicon-edit"></span> {{ row.VRFY_NO }}</a></td>             
-                    <td>{{ row.CLSF_NM1 }}</td>
-                    <td>{{ row.CLSF_NM2 }}</td>
-                    <td>{{ row.VRFY_NM }}</td> 
-                    <td><a  href="{% url  'dq:vrfyLog_list' %}?qry={{ row.VRFY_NO }}"><button type="button" class="btn btn-info">Log</button></a></td>                                   
-                    <td>{{ row.TABLE_NM }}</td>
-                    <td>{{ row.TABLE_HANGL_NM }}</td>
-                    <td>{{ row.VRFY_TYPE_CD }}</td>                    
+                    <td>{{ row.VRFY_LOG_NO }}</td>
+                    <td>{{ row.VRFY_NO }}</td>
+                    <td>{{ row.VRFY_NM }}</td>                                    
                     <td>{{ row.CMD_TYPE_CD }}</td>
-                    {% if row.CMD_TYPE_CD == 'AURORA_SQL' %}
-                        <td onClick="run_vrfy('{{ row.VRFY_NM }}',{{ row.VRFY_NO }})" ><button type="button" class="btn btn-warning">Run</button></td>             
-                    {% else %}
-                        <td></td>
-                    {% endif %}                    
-                
+                    <td>{{ row.VRFY_RSLT_VAL }}</td>
+                    <td>{{ row.CMD_CNTS|safe }}</td>                    
                     <!--td>{# row.RGSTR_ID #}</td-->
                     <!--td>{# row.RGST_DTTM|date:'Y-m-d'  #}</td-->                
                     <td>{{ row.MODR_ID }}</td>
@@ -90,17 +71,13 @@
                 ],
             "columns": [
                 { "width": "5%" },
-                { "width": "5%" },
-                { "width": "5%" },
-                { "width": "15%" },
-                { "width": "5%" },
-                { "width": "15%" },
-                { "width": "15%" },
-                { "width": "5%" },
                 { "width": "10%" },
+                { "width": "10%" },
+                { "width": "10%" },
+                { "width": "10%" },
+                { "width": "30%" },
                 { "width": "5%" },
-                { "width": "5%" },
-                { "width": "5%" }
+                { "width": "10%" }
             ],                  
             "lengthMenu": [
                 [5, 15, 20, -1],
@@ -124,9 +101,4 @@
         } );
     } );
 </script>
-
-{% block include_modal %}
-{% include "vrfyLog_tasks.html" %}
-{% endblock %}
-
 {% endblock content %}

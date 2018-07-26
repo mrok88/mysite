@@ -126,7 +126,7 @@ class Djbs01FormView(FormView):
         return context
 
 class Djbs02FormView(FormView):
-    '''데이터수명주기'''
+    '''정보수명주기'''
     template_name = 'mdl2tbl/djbs02.html'    
     def get_context_data(self, **kwargs):
         # form_class에 기본 get값을 설정한다.            
@@ -134,7 +134,7 @@ class Djbs02FormView(FormView):
         gets = self.request.GET
         # yws_gets에 get값들을 복제한다.
         self.form_class.yws_gets = gets.copy()
-        self.form_class.yws_gets['title'] = "데이터수명주기"
+        self.form_class.yws_gets['title'] = "정보수명주기대상"
         # 특정 default값을 가져와서 설정한다.
         for ( pk , val ) in gets.items():            
             self.form_class.base_fields[pk].initial =  val
