@@ -55,3 +55,1973 @@ Traceback (most recent call last):
   File "c:\Lang\django1\mysite\dq\views.py", line 178, in vrfy_tasks
     , 'env'  : env
 UnboundLocalError: local variable 'env' referenced before assignment
+WARNING Not Found: /favicon.ico
+WARNING Not Found: /favicon.ico
+WARNING Not Found: /favicon.ico
+WARNING Not Found: /favicon.ico
+WARNING Not Found: /favicon.ico
+ERROR Internal Server Error: /mdl2tbl/djbs01
+Traceback (most recent call last):
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\base.py", line 217, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\base.py", line 215, in _get_response
+    response = response.render()
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\response.py", line 107, in render
+    self.content = self.rendered_content
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\response.py", line 84, in rendered_content
+    content = template.render(context, self._request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\backends\django.py", line 66, in render
+    return self.template.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 207, in render
+    return self._render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 199, in _render
+    return self.nodelist.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\loader_tags.py", line 177, in render
+    return compiled_parent._render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 199, in _render
+    return self.nodelist.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\defaulttags.py", line 458, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\base.py", line 91, in reverse
+    return force_text(iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs)))
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 497, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'tblCpy_list' not found. 'tblCpy_list' is not a valid view function or pattern name.
+ERROR Internal Server Error: /mdl2tbl/djbs01
+Traceback (most recent call last):
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\base.py", line 217, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\base.py", line 215, in _get_response
+    response = response.render()
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\response.py", line 107, in render
+    self.content = self.rendered_content
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\response.py", line 84, in rendered_content
+    content = template.render(context, self._request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\backends\django.py", line 66, in render
+    return self.template.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 207, in render
+    return self._render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 199, in _render
+    return self.nodelist.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\loader_tags.py", line 177, in render
+    return compiled_parent._render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 199, in _render
+    return self.nodelist.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\defaulttags.py", line 458, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\base.py", line 91, in reverse
+    return force_text(iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs)))
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 497, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'tblCpy_list' not found. 'tblCpy_list' is not a valid view function or pattern name.
+ERROR Internal Server Error: /mdl2tbl/djbs12
+Traceback (most recent call last):
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\base.py", line 217, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\base.py", line 215, in _get_response
+    response = response.render()
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\response.py", line 107, in render
+    self.content = self.rendered_content
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\response.py", line 84, in rendered_content
+    content = template.render(context, self._request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\backends\django.py", line 66, in render
+    return self.template.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 207, in render
+    return self._render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 199, in _render
+    return self.nodelist.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\loader_tags.py", line 177, in render
+    return compiled_parent._render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 199, in _render
+    return self.nodelist.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\defaulttags.py", line 458, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\base.py", line 91, in reverse
+    return force_text(iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs)))
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 497, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'tblCpy_list' not found. 'tblCpy_list' is not a valid view function or pattern name.
+ERROR Internal Server Error: /mdl2tbl/djbs12
+Traceback (most recent call last):
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\base.py", line 217, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\base.py", line 215, in _get_response
+    response = response.render()
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\response.py", line 107, in render
+    self.content = self.rendered_content
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\response.py", line 84, in rendered_content
+    content = template.render(context, self._request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\backends\django.py", line 66, in render
+    return self.template.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 207, in render
+    return self._render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 199, in _render
+    return self.nodelist.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\loader_tags.py", line 177, in render
+    return compiled_parent._render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 199, in _render
+    return self.nodelist.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\defaulttags.py", line 458, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\base.py", line 91, in reverse
+    return force_text(iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs)))
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 497, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'tblCpy_list' not found. 'tblCpy_list' is not a valid view function or pattern name.
+ERROR Internal Server Error: /mdl2tbl/djbs12
+Traceback (most recent call last):
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\utils\deprecation.py", line 138, in __call__
+    response = self.process_request(request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\middleware\common.py", line 62, in process_request
+    if self.should_redirect_with_slash(request):
+  File "c:\Lang\django1\myenv\lib\site-packages\django\middleware\common.py", line 80, in should_redirect_with_slash
+    not is_valid_path(request.path_info, urlconf) and
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\base.py", line 158, in is_valid_path
+    resolve(path, urlconf)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\base.py", line 27, in resolve
+    return get_resolver(urlconf).resolve(path)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 362, in resolve
+    for pattern in self.url_patterns:
+  File "c:\Lang\django1\myenv\lib\site-packages\django\utils\functional.py", line 35, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 405, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\utils\functional.py", line 35, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 398, in urlconf_module
+    return import_module(self.urlconf_name)
+  File "C:\Lang\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 986, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 969, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 958, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 673, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 665, in exec_module
+  File "<frozen importlib._bootstrap>", line 222, in _call_with_frames_removed
+  File "c:\Lang\django1\mysite\mysite\urls.py", line 24, in <module>
+    url(r'^dq/', include('dq.urls')),
+  File "c:\Lang\django1\myenv\lib\site-packages\django\conf\urls\__init__.py", line 50, in include
+    urlconf_module = import_module(urlconf_module)
+  File "C:\Lang\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 986, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 969, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 958, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 673, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 665, in exec_module
+  File "<frozen importlib._bootstrap>", line 222, in _call_with_frames_removed
+  File "c:\Lang\django1\mysite\dq\urls.py", line 5, in <module>
+    from . import views
+  File "c:\Lang\django1\mysite\dq\views.py", line 30, in <module>
+    from .out_table import trace_out_table
+ImportError: cannot import name 'trace_out_table'
+ERROR Internal Server Error: /mdl2tbl/djbs12
+Traceback (most recent call last):
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\utils\deprecation.py", line 138, in __call__
+    response = self.process_request(request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\middleware\common.py", line 62, in process_request
+    if self.should_redirect_with_slash(request):
+  File "c:\Lang\django1\myenv\lib\site-packages\django\middleware\common.py", line 80, in should_redirect_with_slash
+    not is_valid_path(request.path_info, urlconf) and
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\base.py", line 158, in is_valid_path
+    resolve(path, urlconf)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\base.py", line 27, in resolve
+    return get_resolver(urlconf).resolve(path)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 362, in resolve
+    for pattern in self.url_patterns:
+  File "c:\Lang\django1\myenv\lib\site-packages\django\utils\functional.py", line 35, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 405, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\utils\functional.py", line 35, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 398, in urlconf_module
+    return import_module(self.urlconf_name)
+  File "C:\Lang\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 986, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 969, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 958, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 673, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 665, in exec_module
+  File "<frozen importlib._bootstrap>", line 222, in _call_with_frames_removed
+  File "c:\Lang\django1\mysite\mysite\urls.py", line 24, in <module>
+    url(r'^dq/', include('dq.urls')),
+  File "c:\Lang\django1\myenv\lib\site-packages\django\conf\urls\__init__.py", line 50, in include
+    urlconf_module = import_module(urlconf_module)
+  File "C:\Lang\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 986, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 969, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 958, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 673, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 665, in exec_module
+  File "<frozen importlib._bootstrap>", line 222, in _call_with_frames_removed
+  File "c:\Lang\django1\mysite\dq\urls.py", line 5, in <module>
+    from . import views
+  File "c:\Lang\django1\mysite\dq\views.py", line 30, in <module>
+    from .out_table import trace_out_table
+ImportError: cannot import name 'trace_out_table'
+ERROR Internal Server Error: /mdl2tbl/djbs12
+Traceback (most recent call last):
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\utils\deprecation.py", line 138, in __call__
+    response = self.process_request(request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\middleware\common.py", line 62, in process_request
+    if self.should_redirect_with_slash(request):
+  File "c:\Lang\django1\myenv\lib\site-packages\django\middleware\common.py", line 80, in should_redirect_with_slash
+    not is_valid_path(request.path_info, urlconf) and
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\base.py", line 158, in is_valid_path
+    resolve(path, urlconf)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\base.py", line 27, in resolve
+    return get_resolver(urlconf).resolve(path)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 362, in resolve
+    for pattern in self.url_patterns:
+  File "c:\Lang\django1\myenv\lib\site-packages\django\utils\functional.py", line 35, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 405, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\utils\functional.py", line 35, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 398, in urlconf_module
+    return import_module(self.urlconf_name)
+  File "C:\Lang\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 986, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 969, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 958, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 673, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 665, in exec_module
+  File "<frozen importlib._bootstrap>", line 222, in _call_with_frames_removed
+  File "c:\Lang\django1\mysite\mysite\urls.py", line 24, in <module>
+    url(r'^dq/', include('dq.urls')),
+  File "c:\Lang\django1\myenv\lib\site-packages\django\conf\urls\__init__.py", line 50, in include
+    urlconf_module = import_module(urlconf_module)
+  File "C:\Lang\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 986, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 969, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 958, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 673, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 665, in exec_module
+  File "<frozen importlib._bootstrap>", line 222, in _call_with_frames_removed
+  File "c:\Lang\django1\mysite\dq\urls.py", line 5, in <module>
+    from . import views
+  File "c:\Lang\django1\mysite\dq\views.py", line 371, in <module>
+    class TableCopyForm(ModelForm):
+  File "c:\Lang\django1\mysite\dq\views.py", line 372, in TableCopyForm
+    class Meta:
+  File "c:\Lang\django1\mysite\dq\views.py", line 373, in Meta
+    model = TableCopy
+NameError: name 'TableCopy' is not defined
+ERROR Internal Server Error: /mdl2tbl/djbs12
+Traceback (most recent call last):
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\utils\deprecation.py", line 138, in __call__
+    response = self.process_request(request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\middleware\common.py", line 62, in process_request
+    if self.should_redirect_with_slash(request):
+  File "c:\Lang\django1\myenv\lib\site-packages\django\middleware\common.py", line 80, in should_redirect_with_slash
+    not is_valid_path(request.path_info, urlconf) and
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\base.py", line 158, in is_valid_path
+    resolve(path, urlconf)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\base.py", line 27, in resolve
+    return get_resolver(urlconf).resolve(path)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 362, in resolve
+    for pattern in self.url_patterns:
+  File "c:\Lang\django1\myenv\lib\site-packages\django\utils\functional.py", line 35, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 405, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\utils\functional.py", line 35, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 398, in urlconf_module
+    return import_module(self.urlconf_name)
+  File "C:\Lang\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 986, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 969, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 958, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 673, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 665, in exec_module
+  File "<frozen importlib._bootstrap>", line 222, in _call_with_frames_removed
+  File "c:\Lang\django1\mysite\mysite\urls.py", line 24, in <module>
+    url(r'^dq/', include('dq.urls')),
+  File "c:\Lang\django1\myenv\lib\site-packages\django\conf\urls\__init__.py", line 50, in include
+    urlconf_module = import_module(urlconf_module)
+  File "C:\Lang\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 986, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 969, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 958, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 673, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 665, in exec_module
+  File "<frozen importlib._bootstrap>", line 222, in _call_with_frames_removed
+  File "c:\Lang\django1\mysite\dq\urls.py", line 5, in <module>
+    from . import views
+  File "c:\Lang\django1\mysite\dq\views.py", line 371, in <module>
+    class TableCopyForm(ModelForm):
+  File "c:\Lang\django1\myenv\lib\site-packages\django\forms\models.py", line 277, in __new__
+    raise FieldError(message)
+django.core.exceptions.FieldError: Unknown field(s) (USE_YN) specified for TableCopy
+ERROR Internal Server Error: /dq/tblCpys
+Traceback (most recent call last):
+  File "c:\Lang\django1\myenv\lib\site-packages\django\db\backends\utils.py", line 65, in execute
+    return self.cursor.execute(sql, params)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\db\backends\mysql\base.py", line 101, in execute
+    return self.cursor.execute(query, args)
+  File "c:\Lang\django1\myenv\lib\site-packages\pymysql\cursors.py", line 165, in execute
+    result = self._query(query)
+  File "c:\Lang\django1\myenv\lib\site-packages\pymysql\cursors.py", line 321, in _query
+    conn.query(q)
+  File "c:\Lang\django1\myenv\lib\site-packages\pymysql\connections.py", line 860, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "c:\Lang\django1\myenv\lib\site-packages\pymysql\connections.py", line 1061, in _read_query_result
+    result.read()
+  File "c:\Lang\django1\myenv\lib\site-packages\pymysql\connections.py", line 1349, in read
+    first_packet = self.connection._read_packet()
+  File "c:\Lang\django1\myenv\lib\site-packages\pymysql\connections.py", line 1018, in _read_packet
+    packet.check_error()
+  File "c:\Lang\django1\myenv\lib\site-packages\pymysql\connections.py", line 384, in check_error
+    err.raise_mysql_exception(self._data)
+  File "c:\Lang\django1\myenv\lib\site-packages\pymysql\err.py", line 107, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.ProgrammingError: (1146, "Table 'elltdqtst.dq_tablecopy' doesn't exist")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "c:\Lang\django1\mysite\dq\views.py", line 400, in tblCpy_list
+    return render(request, template_name, data)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\shortcuts.py", line 30, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\loader.py", line 68, in render_to_string
+    return template.render(context, request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\backends\django.py", line 66, in render
+    return self.template.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 207, in render
+    return self._render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 199, in _render
+    return self.nodelist.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\loader_tags.py", line 177, in render
+    return compiled_parent._render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 199, in _render
+    return self.nodelist.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\loader_tags.py", line 72, in render
+    result = block.nodelist.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\defaulttags.py", line 173, in render
+    len_values = len(values)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\db\models\query.py", line 232, in __len__
+    self._fetch_all()
+  File "c:\Lang\django1\myenv\lib\site-packages\django\db\models\query.py", line 1118, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "c:\Lang\django1\myenv\lib\site-packages\django\db\models\query.py", line 53, in __iter__
+    results = compiler.execute_sql(chunked_fetch=self.chunked_fetch)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\db\models\sql\compiler.py", line 894, in execute_sql
+    raise original_exception
+  File "c:\Lang\django1\myenv\lib\site-packages\django\db\models\sql\compiler.py", line 884, in execute_sql
+    cursor.execute(sql, params)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\db\backends\utils.py", line 80, in execute
+    return super(CursorDebugWrapper, self).execute(sql, params)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\db\backends\utils.py", line 65, in execute
+    return self.cursor.execute(sql, params)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\db\utils.py", line 94, in __exit__
+    six.reraise(dj_exc_type, dj_exc_value, traceback)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\utils\six.py", line 685, in reraise
+    raise value.with_traceback(tb)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\db\backends\utils.py", line 65, in execute
+    return self.cursor.execute(sql, params)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\db\backends\mysql\base.py", line 101, in execute
+    return self.cursor.execute(query, args)
+  File "c:\Lang\django1\myenv\lib\site-packages\pymysql\cursors.py", line 165, in execute
+    result = self._query(query)
+  File "c:\Lang\django1\myenv\lib\site-packages\pymysql\cursors.py", line 321, in _query
+    conn.query(q)
+  File "c:\Lang\django1\myenv\lib\site-packages\pymysql\connections.py", line 860, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "c:\Lang\django1\myenv\lib\site-packages\pymysql\connections.py", line 1061, in _read_query_result
+    result.read()
+  File "c:\Lang\django1\myenv\lib\site-packages\pymysql\connections.py", line 1349, in read
+    first_packet = self.connection._read_packet()
+  File "c:\Lang\django1\myenv\lib\site-packages\pymysql\connections.py", line 1018, in _read_packet
+    packet.check_error()
+  File "c:\Lang\django1\myenv\lib\site-packages\pymysql\connections.py", line 384, in check_error
+    err.raise_mysql_exception(self._data)
+  File "c:\Lang\django1\myenv\lib\site-packages\pymysql\err.py", line 107, in raise_mysql_exception
+    raise errorclass(errno, errval)
+django.db.utils.ProgrammingError: (1146, "Table 'elltdqtst.dq_tablecopy' doesn't exist")
+ERROR Internal Server Error: /dq/tblCpys
+Traceback (most recent call last):
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "c:\Lang\django1\mysite\dq\views.py", line 401, in tblCpy_list
+    return render(request, template_name, data)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\shortcuts.py", line 30, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\loader.py", line 68, in render_to_string
+    return template.render(context, request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\backends\django.py", line 66, in render
+    return self.template.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 207, in render
+    return self._render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 199, in _render
+    return self.nodelist.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\loader_tags.py", line 177, in render
+    return compiled_parent._render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 199, in _render
+    return self.nodelist.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\loader_tags.py", line 72, in render
+    result = block.nodelist.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\defaulttags.py", line 216, in render
+    nodelist.append(node.render_annotated(context))
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\defaulttags.py", line 458, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\base.py", line 91, in reverse
+    return force_text(iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs)))
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 497, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'tblCpy_edit' with arguments '('',)' not found. 1 pattern(s) tried: ['dq/tblCpy/update/(?P<pk>\\d+)']
+ERROR Internal Server Error: /dq/tblCpys
+Traceback (most recent call last):
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "c:\Lang\django1\mysite\dq\views.py", line 401, in tblCpy_list
+    return render(request, template_name, data)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\shortcuts.py", line 30, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\loader.py", line 68, in render_to_string
+    return template.render(context, request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\backends\django.py", line 66, in render
+    return self.template.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 207, in render
+    return self._render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 199, in _render
+    return self.nodelist.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\loader_tags.py", line 177, in render
+    return compiled_parent._render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 199, in _render
+    return self.nodelist.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\loader_tags.py", line 72, in render
+    result = block.nodelist.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\defaulttags.py", line 216, in render
+    nodelist.append(node.render_annotated(context))
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\defaulttags.py", line 458, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\base.py", line 91, in reverse
+    return force_text(iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs)))
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 497, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'tblCpy_edit' with arguments '('',)' not found. 1 pattern(s) tried: ['dq/tblCpy/update/(?P<pk>\\d+)']
+ERROR Internal Server Error: /dq/tblCpys
+Traceback (most recent call last):
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "c:\Lang\django1\mysite\dq\views.py", line 401, in tblCpy_list
+    return render(request, template_name, data)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\shortcuts.py", line 30, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\loader.py", line 68, in render_to_string
+    return template.render(context, request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\backends\django.py", line 66, in render
+    return self.template.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 207, in render
+    return self._render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 199, in _render
+    return self.nodelist.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\loader_tags.py", line 177, in render
+    return compiled_parent._render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 199, in _render
+    return self.nodelist.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\loader_tags.py", line 72, in render
+    result = block.nodelist.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\defaulttags.py", line 216, in render
+    nodelist.append(node.render_annotated(context))
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\defaulttags.py", line 458, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\base.py", line 91, in reverse
+    return force_text(iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs)))
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 497, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'tblCpy_edit' with arguments '('',)' not found. 1 pattern(s) tried: ['dq/tblCpy/update/(?P<pk>\\d+)']
+ERROR Internal Server Error: /dq/tblCpys
+Traceback (most recent call last):
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "c:\Lang\django1\mysite\dq\views.py", line 401, in tblCpy_list
+    return render(request, template_name, data)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\shortcuts.py", line 30, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\loader.py", line 68, in render_to_string
+    return template.render(context, request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\backends\django.py", line 66, in render
+    return self.template.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 207, in render
+    return self._render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 199, in _render
+    return self.nodelist.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\loader_tags.py", line 177, in render
+    return compiled_parent._render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 199, in _render
+    return self.nodelist.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\loader_tags.py", line 72, in render
+    result = block.nodelist.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\defaulttags.py", line 216, in render
+    nodelist.append(node.render_annotated(context))
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\defaulttags.py", line 458, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\base.py", line 91, in reverse
+    return force_text(iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs)))
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 497, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'tblCpy_edit' with arguments '('',)' not found. 1 pattern(s) tried: ['dq/tblCpy/update/(?P<pk>\\d+)']
+ERROR Internal Server Error: /dq/tblCpys
+Traceback (most recent call last):
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "c:\Lang\django1\mysite\dq\views.py", line 401, in tblCpy_list
+    return render(request, template_name, data)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\shortcuts.py", line 30, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\loader.py", line 68, in render_to_string
+    return template.render(context, request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\backends\django.py", line 66, in render
+    return self.template.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 207, in render
+    return self._render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 199, in _render
+    return self.nodelist.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\loader_tags.py", line 177, in render
+    return compiled_parent._render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 199, in _render
+    return self.nodelist.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\loader_tags.py", line 72, in render
+    result = block.nodelist.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\defaulttags.py", line 216, in render
+    nodelist.append(node.render_annotated(context))
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\defaulttags.py", line 458, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\base.py", line 91, in reverse
+    return force_text(iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs)))
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 497, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'tblCpy_edit' with arguments '('',)' not found. 1 pattern(s) tried: ['dq/tblCpy/update/(?P<pk>\\d+)']
+ERROR Internal Server Error: /dq/tblCpys
+Traceback (most recent call last):
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "c:\Lang\django1\mysite\dq\views.py", line 401, in tblCpy_list
+    return render(request, template_name, data)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\shortcuts.py", line 30, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\loader.py", line 68, in render_to_string
+    return template.render(context, request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\backends\django.py", line 66, in render
+    return self.template.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 207, in render
+    return self._render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 199, in _render
+    return self.nodelist.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\loader_tags.py", line 177, in render
+    return compiled_parent._render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 199, in _render
+    return self.nodelist.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\loader_tags.py", line 72, in render
+    result = block.nodelist.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\defaulttags.py", line 216, in render
+    nodelist.append(node.render_annotated(context))
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\defaulttags.py", line 458, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\base.py", line 91, in reverse
+    return force_text(iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs)))
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 497, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'tblCpy_edit' with arguments '('',)' not found. 1 pattern(s) tried: ['dq/tblCpy/update/(?P<pk>\\d+)']
+ERROR Internal Server Error: /dq/tblCpys
+Traceback (most recent call last):
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "c:\Lang\django1\mysite\dq\views.py", line 401, in tblCpy_list
+    return render(request, template_name, data)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\shortcuts.py", line 30, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\loader.py", line 68, in render_to_string
+    return template.render(context, request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\backends\django.py", line 66, in render
+    return self.template.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 207, in render
+    return self._render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 199, in _render
+    return self.nodelist.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\loader_tags.py", line 177, in render
+    return compiled_parent._render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 199, in _render
+    return self.nodelist.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\loader_tags.py", line 72, in render
+    result = block.nodelist.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\defaulttags.py", line 216, in render
+    nodelist.append(node.render_annotated(context))
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\defaulttags.py", line 458, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\base.py", line 91, in reverse
+    return force_text(iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs)))
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 497, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'tblCpy_edit' with arguments '('',)' not found. 1 pattern(s) tried: ['dq/tblCpy/update/(?P<pk>\\d+)']
+ERROR Internal Server Error: /dq/tblCpys
+Traceback (most recent call last):
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "c:\Lang\django1\mysite\dq\views.py", line 401, in tblCpy_list
+    return render(request, template_name, data)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\shortcuts.py", line 30, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\loader.py", line 68, in render_to_string
+    return template.render(context, request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\backends\django.py", line 66, in render
+    return self.template.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 207, in render
+    return self._render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 199, in _render
+    return self.nodelist.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\loader_tags.py", line 177, in render
+    return compiled_parent._render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 199, in _render
+    return self.nodelist.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\loader_tags.py", line 72, in render
+    result = block.nodelist.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\defaulttags.py", line 216, in render
+    nodelist.append(node.render_annotated(context))
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\defaulttags.py", line 458, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\base.py", line 91, in reverse
+    return force_text(iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs)))
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 497, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'tblCpy_edit' with arguments '('',)' not found. 1 pattern(s) tried: ['dq/tblCpy/update/(?P<pk>\\d+)']
+ERROR Internal Server Error: /dq/tblCpys
+Traceback (most recent call last):
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "c:\Lang\django1\mysite\dq\views.py", line 401, in tblCpy_list
+    return render(request, template_name, data)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\shortcuts.py", line 30, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\loader.py", line 68, in render_to_string
+    return template.render(context, request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\backends\django.py", line 66, in render
+    return self.template.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 207, in render
+    return self._render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 199, in _render
+    return self.nodelist.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\loader_tags.py", line 177, in render
+    return compiled_parent._render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 199, in _render
+    return self.nodelist.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\loader_tags.py", line 72, in render
+    result = block.nodelist.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\defaulttags.py", line 216, in render
+    nodelist.append(node.render_annotated(context))
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\defaulttags.py", line 458, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\base.py", line 91, in reverse
+    return force_text(iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs)))
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 497, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'tblCpy_edit' with arguments '('',)' not found. 1 pattern(s) tried: ['dq/tblCpy/update/(?P<pk>\\d+)']
+ERROR Internal Server Error: /dq/tblCpys
+Traceback (most recent call last):
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "c:\Lang\django1\mysite\dq\views.py", line 401, in tblCpy_list
+    return render(request, template_name, data)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\shortcuts.py", line 30, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\loader.py", line 68, in render_to_string
+    return template.render(context, request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\backends\django.py", line 66, in render
+    return self.template.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 207, in render
+    return self._render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 199, in _render
+    return self.nodelist.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\loader_tags.py", line 177, in render
+    return compiled_parent._render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 199, in _render
+    return self.nodelist.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\loader_tags.py", line 72, in render
+    result = block.nodelist.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\defaulttags.py", line 216, in render
+    nodelist.append(node.render_annotated(context))
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\defaulttags.py", line 458, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\base.py", line 91, in reverse
+    return force_text(iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs)))
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 497, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'tblCpy_edit' with arguments '('',)' not found. 1 pattern(s) tried: ['dq/tblCpy/update/(?P<pk>\\d+)']
+ERROR Internal Server Error: /dq/tblCpys
+Traceback (most recent call last):
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "c:\Lang\django1\mysite\dq\views.py", line 401, in tblCpy_list
+    return render(request, template_name, data)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\shortcuts.py", line 30, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\loader.py", line 68, in render_to_string
+    return template.render(context, request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\backends\django.py", line 66, in render
+    return self.template.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 207, in render
+    return self._render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 199, in _render
+    return self.nodelist.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\loader_tags.py", line 177, in render
+    return compiled_parent._render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 199, in _render
+    return self.nodelist.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\loader_tags.py", line 72, in render
+    result = block.nodelist.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\defaulttags.py", line 216, in render
+    nodelist.append(node.render_annotated(context))
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\defaulttags.py", line 458, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\base.py", line 91, in reverse
+    return force_text(iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs)))
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 497, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'tblCpy_edit' with arguments '('',)' not found. 1 pattern(s) tried: ['dq/tblCpy/update/(?P<pk>\\d+)']
+ERROR Internal Server Error: /dq/tblCpys
+Traceback (most recent call last):
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "c:\Lang\django1\mysite\dq\views.py", line 401, in tblCpy_list
+    return render(request, template_name, data)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\shortcuts.py", line 30, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\loader.py", line 68, in render_to_string
+    return template.render(context, request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\backends\django.py", line 66, in render
+    return self.template.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 207, in render
+    return self._render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 199, in _render
+    return self.nodelist.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\loader_tags.py", line 177, in render
+    return compiled_parent._render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 199, in _render
+    return self.nodelist.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\loader_tags.py", line 72, in render
+    result = block.nodelist.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\defaulttags.py", line 216, in render
+    nodelist.append(node.render_annotated(context))
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\defaulttags.py", line 458, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\base.py", line 91, in reverse
+    return force_text(iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs)))
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 497, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'tblCpy_edit' with arguments '('',)' not found. 1 pattern(s) tried: ['dq/tblCpy/update/(?P<pk>\\d+)']
+ERROR Internal Server Error: /dq/tblCpys
+Traceback (most recent call last):
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "c:\Lang\django1\mysite\dq\views.py", line 401, in tblCpy_list
+    return render(request, template_name, data)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\shortcuts.py", line 30, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\loader.py", line 68, in render_to_string
+    return template.render(context, request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\backends\django.py", line 66, in render
+    return self.template.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 207, in render
+    return self._render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 199, in _render
+    return self.nodelist.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\loader_tags.py", line 177, in render
+    return compiled_parent._render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 199, in _render
+    return self.nodelist.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\loader_tags.py", line 72, in render
+    result = block.nodelist.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\defaulttags.py", line 216, in render
+    nodelist.append(node.render_annotated(context))
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\defaulttags.py", line 458, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\base.py", line 91, in reverse
+    return force_text(iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs)))
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 497, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'tblCpy_edit' with arguments '('',)' not found. 1 pattern(s) tried: ['dq/tblCpy/update/(?P<pk>\\d+)']
+ERROR Internal Server Error: /dq/tblCpys
+Traceback (most recent call last):
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "c:\Lang\django1\mysite\dq\views.py", line 401, in tblCpy_list
+    return render(request, template_name, data)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\shortcuts.py", line 30, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\loader.py", line 68, in render_to_string
+    return template.render(context, request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\backends\django.py", line 66, in render
+    return self.template.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 207, in render
+    return self._render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 199, in _render
+    return self.nodelist.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\loader_tags.py", line 177, in render
+    return compiled_parent._render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 199, in _render
+    return self.nodelist.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\loader_tags.py", line 72, in render
+    result = block.nodelist.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\defaulttags.py", line 216, in render
+    nodelist.append(node.render_annotated(context))
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\defaulttags.py", line 458, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\base.py", line 91, in reverse
+    return force_text(iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs)))
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 497, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'tblCpy_edit' with arguments '('',)' not found. 1 pattern(s) tried: ['dq/tblCpy/update/(?P<pk>\\d+)']
+WARNING Not Found: /favicon.ico
+ERROR Internal Server Error: /dq/tblCpys
+Traceback (most recent call last):
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "c:\Lang\django1\mysite\dq\views.py", line 401, in tblCpy_list
+    return render(request, template_name, data)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\shortcuts.py", line 30, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\loader.py", line 68, in render_to_string
+    return template.render(context, request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\backends\django.py", line 66, in render
+    return self.template.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 207, in render
+    return self._render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 199, in _render
+    return self.nodelist.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\loader_tags.py", line 177, in render
+    return compiled_parent._render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 199, in _render
+    return self.nodelist.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\loader_tags.py", line 72, in render
+    result = block.nodelist.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\defaulttags.py", line 216, in render
+    nodelist.append(node.render_annotated(context))
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\template\defaulttags.py", line 458, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\base.py", line 91, in reverse
+    return force_text(iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs)))
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 497, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'tblCpy_edit' with arguments '('',)' not found. 1 pattern(s) tried: ['dq/tblCpy/update/(?P<pk>\\d+)']
+WARNING Not Found: /favicon.ico
+ERROR Internal Server Error: /dq/tblCpy_ajax
+Traceback (most recent call last):
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\utils\deprecation.py", line 138, in __call__
+    response = self.process_request(request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\middleware\common.py", line 62, in process_request
+    if self.should_redirect_with_slash(request):
+  File "c:\Lang\django1\myenv\lib\site-packages\django\middleware\common.py", line 80, in should_redirect_with_slash
+    not is_valid_path(request.path_info, urlconf) and
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\base.py", line 158, in is_valid_path
+    resolve(path, urlconf)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\base.py", line 27, in resolve
+    return get_resolver(urlconf).resolve(path)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 362, in resolve
+    for pattern in self.url_patterns:
+  File "c:\Lang\django1\myenv\lib\site-packages\django\utils\functional.py", line 35, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 405, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\utils\functional.py", line 35, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 398, in urlconf_module
+    return import_module(self.urlconf_name)
+  File "C:\Lang\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 986, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 969, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 958, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 673, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 665, in exec_module
+  File "<frozen importlib._bootstrap>", line 222, in _call_with_frames_removed
+  File "c:\Lang\django1\mysite\mysite\urls.py", line 24, in <module>
+    url(r'^dq/', include('dq.urls')),
+  File "c:\Lang\django1\myenv\lib\site-packages\django\conf\urls\__init__.py", line 50, in include
+    urlconf_module = import_module(urlconf_module)
+  File "C:\Lang\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 986, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 969, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 958, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 673, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 665, in exec_module
+  File "<frozen importlib._bootstrap>", line 222, in _call_with_frames_removed
+  File "c:\Lang\django1\mysite\dq\urls.py", line 5, in <module>
+    from . import views
+  File "c:\Lang\django1\mysite\dq\views.py", line 434
+    context = { 'ret' : "NOT_OK" , , 'rows' : None, 'cols' : None }
+                                   ^
+SyntaxError: invalid syntax
+ERROR Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\utils\deprecation.py", line 138, in __call__
+    response = self.process_request(request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\middleware\common.py", line 62, in process_request
+    if self.should_redirect_with_slash(request):
+  File "c:\Lang\django1\myenv\lib\site-packages\django\middleware\common.py", line 80, in should_redirect_with_slash
+    not is_valid_path(request.path_info, urlconf) and
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\base.py", line 158, in is_valid_path
+    resolve(path, urlconf)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\base.py", line 27, in resolve
+    return get_resolver(urlconf).resolve(path)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 362, in resolve
+    for pattern in self.url_patterns:
+  File "c:\Lang\django1\myenv\lib\site-packages\django\utils\functional.py", line 35, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 405, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\utils\functional.py", line 35, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 398, in urlconf_module
+    return import_module(self.urlconf_name)
+  File "C:\Lang\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 986, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 969, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 958, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 673, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 665, in exec_module
+  File "<frozen importlib._bootstrap>", line 222, in _call_with_frames_removed
+  File "c:\Lang\django1\mysite\mysite\urls.py", line 24, in <module>
+    url(r'^dq/', include('dq.urls')),
+  File "c:\Lang\django1\myenv\lib\site-packages\django\conf\urls\__init__.py", line 50, in include
+    urlconf_module = import_module(urlconf_module)
+  File "C:\Lang\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 986, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 969, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 958, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 673, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 665, in exec_module
+  File "<frozen importlib._bootstrap>", line 222, in _call_with_frames_removed
+  File "c:\Lang\django1\mysite\dq\urls.py", line 5, in <module>
+    from . import views
+  File "c:\Lang\django1\mysite\dq\views.py", line 434
+    context = { 'ret' : "NOT_OK" , , 'rows' : None, 'cols' : None }
+                                   ^
+SyntaxError: invalid syntax
+ERROR Internal Server Error: /dq/tblCpy_ajax
+Traceback (most recent call last):
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\utils\deprecation.py", line 138, in __call__
+    response = self.process_request(request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\middleware\common.py", line 62, in process_request
+    if self.should_redirect_with_slash(request):
+  File "c:\Lang\django1\myenv\lib\site-packages\django\middleware\common.py", line 80, in should_redirect_with_slash
+    not is_valid_path(request.path_info, urlconf) and
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\base.py", line 158, in is_valid_path
+    resolve(path, urlconf)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\base.py", line 27, in resolve
+    return get_resolver(urlconf).resolve(path)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 362, in resolve
+    for pattern in self.url_patterns:
+  File "c:\Lang\django1\myenv\lib\site-packages\django\utils\functional.py", line 35, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 405, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\utils\functional.py", line 35, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 398, in urlconf_module
+    return import_module(self.urlconf_name)
+  File "C:\Lang\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 986, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 969, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 958, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 673, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 665, in exec_module
+  File "<frozen importlib._bootstrap>", line 222, in _call_with_frames_removed
+  File "c:\Lang\django1\mysite\mysite\urls.py", line 24, in <module>
+    url(r'^dq/', include('dq.urls')),
+  File "c:\Lang\django1\myenv\lib\site-packages\django\conf\urls\__init__.py", line 50, in include
+    urlconf_module = import_module(urlconf_module)
+  File "C:\Lang\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 986, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 969, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 958, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 673, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 665, in exec_module
+  File "<frozen importlib._bootstrap>", line 222, in _call_with_frames_removed
+  File "c:\Lang\django1\mysite\dq\urls.py", line 36, in <module>
+    url(r'^tblCpy/delete/(?P<pk>\d+)', views.tblCpy_delete, name='tblCpy_delete'),
+AttributeError: module 'dq.views' has no attribute 'tblCpy_delete'
+ERROR Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\utils\deprecation.py", line 138, in __call__
+    response = self.process_request(request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\middleware\common.py", line 62, in process_request
+    if self.should_redirect_with_slash(request):
+  File "c:\Lang\django1\myenv\lib\site-packages\django\middleware\common.py", line 80, in should_redirect_with_slash
+    not is_valid_path(request.path_info, urlconf) and
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\base.py", line 158, in is_valid_path
+    resolve(path, urlconf)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\base.py", line 27, in resolve
+    return get_resolver(urlconf).resolve(path)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 362, in resolve
+    for pattern in self.url_patterns:
+  File "c:\Lang\django1\myenv\lib\site-packages\django\utils\functional.py", line 35, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 405, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\utils\functional.py", line 35, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 398, in urlconf_module
+    return import_module(self.urlconf_name)
+  File "C:\Lang\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 986, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 969, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 958, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 673, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 665, in exec_module
+  File "<frozen importlib._bootstrap>", line 222, in _call_with_frames_removed
+  File "c:\Lang\django1\mysite\mysite\urls.py", line 24, in <module>
+    url(r'^dq/', include('dq.urls')),
+  File "c:\Lang\django1\myenv\lib\site-packages\django\conf\urls\__init__.py", line 50, in include
+    urlconf_module = import_module(urlconf_module)
+  File "C:\Lang\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 986, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 969, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 958, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 673, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 665, in exec_module
+  File "<frozen importlib._bootstrap>", line 222, in _call_with_frames_removed
+  File "c:\Lang\django1\mysite\dq\urls.py", line 36, in <module>
+    url(r'^tblCpy/delete/(?P<pk>\d+)', views.tblCpy_delete, name='tblCpy_delete'),
+AttributeError: module 'dq.views' has no attribute 'tblCpy_delete'
+ERROR Internal Server Error: /dq/tblCpy_ajax
+Traceback (most recent call last):
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\utils\deprecation.py", line 138, in __call__
+    response = self.process_request(request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\middleware\common.py", line 62, in process_request
+    if self.should_redirect_with_slash(request):
+  File "c:\Lang\django1\myenv\lib\site-packages\django\middleware\common.py", line 80, in should_redirect_with_slash
+    not is_valid_path(request.path_info, urlconf) and
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\base.py", line 158, in is_valid_path
+    resolve(path, urlconf)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\base.py", line 27, in resolve
+    return get_resolver(urlconf).resolve(path)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 362, in resolve
+    for pattern in self.url_patterns:
+  File "c:\Lang\django1\myenv\lib\site-packages\django\utils\functional.py", line 35, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 405, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\utils\functional.py", line 35, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 398, in urlconf_module
+    return import_module(self.urlconf_name)
+  File "C:\Lang\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 986, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 969, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 958, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 673, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 665, in exec_module
+  File "<frozen importlib._bootstrap>", line 222, in _call_with_frames_removed
+  File "c:\Lang\django1\mysite\mysite\urls.py", line 24, in <module>
+    url(r'^dq/', include('dq.urls')),
+  File "c:\Lang\django1\myenv\lib\site-packages\django\conf\urls\__init__.py", line 50, in include
+    urlconf_module = import_module(urlconf_module)
+  File "C:\Lang\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 986, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 969, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 958, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 673, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 665, in exec_module
+  File "<frozen importlib._bootstrap>", line 222, in _call_with_frames_removed
+  File "c:\Lang\django1\mysite\dq\urls.py", line 36, in <module>
+    url(r'^tblCpy/delete/(?P<pk>\d+)', views.tblCpy_delete, name='tblCpy_delete'),
+AttributeError: module 'dq.views' has no attribute 'tblCpy_delete'
+ERROR Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\utils\deprecation.py", line 138, in __call__
+    response = self.process_request(request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\middleware\common.py", line 62, in process_request
+    if self.should_redirect_with_slash(request):
+  File "c:\Lang\django1\myenv\lib\site-packages\django\middleware\common.py", line 80, in should_redirect_with_slash
+    not is_valid_path(request.path_info, urlconf) and
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\base.py", line 158, in is_valid_path
+    resolve(path, urlconf)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\base.py", line 27, in resolve
+    return get_resolver(urlconf).resolve(path)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 362, in resolve
+    for pattern in self.url_patterns:
+  File "c:\Lang\django1\myenv\lib\site-packages\django\utils\functional.py", line 35, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 405, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\utils\functional.py", line 35, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 398, in urlconf_module
+    return import_module(self.urlconf_name)
+  File "C:\Lang\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 986, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 969, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 958, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 673, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 665, in exec_module
+  File "<frozen importlib._bootstrap>", line 222, in _call_with_frames_removed
+  File "c:\Lang\django1\mysite\mysite\urls.py", line 24, in <module>
+    url(r'^dq/', include('dq.urls')),
+  File "c:\Lang\django1\myenv\lib\site-packages\django\conf\urls\__init__.py", line 50, in include
+    urlconf_module = import_module(urlconf_module)
+  File "C:\Lang\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 986, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 969, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 958, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 673, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 665, in exec_module
+  File "<frozen importlib._bootstrap>", line 222, in _call_with_frames_removed
+  File "c:\Lang\django1\mysite\dq\urls.py", line 36, in <module>
+    url(r'^tblCpy/delete/(?P<pk>\d+)', views.tblCpy_delete, name='tblCpy_delete'),
+AttributeError: module 'dq.views' has no attribute 'tblCpy_delete'
+ERROR Internal Server Error: /dq/tblCpy_ajax
+Traceback (most recent call last):
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\utils\deprecation.py", line 138, in __call__
+    response = self.process_request(request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\middleware\common.py", line 62, in process_request
+    if self.should_redirect_with_slash(request):
+  File "c:\Lang\django1\myenv\lib\site-packages\django\middleware\common.py", line 80, in should_redirect_with_slash
+    not is_valid_path(request.path_info, urlconf) and
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\base.py", line 158, in is_valid_path
+    resolve(path, urlconf)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\base.py", line 27, in resolve
+    return get_resolver(urlconf).resolve(path)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 362, in resolve
+    for pattern in self.url_patterns:
+  File "c:\Lang\django1\myenv\lib\site-packages\django\utils\functional.py", line 35, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 405, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\utils\functional.py", line 35, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 398, in urlconf_module
+    return import_module(self.urlconf_name)
+  File "C:\Lang\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 986, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 969, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 958, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 673, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 665, in exec_module
+  File "<frozen importlib._bootstrap>", line 222, in _call_with_frames_removed
+  File "c:\Lang\django1\mysite\mysite\urls.py", line 24, in <module>
+    url(r'^dq/', include('dq.urls')),
+  File "c:\Lang\django1\myenv\lib\site-packages\django\conf\urls\__init__.py", line 50, in include
+    urlconf_module = import_module(urlconf_module)
+  File "C:\Lang\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 986, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 969, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 958, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 673, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 665, in exec_module
+  File "<frozen importlib._bootstrap>", line 222, in _call_with_frames_removed
+  File "c:\Lang\django1\mysite\dq\urls.py", line 36, in <module>
+    url(r'^tblCpy/delete/(?P<pk>\d+)', views.tblCpy_delete, name='tblCpy_delete'),
+AttributeError: module 'dq.views' has no attribute 'tblCpy_delete'
+ERROR Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\utils\deprecation.py", line 138, in __call__
+    response = self.process_request(request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\middleware\common.py", line 62, in process_request
+    if self.should_redirect_with_slash(request):
+  File "c:\Lang\django1\myenv\lib\site-packages\django\middleware\common.py", line 80, in should_redirect_with_slash
+    not is_valid_path(request.path_info, urlconf) and
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\base.py", line 158, in is_valid_path
+    resolve(path, urlconf)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\base.py", line 27, in resolve
+    return get_resolver(urlconf).resolve(path)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 362, in resolve
+    for pattern in self.url_patterns:
+  File "c:\Lang\django1\myenv\lib\site-packages\django\utils\functional.py", line 35, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 405, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\utils\functional.py", line 35, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 398, in urlconf_module
+    return import_module(self.urlconf_name)
+  File "C:\Lang\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 986, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 969, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 958, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 673, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 665, in exec_module
+  File "<frozen importlib._bootstrap>", line 222, in _call_with_frames_removed
+  File "c:\Lang\django1\mysite\mysite\urls.py", line 24, in <module>
+    url(r'^dq/', include('dq.urls')),
+  File "c:\Lang\django1\myenv\lib\site-packages\django\conf\urls\__init__.py", line 50, in include
+    urlconf_module = import_module(urlconf_module)
+  File "C:\Lang\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 986, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 969, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 958, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 673, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 665, in exec_module
+  File "<frozen importlib._bootstrap>", line 222, in _call_with_frames_removed
+  File "c:\Lang\django1\mysite\dq\urls.py", line 36, in <module>
+    url(r'^tblCpy/delete/(?P<pk>\d+)', views.tblCpy_delete, name='tblCpy_delete'),
+AttributeError: module 'dq.views' has no attribute 'tblCpy_delete'
+ERROR Internal Server Error: /dq/tblCpy_ajax
+Traceback (most recent call last):
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\utils\deprecation.py", line 138, in __call__
+    response = self.process_request(request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\middleware\common.py", line 62, in process_request
+    if self.should_redirect_with_slash(request):
+  File "c:\Lang\django1\myenv\lib\site-packages\django\middleware\common.py", line 80, in should_redirect_with_slash
+    not is_valid_path(request.path_info, urlconf) and
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\base.py", line 158, in is_valid_path
+    resolve(path, urlconf)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\base.py", line 27, in resolve
+    return get_resolver(urlconf).resolve(path)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 362, in resolve
+    for pattern in self.url_patterns:
+  File "c:\Lang\django1\myenv\lib\site-packages\django\utils\functional.py", line 35, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 405, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\utils\functional.py", line 35, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 398, in urlconf_module
+    return import_module(self.urlconf_name)
+  File "C:\Lang\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 986, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 969, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 958, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 673, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 665, in exec_module
+  File "<frozen importlib._bootstrap>", line 222, in _call_with_frames_removed
+  File "c:\Lang\django1\mysite\mysite\urls.py", line 24, in <module>
+    url(r'^dq/', include('dq.urls')),
+  File "c:\Lang\django1\myenv\lib\site-packages\django\conf\urls\__init__.py", line 50, in include
+    urlconf_module = import_module(urlconf_module)
+  File "C:\Lang\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 986, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 969, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 958, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 673, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 665, in exec_module
+  File "<frozen importlib._bootstrap>", line 222, in _call_with_frames_removed
+  File "c:\Lang\django1\mysite\dq\urls.py", line 36, in <module>
+    url(r'^tblCpy/delete/(?P<pk>\d+)', views.tblCpy_delete, name='tblCpy_delete'),
+AttributeError: module 'dq.views' has no attribute 'tblCpy_delete'
+ERROR Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\utils\deprecation.py", line 138, in __call__
+    response = self.process_request(request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\middleware\common.py", line 62, in process_request
+    if self.should_redirect_with_slash(request):
+  File "c:\Lang\django1\myenv\lib\site-packages\django\middleware\common.py", line 80, in should_redirect_with_slash
+    not is_valid_path(request.path_info, urlconf) and
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\base.py", line 158, in is_valid_path
+    resolve(path, urlconf)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\base.py", line 27, in resolve
+    return get_resolver(urlconf).resolve(path)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 362, in resolve
+    for pattern in self.url_patterns:
+  File "c:\Lang\django1\myenv\lib\site-packages\django\utils\functional.py", line 35, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 405, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\utils\functional.py", line 35, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 398, in urlconf_module
+    return import_module(self.urlconf_name)
+  File "C:\Lang\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 986, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 969, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 958, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 673, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 665, in exec_module
+  File "<frozen importlib._bootstrap>", line 222, in _call_with_frames_removed
+  File "c:\Lang\django1\mysite\mysite\urls.py", line 24, in <module>
+    url(r'^dq/', include('dq.urls')),
+  File "c:\Lang\django1\myenv\lib\site-packages\django\conf\urls\__init__.py", line 50, in include
+    urlconf_module = import_module(urlconf_module)
+  File "C:\Lang\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 986, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 969, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 958, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 673, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 665, in exec_module
+  File "<frozen importlib._bootstrap>", line 222, in _call_with_frames_removed
+  File "c:\Lang\django1\mysite\dq\urls.py", line 36, in <module>
+    url(r'^tblCpy/delete/(?P<pk>\d+)', views.tblCpy_delete, name='tblCpy_delete'),
+AttributeError: module 'dq.views' has no attribute 'tblCpy_delete'
+ERROR Internal Server Error: /dq/
+Traceback (most recent call last):
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\base.py", line 172, in _get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 362, in resolve
+    for pattern in self.url_patterns:
+  File "c:\Lang\django1\myenv\lib\site-packages\django\utils\functional.py", line 35, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 405, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\utils\functional.py", line 35, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 398, in urlconf_module
+    return import_module(self.urlconf_name)
+  File "C:\Lang\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 986, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 969, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 958, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 673, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 665, in exec_module
+  File "<frozen importlib._bootstrap>", line 222, in _call_with_frames_removed
+  File "c:\Lang\django1\mysite\mysite\urls.py", line 24, in <module>
+    url(r'^dq/', include('dq.urls')),
+  File "c:\Lang\django1\myenv\lib\site-packages\django\conf\urls\__init__.py", line 50, in include
+    urlconf_module = import_module(urlconf_module)
+  File "C:\Lang\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 986, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 969, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 958, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 673, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 665, in exec_module
+  File "<frozen importlib._bootstrap>", line 222, in _call_with_frames_removed
+  File "c:\Lang\django1\mysite\dq\urls.py", line 36, in <module>
+    url(r'^tblCpy/delete/(?P<pk>\d+)', views.tblCpy_delete, name='tblCpy_delete'),
+AttributeError: module 'dq.views' has no attribute 'tblCpy_delete'
+ERROR Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\utils\deprecation.py", line 138, in __call__
+    response = self.process_request(request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\middleware\common.py", line 62, in process_request
+    if self.should_redirect_with_slash(request):
+  File "c:\Lang\django1\myenv\lib\site-packages\django\middleware\common.py", line 80, in should_redirect_with_slash
+    not is_valid_path(request.path_info, urlconf) and
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\base.py", line 158, in is_valid_path
+    resolve(path, urlconf)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\base.py", line 27, in resolve
+    return get_resolver(urlconf).resolve(path)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 362, in resolve
+    for pattern in self.url_patterns:
+  File "c:\Lang\django1\myenv\lib\site-packages\django\utils\functional.py", line 35, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 405, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\utils\functional.py", line 35, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 398, in urlconf_module
+    return import_module(self.urlconf_name)
+  File "C:\Lang\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 986, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 969, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 958, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 673, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 665, in exec_module
+  File "<frozen importlib._bootstrap>", line 222, in _call_with_frames_removed
+  File "c:\Lang\django1\mysite\mysite\urls.py", line 24, in <module>
+    url(r'^dq/', include('dq.urls')),
+  File "c:\Lang\django1\myenv\lib\site-packages\django\conf\urls\__init__.py", line 50, in include
+    urlconf_module = import_module(urlconf_module)
+  File "C:\Lang\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 986, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 969, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 958, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 673, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 665, in exec_module
+  File "<frozen importlib._bootstrap>", line 222, in _call_with_frames_removed
+  File "c:\Lang\django1\mysite\dq\urls.py", line 36, in <module>
+    url(r'^tblCpy/delete/(?P<pk>\d+)', views.tblCpy_delete, name='tblCpy_delete'),
+AttributeError: module 'dq.views' has no attribute 'tblCpy_delete'
+ERROR Internal Server Error: /dq/
+Traceback (most recent call last):
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\base.py", line 172, in _get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 362, in resolve
+    for pattern in self.url_patterns:
+  File "c:\Lang\django1\myenv\lib\site-packages\django\utils\functional.py", line 35, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 405, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\utils\functional.py", line 35, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 398, in urlconf_module
+    return import_module(self.urlconf_name)
+  File "C:\Lang\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 986, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 969, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 958, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 673, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 665, in exec_module
+  File "<frozen importlib._bootstrap>", line 222, in _call_with_frames_removed
+  File "c:\Lang\django1\mysite\mysite\urls.py", line 24, in <module>
+    url(r'^dq/', include('dq.urls')),
+  File "c:\Lang\django1\myenv\lib\site-packages\django\conf\urls\__init__.py", line 50, in include
+    urlconf_module = import_module(urlconf_module)
+  File "C:\Lang\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 986, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 969, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 958, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 673, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 665, in exec_module
+  File "<frozen importlib._bootstrap>", line 222, in _call_with_frames_removed
+  File "c:\Lang\django1\mysite\dq\urls.py", line 36, in <module>
+    url(r'^tblCpy/delete/(?P<pk>\d+)', views.tblCpy_delete, name='tblCpy_delete'),
+AttributeError: module 'dq.views' has no attribute 'tblCpy_delete'
+ERROR Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\utils\deprecation.py", line 138, in __call__
+    response = self.process_request(request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\middleware\common.py", line 62, in process_request
+    if self.should_redirect_with_slash(request):
+  File "c:\Lang\django1\myenv\lib\site-packages\django\middleware\common.py", line 80, in should_redirect_with_slash
+    not is_valid_path(request.path_info, urlconf) and
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\base.py", line 158, in is_valid_path
+    resolve(path, urlconf)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\base.py", line 27, in resolve
+    return get_resolver(urlconf).resolve(path)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 362, in resolve
+    for pattern in self.url_patterns:
+  File "c:\Lang\django1\myenv\lib\site-packages\django\utils\functional.py", line 35, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 405, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\utils\functional.py", line 35, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 398, in urlconf_module
+    return import_module(self.urlconf_name)
+  File "C:\Lang\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 986, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 969, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 958, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 673, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 665, in exec_module
+  File "<frozen importlib._bootstrap>", line 222, in _call_with_frames_removed
+  File "c:\Lang\django1\mysite\mysite\urls.py", line 24, in <module>
+    url(r'^dq/', include('dq.urls')),
+  File "c:\Lang\django1\myenv\lib\site-packages\django\conf\urls\__init__.py", line 50, in include
+    urlconf_module = import_module(urlconf_module)
+  File "C:\Lang\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 986, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 969, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 958, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 673, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 665, in exec_module
+  File "<frozen importlib._bootstrap>", line 222, in _call_with_frames_removed
+  File "c:\Lang\django1\mysite\dq\urls.py", line 36, in <module>
+    url(r'^tblCpy/delete/(?P<pk>\d+)', views.tblCpy_delete, name='tblCpy_delete'),
+AttributeError: module 'dq.views' has no attribute 'tblCpy_delete'
+ERROR Internal Server Error: /dq/
+Traceback (most recent call last):
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\base.py", line 172, in _get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 362, in resolve
+    for pattern in self.url_patterns:
+  File "c:\Lang\django1\myenv\lib\site-packages\django\utils\functional.py", line 35, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 405, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\utils\functional.py", line 35, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 398, in urlconf_module
+    return import_module(self.urlconf_name)
+  File "C:\Lang\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 986, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 969, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 958, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 673, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 665, in exec_module
+  File "<frozen importlib._bootstrap>", line 222, in _call_with_frames_removed
+  File "c:\Lang\django1\mysite\mysite\urls.py", line 24, in <module>
+    url(r'^dq/', include('dq.urls')),
+  File "c:\Lang\django1\myenv\lib\site-packages\django\conf\urls\__init__.py", line 50, in include
+    urlconf_module = import_module(urlconf_module)
+  File "C:\Lang\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 986, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 969, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 958, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 673, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 665, in exec_module
+  File "<frozen importlib._bootstrap>", line 222, in _call_with_frames_removed
+  File "c:\Lang\django1\mysite\dq\urls.py", line 36, in <module>
+    url(r'^tblCpy/delete/(?P<pk>\d+)', views.tblCpy_delete, name='tblCpy_delete'),
+AttributeError: module 'dq.views' has no attribute 'tblCpy_delete'
+ERROR Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "c:\Lang\django1\myenv\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\utils\deprecation.py", line 138, in __call__
+    response = self.process_request(request)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\middleware\common.py", line 62, in process_request
+    if self.should_redirect_with_slash(request):
+  File "c:\Lang\django1\myenv\lib\site-packages\django\middleware\common.py", line 80, in should_redirect_with_slash
+    not is_valid_path(request.path_info, urlconf) and
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\base.py", line 158, in is_valid_path
+    resolve(path, urlconf)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\base.py", line 27, in resolve
+    return get_resolver(urlconf).resolve(path)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 362, in resolve
+    for pattern in self.url_patterns:
+  File "c:\Lang\django1\myenv\lib\site-packages\django\utils\functional.py", line 35, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 405, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\utils\functional.py", line 35, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "c:\Lang\django1\myenv\lib\site-packages\django\urls\resolvers.py", line 398, in urlconf_module
+    return import_module(self.urlconf_name)
+  File "C:\Lang\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 986, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 969, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 958, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 673, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 665, in exec_module
+  File "<frozen importlib._bootstrap>", line 222, in _call_with_frames_removed
+  File "c:\Lang\django1\mysite\mysite\urls.py", line 24, in <module>
+    url(r'^dq/', include('dq.urls')),
+  File "c:\Lang\django1\myenv\lib\site-packages\django\conf\urls\__init__.py", line 50, in include
+    urlconf_module = import_module(urlconf_module)
+  File "C:\Lang\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 986, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 969, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 958, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 673, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 665, in exec_module
+  File "<frozen importlib._bootstrap>", line 222, in _call_with_frames_removed
+  File "c:\Lang\django1\mysite\dq\urls.py", line 36, in <module>
+    url(r'^tblCpy/delete/(?P<pk>\d+)', views.tblCpy_delete, name='tblCpy_delete'),
+AttributeError: module 'dq.views' has no attribute 'tblCpy_delete'
+WARNING Not Found: /favicon.ico
+INFO "GET /dq/tblCpys HTTP/1.1" 200 15708
+WARNING Not Found: /favicon.ico
+WARNING "GET /favicon.ico HTTP/1.1" 404 4284
+INFO "GET /dq/tblCpy_ajax?pk=GD_GOODS HTTP/1.1" 200 45
+INFO "GET /dq/tblCpy_ajax?pk=GD_GOODS HTTP/1.1" 200 45
+INFO "GET /dq/tblCpys HTTP/1.1" 200 15708
+INFO "GET /dq/tblCpys HTTP/1.1" 200 15708
+INFO "GET /dq/tblCpys HTTP/1.1" 200 15708
+INFO "GET /dq/tblCpy_ajax?pk=GD_GOODS HTTP/1.1" 200 45
+INFO "GET /dq/tblCpys HTTP/1.1" 200 15708
+INFO "GET /dq/tblCpy_ajax?pk=GD_GOODS HTTP/1.1" 200 2570
+INFO "GET /dq/tblCpy_ajax?pk=GD_GOODS HTTP/1.1" 200 2570
+WARNING Not Found: /favicon.ico
+WARNING "GET /favicon.ico HTTP/1.1" 404 4280
+INFO "GET /dq/tblCpy_ajax?pk=GD_GOODS HTTP/1.1" 200 2570
+INFO "GET /dq/tblCpy_ajax?pk=GD_GOODS HTTP/1.1" 200 2570
+INFO "GET /dq/tblCpy_ajax?pk=GD_GOODS HTTP/1.1" 200 2570
+INFO "GET /dq/tblCpy_ajax?pk=GD_GOODS HTTP/1.1" 200 2570
+INFO "GET /dq/tblCpy_ajax?pk=GD_GOODS HTTP/1.1" 200 2570
+INFO "GET /dq/tblCpys HTTP/1.1" 200 15775
+INFO "GET /dq/tblCpy_ajax?pk=GD_GOODS HTTP/1.1" 200 2570
+INFO "GET /dq/tblCpys HTTP/1.1" 200 15775
+INFO "GET /dq/tblCpys HTTP/1.1" 200 15775
+INFO "GET /dq/tblCpy_ajax?pk=GD_GOODS HTTP/1.1" 200 2570
+INFO "GET /dq/tblCpys HTTP/1.1" 200 15773
+INFO "GET /dq/tblCpys HTTP/1.1" 200 15773
+INFO "GET /dq/tblCpy_ajax?pk=GD_GOODS HTTP/1.1" 200 2570
+INFO "GET /dq/tblCpys HTTP/1.1" 200 15773
+INFO "GET /dq/tblCpys HTTP/1.1" 200 15782
+INFO "GET /dq/tblCpy_ajax?pk=GD_GOODS HTTP/1.1" 200 2570
+INFO "GET /dq/tblCpy_ajax?pk=GD_GOODS HTTP/1.1" 200 2570
+INFO "GET /dq/tblCpys HTTP/1.1" 200 16003
+INFO "GET /dq/tblCpy_ajax?pk=GD_GOODS HTTP/1.1" 200 2570
+INFO "GET /dq/tblCpys HTTP/1.1" 200 16009
+INFO "GET /dq/tblCpy_ajax?pk=GD_GOODS HTTP/1.1" 200 2570
+INFO "GET /dq/tblCpys HTTP/1.1" 200 15553
+INFO "GET /dq/tblCpy_ajax?pk=GD_GOODS HTTP/1.1" 200 2570
+INFO "GET /dq/tblCpy_ajax?pk=GD_GOODS HTTP/1.1" 200 2570
+INFO "GET /dq/tblCpy_ajax?pk=GD_GOODS HTTP/1.1" 200 2570

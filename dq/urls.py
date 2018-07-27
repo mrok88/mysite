@@ -26,7 +26,15 @@ urlpatterns = [
     url(r'^vrfy/run/(?P<pk>\d+)', views.vrfy_run, name='vrfy_run'),
     #vrfyLog 
     url(r'^vrfyLog_ajax/', views.vrfyLog_ajax, name='vrfyLog_ajax'),     
-    url(r'^vrfyLogs', views.vrfyLog_list, name='vrfyLog_list'),   
+    url(r'^vrfyLogs', views.vrfyLog_list, name='vrfyLog_list'), 
+
+    #TableCopy
+    url(r'^tblCpys', views.tblCpy_list, name='tblCpy_list'),
+    url(r'^tblCpy_ajax', views.tblCpy_ajax, name='tblCpy_ajax'),
+    url(r'^tblCpy/create$', views.tblCpy_create, name='tblCpy_new'),
+    url(r'^tblCpy/update/(?P<pk>\d+)', views.tblCpy_update, name='tblCpy_edit'),
+    url(r'^tblCpy/delete/(?P<pk>\d+)', views.tblCpy_delete, name='tblCpy_delete'),
+
     #ilm(information lifecycle mgmt.)
     url(r'^ilms', views.ilm_list, name='ilm_list'),
     url(r'^ilm/create$', views.ilm_create, name='ilm_new'),

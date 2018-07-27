@@ -15,7 +15,7 @@ from django.conf import settings
 ############################## json ##############################
 import json
 ############################## dbConn  ##############################
-from .models import Vrfy, VrfyLog, Vrfy_Cmd,Ilm
+from .models import Vrfy, VrfyLog, Vrfy_Cmd,Ilm,TableCopy
 from .dbMysql import Ssh,Conn,get_db_sch_nm
 ############################## task  ##############################
 from django.views.decorators.csrf import csrf_exempt
@@ -26,6 +26,9 @@ from .tasks import demo_task,vrfy_task,vrfy_task_aurora
 from django.db.models import Q
 ############################## Transaction 매뉴얼관리  ##############################
 from django.db import transaction, connections
+############################## out 테이블관리  ##############################
+from .out_table import trace_out_table
+
 
 app_name ='dq'
 ########################## 공통 함수 ########################## 
@@ -363,6 +366,73 @@ def vrfyLog_ajax(request):
                     'ret'  : 'NOT_OK'
                 } 
     
+    return HttpResponse(json.dumps(context), content_type="application/json")
+########################## 데이터 복제본 추적관리  ##########################
+class TableCopyForm(ModelForm):
+    class Meta:
+        model = TableCopy
+        fields = ['TABLE_HANGL_NM'
+                    ,'TABLE_NM'
+                    ,'TABLE_COPY_EXPLN'
+                    ,'USE_YN'
+                    ,'RGSTR_ID'
+                    #,'RGST_DTTM'
+                    ,'MODR_ID'
+                    #,'MODI_DTTM'
+                    ]
+        widgets = {
+            'TABLE_COPY_EXPLN' : forms.Textarea(attrs={'rows':4})
+        }
+
+def tblCpy_list(request, template_name='tblCpy_list.html'):
+    gets = request.GET
+    #print(gets)
+    if ( 'qry' in gets ) :
+        qry = gets['qry']
+    else:
+        qry = ''
+    if (qry == None or len(qry) <= 2):
+        tblCpys = TableCopy.objects.all()
+    else:
+        tblCpys = TableCopy.objects.filter(TABLE_NM = qry)
+    data = {}
+    data['object_list'] = tblCpys
+    data['gets'] = gets
+    return render(request, template_name, data)
+
+def tblCpy_create(request, template_name='tblCpy_form.html'):
+    form = TableCopyForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return redirect('dq:tblCpy_list')
+    return render(request, template_name, {'form':form})
+
+def tblCpy_update(request, pk,template_name='tblCpy_form.html'):    
+    tblCpy = get_object_or_404(TableCopy, pk=pk)
+    form = TableCopyForm(request.POST or None, instance=tblCpy)
+    if form.is_valid():
+        form.save()
+        return redirect('dq:tblCpy_list')
+    return render(request, template_name, {'form':form,'row' : tblCpy })
+
+def tblCpy_delete(request, pk):
+    tblCpy= get_object_or_404(TableCopy, pk=pk)    
+    if tblCpy != None :
+        tblCpy.delete()
+        return redirect('dq:tblCpy_list')
+    return HttpResponse(status=405)
+
+def tblCpy_ajax(request):
+    pk = request.GET['pk']
+    if request.GET.get('env'):
+        env = request.GET['env']
+    else:
+        env = 'dev'
+    try:
+        #v = get_object_or_404(TableCopy, pk=pk)     
+        context = trace_out_table(pk,env)
+    except Exception as e :
+        context = { 'ret' : "NOT_OK" , 'rows' : None, 'cols' : None }    
     return HttpResponse(json.dumps(context), content_type="application/json")
 
 ########################## ilm ########################## 

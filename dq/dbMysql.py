@@ -47,6 +47,9 @@ class Conn():
         self.server_info = conn_info.server_infos[db]
         self.ssh = Ssh(db)
         self.conn = None
+        self.curType = 'dict'
+        self.param_replace = True
+        self.cols = None
 
     def sshDbConn(self):
         server_info = self.server_info
@@ -61,12 +64,20 @@ class Conn():
 
     def execute(self,sql,sql_params ={}):
         try:
-            curs = self.conn.cursor(pymysql.cursors.DictCursor)          
-            #curs = self.conn.cursor()  
+            self.cols = None
+            if (self.curType == 'dict'):
+                curs = self.conn.cursor(pymysql.cursors.DictCursor)
+            else :
+                curs = self.conn.cursor()
+            #curs = self.conn.cursor() 
             # % string 오류 해결 
-            sqlStr = str.replace(sql,'%','%%')        
+            if self.param_replace :
+                sqlStr = str.replace(sql,'%','%%')        
+            else:
+                sqlStr = sql
             curs.execute(sqlStr,sql_params)
             rows = curs.fetchall()
+            self.cols = [i[0] for i in curs.description]
             return rows
         finally:
             curs.close()
