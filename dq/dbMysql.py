@@ -77,7 +77,10 @@ class Conn():
                 sqlStr = sql
             curs.execute(sqlStr,sql_params)
             rows = curs.fetchall()
-            self.cols = [i[0] for i in curs.description]
+            try: 
+                self.cols = [i[0] for i in curs.description]
+            except Exception as e :
+                pass
             return rows
         finally:
             curs.close()

@@ -5,7 +5,7 @@ class Conn():
         self.db = db
         self.conn = None
         self.cols = None
-        self.curType = 'dict'
+        self.curType = 'list'
         self.param_replace = False
         self.cols = None        
 
@@ -17,17 +17,19 @@ class Conn():
         try:
             self.cols = None
             # dictionary  형태로 출려하게함.
-            if self.curType == 'dict':
-                self.conn.row_factory = sqlite3.Row
-            else :
+            #print("my curType =>", self.curType )
+            if self.curType == 'list':
                 self.conn.row_factory = None
+            else :
+                self.conn.row_factory = sqlite3.Row
             curs.execute(sql,sql_params)
             rows = curs.fetchall()
             try:
                 self.cols = [i[0] for i in curs.description]
             except Exception as e:
                 self.cols = None
-            return rows
+            finally:
+                return rows
         finally:
             curs.close()
         return None

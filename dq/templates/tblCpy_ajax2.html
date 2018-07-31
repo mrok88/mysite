@@ -31,7 +31,9 @@
         $('#ywsModal').modal('show');
     }
 
-    function run_vrfy(myTitle,myCD,myENV) {
+    function run_vrfy(myCD) {
+          var myENV = document.getElementById("id_qry").value
+          var myTitle = myCD + '(' + myENV + ')' ;
           showProgressbar(myTitle);
           $.ajax({
             url: "{%   url 'dq:tblCpy_ajax'  %}",

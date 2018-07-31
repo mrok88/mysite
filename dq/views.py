@@ -25,9 +25,9 @@ from .tasks import demo_task,vrfy_task,vrfy_task_aurora
 # 쿼리 OR조건을 위해서 import 함 
 from django.db.models import Q
 ############################## Transaction 매뉴얼관리  ##############################
-from django.db import transaction, connections
+from django.db import transaction, connection
 ############################## out 테이블관리  ##############################
-from .out_table import trace_out_table
+from .out_table import trace_out_table,matrix_out_table
 
 
 app_name ='dq'
@@ -371,8 +371,8 @@ def vrfyLog_ajax(request):
 class TableCopyForm(ModelForm):
     class Meta:
         model = TableCopy
-        fields = ['TABLE_HANGL_NM'
-                    ,'TABLE_NM'
+        fields = ['TABLE_NM'       
+                    ,'TABLE_HANGL_NM'
                     ,'TABLE_COPY_EXPLN'
                     ,'USE_YN'
                     ,'RGSTR_ID'
@@ -383,6 +383,7 @@ class TableCopyForm(ModelForm):
         widgets = {
             'TABLE_COPY_EXPLN' : forms.Textarea(attrs={'rows':4})
         }
+
 
 def tblCpy_list(request, template_name='tblCpy_list.html'):
     gets = request.GET
@@ -399,6 +400,29 @@ def tblCpy_list(request, template_name='tblCpy_list.html'):
     data['object_list'] = tblCpys
     data['gets'] = gets
     return render(request, template_name, data)
+
+class EnvForm(forms.Form):
+    ENV_DVS_CD = (
+        ('dev', '개발환경'),
+        ('tst', '테스트환경'),
+        ('prd', '운영환경'),
+    )
+    qry = forms.ChoiceField(label = "환경",choices = ENV_DVS_CD)
+    
+def tblCpy_list2(request, template_name='tblCpy_list2.html'):
+    form = None
+    try:
+        rets = matrix_out_table()
+        print(request.GET)
+        form = EnvForm(request.GET or None )
+        #answer = ''
+        #if form.is_valid():
+        #    answer = form.cleaned_data.get('qry')             
+        rets['form'] = form
+    except Exception as e :
+        print(e)
+        rets = { 'ret' : "NOT_OK" , 'rows' : None, 'cols' : None , 'form' : form }    
+    return render(request, template_name, rets)    
 
 def tblCpy_create(request, template_name='tblCpy_form.html'):
     form = TableCopyForm(request.POST or None)
@@ -432,6 +456,7 @@ def tblCpy_ajax(request):
         #v = get_object_or_404(TableCopy, pk=pk)     
         context = trace_out_table(pk,env)
     except Exception as e :
+        print(e)
         context = { 'ret' : "NOT_OK" , 'rows' : None, 'cols' : None }    
     return HttpResponse(json.dumps(context), content_type="application/json")
 

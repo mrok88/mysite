@@ -50,9 +50,9 @@
                     <td><a href="{% url 'dq:tblCpy_edit' row.TABLE_NO  %}"><span class="glyphicon glyphicon-edit"></span> {{ row.TABLE_NO }}</a></td>             
                     <td>{{ row.TABLE_NM }}</td>
                     <td>{{ row.TABLE_HANGL_NM }}</td>
-                    <td onClick="run_vrfy('{{ row.TABLE_HANGL_NM }}','{{ row.TABLE_NM }}')" ><button type="button" class="btn btn-info">개발</button></td>
-                    <td onClick="run_vrfy('{{ row.TABLE_HANGL_NM }}','{{ row.TABLE_NM }}')" ><button type="button" class="btn btn-warning">테스트</button></td>
-                    <td onClick="run_vrfy('{{ row.TABLE_HANGL_NM }}','{{ row.TABLE_NM }}')" ><button type="button" class="btn btn-danger">운영</button></td>
+                    <td onClick="run_vrfy('{{ row.TABLE_HANGL_NM }}','{{ row.TABLE_NM }}','dev')" ><button type="button" class="btn btn-info">개발</button></td>
+                    <td onClick="run_vrfy('{{ row.TABLE_HANGL_NM }}','{{ row.TABLE_NM }}','tst')" ><button type="button" class="btn btn-warning">테스트</button></td>
+                    <td onClick="run_vrfy('{{ row.TABLE_HANGL_NM }}','{{ row.TABLE_NM }}','prd')" ><button type="button" class="btn btn-danger">운영</button></td>
                     <td>{{ row.MODR_ID }}</td>
                     <td>{{ row.MODI_DTTM|date:'Y-m-d'  }}</td>  
                     <!--td class="hideTechDetail">{% csrf_token %}</td-->
