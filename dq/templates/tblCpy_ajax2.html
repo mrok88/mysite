@@ -1,9 +1,10 @@
     <style>
         .yws_pnt { cursor: pointer; }
+        .modal-wide {  width: 70%; }
     </style>
     <div class="span4 proj-div" data-toggle="modal" data-target="#GSCCModal"></div>
     <div id="ywsModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-wide">
             <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" >&times;  </button>
@@ -32,7 +33,7 @@
     }
 
     function run_vrfy(myCD) {
-          var myENV = document.getElementById("id_qry").value
+          var myENV = document.getElementById("id_env").value
           var myTitle = myCD + '(' + myENV + ')' ;
           showProgressbar(myTitle);
           $.ajax({
@@ -45,16 +46,16 @@
             success: function (data) {
               //console.log(data);          
               if (data.ret == "OK") {
-                showMyModal(myTitle,data.rows,data.cols);
+                showMyModal(myTitle,data.rows,data.cols,data.colspans);
               } else {
-                showMyModal(myTitle,data.rows,data.cols);  
+                showMyModal(myTitle,data.rows,data.cols,data.colspans);  
               }
 
             }
           });
         }
     // script for modal popup 
-    function showMyModal(myTitle, rows,cols) {
+    function showMyModal(myTitle, rows,cols,colspans) {
     
        /*
         * '#myModayTitle' and '#myModalBody' refer to the 'id' of the HTML tags in
@@ -62,6 +63,16 @@
         * can be named anything, just make sure they are added as necessary.
         *
         */
+
+        console.log(colspans)
+        var myCspan = ""  
+        for ( i in colspans ) {
+            myCspan += "<th colspan=" + colspans[i][1] + " style='text-align:center'>" + colspans[i][0] + "</th>";
+        }
+        if (myCspan != "") {
+            myCspan = "<tr>" + myCspan + "</tr>";
+        } 
+        
         //console.log(cols)
         var myCols = ""
         for ( i in cols ) {
@@ -90,6 +101,7 @@
         // Table 태그를 추가한다. 
         var myBodyHtml = "";
         myBodyHtml += "<table class=\"display table table-striped table-bordered table-condensed\" >";       
+        myBodyHtml += myCspan;
         myBodyHtml += myCols;
         myBodyHtml += myHtml;
         myBodyHtml += "</table>";

@@ -2,13 +2,21 @@ from dq.dbMysql import Conn as Conn
 
 #sqlite 관련  merge Connection 처리
 from dq.dbSqlite import Conn as mConn
-
+DB_LIST = { 'dev' : ['ltcmdev','elltdev'] 
+          , 'tst' : ['ltcmtst1','ellttst1','ellttst2','ellttst3','ellttst4','ellttst6']
+          , 'prd' : ['ltcmprd1','elltprd1','elltprd2','elltprd3','elltprd4','elltprd6']          
+          }
+DB_LIST['all'] = list(DB_LIST['dev'])
+DB_LIST['all'].extend(DB_LIST['tst'])
+DB_LIST['all'].extend(DB_LIST['prd'])
 def trace_out_table(p_table_nm,env):
     ldb = localDb()
     ldb.dbConn()  
+    print('table_nm=>',p_table_nm,'env=>',env)
     try:  
-        if env == 'dev':     
-            dbs = ['ltcmdev','elltdev']
+        if env in ( 'dev','tst','prd','all') : 
+            dbs = DB_LIST[env]
+            ldb.cols = None              
             for db in dbs:
                 rets1 = trace_out_table0(db,p_table_nm)       
                 if ldb.cols == None :  
@@ -16,50 +24,32 @@ def trace_out_table(p_table_nm,env):
                     ldb.create()
                 cnt  = ldb.insert(rets1['rows'])
                 ldb.lconn.commit()
-                #print('cnt=>', cnt)
+                #print('cnt=>', cnt)             
                 ldb.oschs.extend(rets1['osch'])
                 ldb.schs.extend(rets1['schs'])
                 #print('schs=>',ldb.schs)
             rows_all = ldb.select()
             cols_all = ldb.lconn.cols
-            rets = { 'ret' : "OK" , 'rows' : rows_all, 'cols' : ldb.lconn.cols }        
-        elif env == 'tst':
-            dbs = ['ltcmtst1','ellttst1','ellttst1','ellttst2','ellttst3','ellttst4']
-            for db in dbs:
-                rets1 = trace_out_table0(db,p_table_nm)       
-                if ldb.cols == None :  
-                    ldb.cols = rets1['cols']
-                    ldb.create()
-                cnt  = ldb.insert(rets1['rows'])
-                ldb.lconn.commit()
-                #print('cnt=>', cnt)
-                ldb.oschs.extend(rets1['osch'])
-                ldb.schs.extend(rets1['schs'])
-                #print('schs=>',ldb.schs)
-            rows_all = ldb.select()
-            cols_all = ldb.lconn.cols
-            rets = { 'ret' : "OK" , 'rows' : rows_all, 'cols' : ldb.lconn.cols }        
-        elif env == 'prd' :
-            dbs = ['ltcmprd1','elltprd1','elltprd1','elltprd2','elltprd3','elltprd4']
-            for db in dbs:
-                rets1 = trace_out_table0(db,p_table_nm)       
-                if ldb.cols == None :  
-                    ldb.cols = rets1['cols']
-                    ldb.create()
-                cnt  = ldb.insert(rets1['rows'])
-                ldb.lconn.commit()
-                #print('cnt=>', cnt)
-                ldb.oschs.extend(rets1['osch'])
-                ldb.schs.extend(rets1['schs'])
-                #print('schs=>',ldb.schs)
-            rows_all = ldb.select()
-            cols_all = ldb.lconn.cols
-            rets = { 'ret' : "OK" , 'rows' : rows_all, 'cols' : ldb.lconn.cols }    
+            #print(cols_all)
+            colspans = [ ( '' , 1 ) ]
+            env_list = [1 for i in cols_all if 'dev' == i[-3:] ]
+            if sum(env_list) > 0  :
+                colspans.append(('dev',sum(env_list))) 
+            env_list = [1 for i in cols_all if 'tst' == i[-3:] ]
+            if sum(env_list) > 0 :
+                colspans.append(('tst',sum(env_list))) 
+            env_list = [1 for i in cols_all if 'prd' == i[-3:] ]            
+            if sum(env_list) > 0 :
+                colspans.append(('prd',sum(env_list))) 
+            #print(colspans)
+            rets = { 'ret' : "OK" , 'rows' : rows_all, 'cols' : cols_all, 'colspans' : colspans }   
         else :
-            rets = { 'ret' : "NOT_OK" , 'rows' : None, 'cols' : None }
+            rets = { 'ret' : "NOT_OK" , 'rows' : None, 'cols' : None , 'colspans' : None }
     except Exception as e :
-        rets = { 'ret' : "NOT_OK" , 'rows' : None, 'cols' : None }
-    finally:               
+        print(e)
+        rets = { 'ret' : "NOT_OK" , 'rows' : None, 'cols' : None , 'colspans' : None }
+    finally: 
+        ldb.close() 
         return rets
 
 
@@ -71,9 +61,13 @@ def trace_out_table0(p_db_nm,p_table_nm):
         conn.param_replace = False
 
         sql1 = """
-        select 'ORIG' DVS_CD,TABLE_SCHEMA from information_schema.tables where table_name = %(tbl_nm)s
+        select 'ORIG' DVS_CD,TABLE_SCHEMA from information_schema.tables where table_name = %(tbl_nm)s 
+        and ( table_schema like 'ellt%%' or  table_schema like 'ltcm%%' )
+        and ( table_schema not like 'elltetl%%' and table_schema not like 'elltmig%%')
         UNION ALL
         select 'COPY' DVS_CD,TABLE_SCHEMA from information_schema.tables where table_name = %(cpy_nm)s 
+        and ( table_schema like 'ellt%%' or  table_schema like 'ltcm%%' )
+        and ( table_schema not like 'elltetl%%' and table_schema not like 'elltmig%%')
         """
 
         tbl_nm = p_table_nm
@@ -82,8 +76,8 @@ def trace_out_table0(p_db_nm,p_table_nm):
 
         rows1 = conn.execute(sql1,{'tbl_nm' : tbl_nm , 'cpy_nm' : cpy_nm })
         
-        schs = [ row['TABLE_SCHEMA'] for row in rows1 if row['DVS_CD'] == 'COPY' ]
-        osch = [ row['TABLE_SCHEMA'] for row in rows1 if row['DVS_CD'] == 'ORIG' ]
+        my_schs = [ row['TABLE_SCHEMA'] for row in rows1 if row['DVS_CD'] == 'COPY' ]
+        my_osch = [ row['TABLE_SCHEMA'] for row in rows1 if row['DVS_CD'] == 'ORIG' ]
         # sqlite 에 저장한 결과를 가져오는 방법으로 처리하고자함.
         
 
@@ -92,13 +86,17 @@ def trace_out_table0(p_db_nm,p_table_nm):
         sql2 = """SELECT *
          from (
          select TABLE_SCHEMA sch,COLUMN_NAME col, COLUMN_TYPE col_type, ORDINAL_POSITION pos from information_schema.columns where table_name = %(tbl_nm)s
+         and ( table_schema like 'ellt%%' or  table_schema like 'ltcm%%' )
+         and ( table_schema not like 'elltetl%%' and table_schema not like 'elltmig%%')
          union all
          select TABLE_SCHEMA sch,COLUMN_NAME col, COLUMN_TYPE col_type, ORDINAL_POSITION pos from information_schema.columns where table_name = %(cpy_nm)s
+         and ( table_schema like 'ellt%%' or  table_schema like 'ltcm%%' )
+         and ( table_schema not like 'elltetl%%' and table_schema not like 'elltmig%%')
          ) a        
         order by 1,2"""        
 
         rows2 = conn.execute(sql2,{'tbl_nm' : tbl_nm , 'cpy_nm' : cpy_nm })
-        rets = { 'ret' : "OK" , 'rows' : rows2, 'cols' : conn.cols , 'schs' : schs, 'osch' : osch }
+        rets = { 'ret' : "OK" , 'rows' : rows2, 'cols' : conn.cols , 'schs' : my_schs, 'osch' : my_osch }
     except Exception as e:
         rets = { 'ret' : "NOT_OK" , 'rows' : None, 'cols' : None , 'schs' : None }
     finally:
@@ -125,11 +123,13 @@ class localDb():
 
     def create(self):
         create_sql = self.make_create()
-        print("create_sql=>",create_sql)
+        #print("create_sql=>",create_sql)
         drop_sql = "drop table if exists " + self.tbl_nm 
         print("drop_sql=>",drop_sql)
         self.lconn.execute(drop_sql)
         self.lconn.execute(create_sql)
+        self.oschs = []
+        self.schs = []
         return True
 
     def make_insert(self):
@@ -146,16 +146,20 @@ class localDb():
         return self.lconn.executemany(insert_sql,rows2)
 
     def select(self):
-        my_schs = []
-        my_schs.append(self.oschs[0])
-        my_schs.extend(set(self.schs))
         self.lconn.curType = 'list'
         sql2 = "SELECT col"
-        sql2 += "\n".join([ ", MAX(CASE WHEN sch = '%s' THEN pos END ) %s" % (sch,sch) for sch in my_schs])
+        #dev,tst,prd순서로 컬럼을 나열한다.
+        # print('oschs=>',self.oschs)
+        # print('schs=>',self.schs)
+        for env in ['dev','tst','prd']:
+            sub_schs = [i for i in self.oschs if env == i[-3:]]
+            sql2 += "\n".join([ ", MAX(CASE WHEN sch = '%s' THEN pos END ) %s" % (sch,sch) for sch in sub_schs])
+            sub_schs = sorted([i for i in self.schs if env == i[-3:]])
+            sql2 += "\n".join([ ", MAX(CASE WHEN sch = '%s' THEN pos END ) %s" % (sch,sch) for sch in sub_schs])
         sql2 += """     
         from """ + self.tbl_nm + """ a
         group by col
-        order by cast( """ + my_schs[0] + " as int )"
+        order by cast( """ + self.oschs[0] + " as int )"
         rows2 = self.lconn.execute(sql2)
         return rows2
 
@@ -192,7 +196,6 @@ SELECT
   SUBSTR(TABLE_NM,1,2) SRC,
   UPPER(replace(JSON_EXTRACT(TABLE_COPY_EXPLN, CONCAT('$.TGT[', idx, ']')),'"','')) AS TGT
 FROM dq_tablecopy
-  -- Inline table of sequential values to index into JSON array
 JOIN ( 
   SELECT  0 AS idx UNION ALL
   SELECT  1 AS idx UNION ALL

@@ -26,7 +26,8 @@ urlpatterns = [
     url(r'^vrfy/run/(?P<pk>\d+)', views.vrfy_run, name='vrfy_run'),
     #vrfyLog 
     url(r'^vrfyLog_ajax/', views.vrfyLog_ajax, name='vrfyLog_ajax'),     
-    url(r'^vrfyLogs', views.vrfyLog_list, name='vrfyLog_list'), 
+    url(r'^vrfyLog_ajax_view/', views.vrfyLog_ajax_view, name='vrfyLog_ajax_view'),
+    url(r'^vrfyLogs', views.vrfyLog_list, name='vrfyLog_list'),
 
     #TableCopy
     url(r'^tblCpys2', views.tblCpy_list2, name='tblCpy_list2'),    

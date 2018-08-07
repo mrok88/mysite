@@ -3,11 +3,10 @@
 #     All right reserved by wonseokyou 
 #     email : wonseokyou@gmail.com 
 ###########################################################################
-from django.forms import ModelForm
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseGone, JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
-import datetime
+import datetime,pytz,re #  날짜를 파싱하기위한 정규식 처리 
 from django import forms
 
 from django.conf import settings
@@ -15,7 +14,8 @@ from django.conf import settings
 ############################## json ##############################
 import json
 ############################## dbConn  ##############################
-from .models import Vrfy, VrfyLog, Vrfy_Cmd,Ilm,TableCopy
+from .models import * 
+from .forms import *
 from .dbMysql import Ssh,Conn,get_db_sch_nm
 ############################## task  ##############################
 from django.views.decorators.csrf import csrf_exempt
@@ -26,8 +26,10 @@ from .tasks import demo_task,vrfy_task,vrfy_task_aurora
 from django.db.models import Q
 ############################## Transaction 매뉴얼관리  ##############################
 from django.db import transaction, connection
-############################## out 테이블관리  ##############################
+############################## out 테이블관리 시작 ##############################
 from .out_table import trace_out_table,matrix_out_table
+############################## 공통 함수 및 class  ##############################
+from .funcs import * 
 
 
 app_name ='dq'
@@ -61,23 +63,6 @@ def _post_tasks(request):
  
 
 ########################## vrfy start ########################## 
-
-class VrfyForm(ModelForm):
-    class Meta:
-        model = Vrfy
-        fields = ['DB_NM', 'SCHEMA_NM', 'CLSF_NM1', 'CLSF_NM2'
-                 , 'VRFY_TYPE_CD','VRFY_NM','VRFY_EXPLN'
-                 ,'TABLE_HANGL_NM','TABLE_NM', 'REFRC_TABLE_HANGL_NM','REFRC_TABLE_NM'
-                 ,'USE_YN','CMD_TYPE_CD','CMD_CNTS'
-        ,'RGSTR_ID'
-        #,'RGST_DTTM'
-        ,'MODR_ID'
-        #,'MODI_DTTM'
-        ]
-        widgets = {
-            'VRFY_EXPLN' : forms.Textarea(attrs={'rows':2}),
-            'CMD_CNTS' : forms.Textarea(attrs={'rows':7}),
-        }
 
 def vrfy_list(request, template_name='vrfy_list.html'):
     gets = request.GET
@@ -121,6 +106,8 @@ def vrfy_run(request, pk,template_name='vrfy_run.html'):
     '''직접 수행된 결과를 보여준다'''   
     vrfy = get_object_or_404(Vrfy, pk=pk)
     sqlStr = vrfy.CMD_CNTS
+    print('*'*40)
+    print("시작시간 : %s" % datetime.datetime.now() )
     print("작업번호 : %s" % vrfy.VRFY_NO)
     print("작업명  : %s" % vrfy.VRFY_NM)
     # print("작업내용 :\n %s" % sqlStr)
@@ -131,7 +118,7 @@ def vrfy_run(request, pk,template_name='vrfy_run.html'):
             ret = rets['ret']
             print(ret)
             msg['result'] =  'OK'
-            msg['ret'] = ret
+            msg['ret'] = ret            
         else:
             msg['result'] = 'NOT_YET'
     except Exception as e:
@@ -208,6 +195,8 @@ def vrfy_job(pk,env='dev'):
     '''TASK에 의해 수행되면 검증번호pk 작업을 수행한다.'''    
     vrfy = get_object_or_404(Vrfy, pk=pk)
     sqlStr = vrfy.CMD_CNTS
+    print('*'*40)
+    print("시작시간 : %s" % datetime.datetime.now() )    
     print("작업번호 : %s" % vrfy.VRFY_NO)
     print("작업명  : %s" % vrfy.VRFY_NM)
     # print("작업내용 :\n %s" % sqlStr)
@@ -218,6 +207,7 @@ def vrfy_job(pk,env='dev'):
             rets = run_sql(dbNm,schNm,sqlStr)
             ret = rets['ret']
             print("수행결과 : %s" % ret)
+            print("종료시간 : %s" % datetime.datetime.now() )   
             msg['ret'] =  'OK'
             msg['run_sql_ret'] = ret
         else:
@@ -247,22 +237,44 @@ def vrfy_job_aurora(env):
     for i in vs:
         vrfy_job(i.VRFY_NO,env)
     return True        
-########################## vrfy Log ########################## 
+########################## vrfy Log ##########################
 def vrfyLog_list(request, template_name='vrfyLog_list.html'):
     gets = request.GET
-    #print(gets)
-    if ( 'qry' in gets ) :
-        qry = gets['qry']
-    else:
-        qry = ''
+    #print(gets)    
+    qry = gets['qry'] if ( 'qry' in gets ) else ''
+    dates = gets['dates'] if ( 'dates' in gets ) else '' 
+    date1, date2, dt_ary = get_datetime_range(dates)
     if (qry == None or len(qry) < 1):
-        vrfyLogs = VrfyLog.objects.all()
+        if ( date1 == None or date2 == None ):
+            vrfyLogs = VrfyLog.objects.all()
+        else:
+            vrfyLogs = VrfyLog.objects.exclude(MODI_DTTM__lt=date1).exclude(MODI_DTTM__gt=date2)            
     else:
-        vrfyLogs = VrfyLog.objects.filter(VRFY_NO=qry)
+        if ( date1 == None or date2 == None ):
+            vrfyLogs = VrfyLog.objects.filter(VRFY_NO=qry)
+        else:
+            vrfyLogs = VrfyLog.objects.filter(VRFY_NO=qry).exclude(MODI_DTTM__lt=date1).exclude(MODI_DTTM__gt=date2)
+
     data = {}
-    data['object_list'] = vrfyLogs
     data['gets'] = gets
+    ################### env 필터  ###################
+    env  = gets['env'] if ( 'env' in gets ) else 'all'             
+    if ( env in [ 'dev','tst','prd'] ):
+        vrfyLogs = vrfyLogs.filter(SCHEMA_NM__endswith= env )
+    ################### env 필터  ###################
+    errYn  = gets['errYn'] if ( 'errYn' in gets ) else ''         
+    if ( errYn == 'on' ):
+        vrfyLogs = vrfyLogs.filter(VRFY_RSLT_VAL__gt = '0' )
+    
+    data['object_list'] = vrfyLogs
+    if ( date1 == None or date2 == None ):
+        data['dates'] = [ '', '']
+    else :
+        data['dates'] = dt_ary
+    form = vrfyLogForm(request.GET or None )
+    data['form'] = form
     return render(request, template_name, data)
+
 
 def vrfyLog_create(vrfy,rets,env='dev'):
     print("Start vrfyLog save")    
@@ -330,23 +342,18 @@ def vrfyLog_save(vl,env='dev'):
     finally:
         conn.close()
 
-
-def vrfyLog_ajax(request):
+########################## vrfy Log 단건조회 ##########################
+def vrfyLog_ajax_view(request):
     qry = request.GET['pk']
     #print("qry=>",qry)
+    obj = None
     try: 
-        v = Vrfy.objects.get(VRFY_NO = qry)
-        rets = run_sql(v.DB_NM,v.SCHEMA_NM,v.CMD_CNTS)
-        ret = rets['ret']
-        obj = vrfyLog_create(v,rets)
-        obj.save()
-        #obj = VrfyLog.objects.get(VRFY_LOG_NO=qry)
-        #print(obj)
+        obj = VrfyLog.objects.get(VRFY_LOG_NO=qry)
         context = { 'message' : { 'VRFY_LOG_NO': obj.VRFY_LOG_NO 
-                                , 'DB_NM' : obj.VRFY_NO.DB_NM
-                                , 'SCHEMA_NM' : obj.VRFY_NO.SCHEMA_NM
+                                , 'DB_NM' : obj.DB_NM
+                                , 'SCHEMA_NM' : obj.SCHEMA_NM
                                 , 'VRFY_NO': obj.VRFY_NO.VRFY_NO
-                                , 'VRFY_NM': obj.VRFY_NO.VRFY_NM
+                                , 'VRFY_NM': obj.VRFY_NM
                                 , 'VRFY_EXPLN' : obj.VRFY_NO.VRFY_EXPLN
                                 , 'CMD_CNTS' : obj.CMD_CNTS
                                 , 'VRFY_RSLT_VAL' : obj.VRFY_RSLT_VAL
@@ -364,26 +371,46 @@ def vrfyLog_ajax(request):
                                 , 'VRFY_RSLT_VAL' :'데이터없음'
                                 },
                     'ret'  : 'NOT_OK'
-                } 
-    
+                }     
+    return HttpResponse(json.dumps(context), content_type="application/json")
+########################## vrfy Log 수행 ##########################
+def vrfyLog_ajax(request):
+    qry = request.GET['pk']
+    #print("qry=>",qry)
+    obj = None
+    try: 
+        v = Vrfy.objects.get(VRFY_NO = qry)
+        rets = run_sql(v.DB_NM,v.SCHEMA_NM,v.CMD_CNTS)
+        ret = rets['ret']
+        obj = vrfyLog_create(v,rets)
+        obj.save()
+        #obj = VrfyLog.objects.get(VRFY_LOG_NO=qry)
+        #print(obj)
+        context = { 'message' : { 'VRFY_LOG_NO': obj.VRFY_LOG_NO 
+                                , 'DB_NM' : obj.DB_NM
+                                , 'SCHEMA_NM' : obj.SCHEMA_NM
+                                , 'VRFY_NO': obj.VRFY_NO.VRFY_NO
+                                , 'VRFY_NM': obj.VRFY_NM
+                                , 'VRFY_EXPLN' : obj.VRFY_NO.VRFY_EXPLN
+                                , 'CMD_CNTS' : obj.CMD_CNTS
+                                , 'VRFY_RSLT_VAL' : obj.VRFY_RSLT_VAL
+                                },
+                    'ret'  : 'OK'
+                }
+    except Exception as e :
+        context = { 'message' : { 'VRFY_LOG_NO': 0 
+                                , 'DB_NM' : '데이터없음'
+                                , 'SCHEMA_NM' : '데이터없음'
+                                , 'VRFY_NO': 0
+                                , 'VRFY_NM': '데이터없음'
+                                , 'VRFY_EXPLN' : '데이터없음'
+                                , 'CMD_CNTS' : '데이터없음'
+                                , 'VRFY_RSLT_VAL' :'데이터없음'
+                                },
+                    'ret'  : 'NOT_OK'
+                }     
     return HttpResponse(json.dumps(context), content_type="application/json")
 ########################## 데이터 복제본 추적관리  ##########################
-class TableCopyForm(ModelForm):
-    class Meta:
-        model = TableCopy
-        fields = ['TABLE_NM'       
-                    ,'TABLE_HANGL_NM'
-                    ,'TABLE_COPY_EXPLN'
-                    ,'USE_YN'
-                    ,'RGSTR_ID'
-                    #,'RGST_DTTM'
-                    ,'MODR_ID'
-                    #,'MODI_DTTM'
-                    ]
-        widgets = {
-            'TABLE_COPY_EXPLN' : forms.Textarea(attrs={'rows':4})
-        }
-
 
 def tblCpy_list(request, template_name='tblCpy_list.html'):
     gets = request.GET
@@ -401,19 +428,12 @@ def tblCpy_list(request, template_name='tblCpy_list.html'):
     data['gets'] = gets
     return render(request, template_name, data)
 
-class EnvForm(forms.Form):
-    ENV_DVS_CD = (
-        ('dev', '개발환경'),
-        ('tst', '테스트환경'),
-        ('prd', '운영환경'),
-    )
-    qry = forms.ChoiceField(label = "환경",choices = ENV_DVS_CD)
     
 def tblCpy_list2(request, template_name='tblCpy_list2.html'):
     form = None
     try:
         rets = matrix_out_table()
-        print(request.GET)
+        #print(request.GET)
         form = EnvForm(request.GET or None )
         #answer = ''
         #if form.is_valid():
@@ -461,23 +481,6 @@ def tblCpy_ajax(request):
     return HttpResponse(json.dumps(context), content_type="application/json")
 
 ########################## ilm ########################## 
-class IlmForm(ModelForm):
-    class Meta:
-        model = Ilm
-        fields = ['DB_NM', 'SCHEMA_NM', 'CLSF_NM1', 'CLSF_NM2'
-                 , 'ILM_TYPE_CD','ILM_NM','ILM_EXPLN'
-                 , 'TABLE_HANGL_NM','TABLE_NM','ILM_SEQ'
-                 , 'EXPCT_CNT', 'PRESER_PRD_VAL'
-                 ,'USE_YN','CMD_TYPE_CD','CMD_CNTS'
-        ,'RGSTR_ID'
-        #,'RGST_DTTM'
-        ,'MODR_ID'
-        #,'MODI_DTTM'
-        ]
-        widgets = {
-            'ILM_EXPLN' : forms.Textarea(attrs={'rows':2}),
-            'CMD_CNTS' : forms.Textarea(attrs={'rows':7}),
-        }
 
 def ilm_list(request, template_name='ilm_list.html'):
     gets = request.GET
@@ -518,15 +521,6 @@ def ilm_delete(request, pk):
     return HttpResponse(status=405)
 
 ########################## vrfy_Cmd ########################## 
-class vrfy_CmdForm(ModelForm):
-    class Meta:
-        model = Vrfy_Cmd
-        fields = [ 'VRFY_NO','VRFY_SEQ', 'AUTO_CK_YN', 'CMD_DVS_CD', 'CMD_TYPE_CD', 'CMD_CNTS','DTL_VRFY_YN'
-        ,'RGSTR_ID'
-        #,'RGST_DTTM'
-        ,'MODR_ID'
-        #,'MODI_DTTM'
-        ]
 
 def vrfy_Cmd_list(request, template_name='vrfy_Cmd_list.html'):
     gets = request.GET
