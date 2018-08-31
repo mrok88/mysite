@@ -7,3 +7,4 @@ db.sqlite3
 .DS_Store
 mdl2tbl/conn_info.py
 mysite/my_conn.py
+/docs
