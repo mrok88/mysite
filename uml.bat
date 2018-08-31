@@ -1,0 +1,1 @@
+python manage.py graph_models -a -o mysite_models.png

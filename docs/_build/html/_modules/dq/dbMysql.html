@@ -1,0 +1,305 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>dq.dbMysql &#8212; metax 0.8.28 documentation</title>
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/translations.js"></script>
+    <link rel="index" title="색인" href="../../genindex.html" />
+    <link rel="search" title="검색" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for dq.dbMysql</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">====================================</span>
+<span class="sd"> :mod: Mysql 관련  모듈 </span>
+<span class="sd">====================================</span>
+<span class="sd">.. moduleauthor:: 유원석 &lt;wsyou@wizbase.co.kr&gt;</span>
+
+<span class="sd">설명</span>
+<span class="sd">=====</span>
+
+<span class="sd">Mysql을 터널링을 통하여 접속하고 수행할 수 있도록함.</span>
+
+<span class="sd">참고</span>
+<span class="sd">====</span>
+
+<span class="sd">관련 링크:</span>
+<span class="sd"> * http://10.131.81.103:8001/dq/vrfys</span>
+
+<span class="sd">관련 작업자</span>
+<span class="sd">===========</span>
+
+<span class="sd"> * 유원석 (Wonseok You)</span>
+
+<span class="sd">작업일지</span>
+<span class="sd">--------</span>
+
+<span class="sd"> * 2018.08.01 wsyou : 초기함수 정의</span>
+<span class="sd"> &quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">pymysql</span>
+<span class="kn">from</span> <span class="nn">functools</span> <span class="k">import</span> <span class="n">reduce</span>
+<span class="kn">from</span> <span class="nn">sshtunnel</span> <span class="k">import</span> <span class="n">SSHTunnelForwarder</span>
+<span class="kn">from</span> <span class="nn">mdl2tbl</span> <span class="k">import</span> <span class="n">conn_info</span>
+<span class="c1">##############################</span>
+
+<span class="c1">##############################</span>
+<div class="viewcode-block" id="Ssh"><a class="viewcode-back" href="../../index.html#dq.dbMysql.Ssh">[문서]</a><span class="k">class</span> <span class="nc">Ssh</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    SSH 터널링 관리 클래스    </span>
+<span class="sd">    sshtunnel 모듈을 사용하여 터널링관리하는 클래스</span>
+<span class="sd">    예제 :</span>
+
+<span class="sd">        ssh = Ssh(db)</span>
+<span class="sd">        ssh.start()</span>
+<span class="sd">        ...</span>
+<span class="sd">        ssh.stop()</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">db</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">db</span> <span class="o">=</span> <span class="n">db</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">server_info</span> <span class="o">=</span> <span class="n">conn_info</span><span class="o">.</span><span class="n">server_infos</span><span class="p">[</span><span class="n">db</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">TUNNEL_FLAG</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tunnel</span> <span class="o">=</span> <span class="kc">None</span>       
+
+<div class="viewcode-block" id="Ssh.MakeTunnel"><a class="viewcode-back" href="../../index.html#dq.dbMysql.Ssh.MakeTunnel">[문서]</a>    <span class="k">def</span> <span class="nf">MakeTunnel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">bastion_ip</span><span class="p">,</span><span class="n">bastion_user</span><span class="p">,</span><span class="n">bastion_pwd</span><span class="p">,</span><span class="n">endpoint</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;바스쳔 서버를 통해서 SSH 터널을 생성하고 그 값을 돌려줍니다.</span>
+<span class="sd">        :param string bastion_ip: 바스천서버 IP</span>
+<span class="sd">        :param string bastion_user: 바스천서버 사용자계정</span>
+<span class="sd">        :param string bastion_pwd: 바스천서버 사용자 패스워드        </span>
+<span class="sd">        :returns: 바스천서버접속을 통한 SSH 터널을 return 합니다. </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">tunnel</span><span class="o">=</span><span class="n">SSHTunnelForwarder</span><span class="p">(</span>
+            <span class="p">(</span><span class="n">bastion_ip</span><span class="p">,</span> <span class="mi">22</span><span class="p">),</span>
+            <span class="n">ssh_username</span><span class="o">=</span><span class="n">bastion_user</span><span class="p">,</span>
+            <span class="n">ssh_password</span><span class="o">=</span><span class="n">bastion_pwd</span><span class="p">,</span>
+            <span class="n">remote_bind_address</span><span class="o">=</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="mi">3306</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">tunnel</span></div>
+
+<div class="viewcode-block" id="Ssh.start"><a class="viewcode-back" href="../../index.html#dq.dbMysql.Ssh.start">[문서]</a>    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;바스천 서버를 통한 SSH 터닐링를 수행합니다.</span>
+<span class="sd">        :returns: 정상 수행시 True , 오류시 False.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">server_info</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">server_info</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">tunnel</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">MakeTunnel</span><span class="p">(</span><span class="n">server_info</span><span class="p">[</span><span class="s2">&quot;source_bastion_ip&quot;</span><span class="p">],</span><span class="n">server_info</span><span class="p">[</span><span class="s2">&quot;source_bastion_user&quot;</span><span class="p">],</span><span class="n">server_info</span><span class="p">[</span><span class="s2">&quot;source_bastion_pwd&quot;</span><span class="p">],</span><span class="n">server_info</span><span class="p">[</span><span class="s2">&quot;source_endpoint&quot;</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">tunnel</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">TUNNEL_FLAG</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+    
+<div class="viewcode-block" id="Ssh.stop"><a class="viewcode-back" href="../../index.html#dq.dbMysql.Ssh.stop">[문서]</a>    <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;바스천 서버를 통한 SSH 터닐링를 종료합니다.</span>
+<span class="sd">        :returns: 정상 수행시 True</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">TUNNEL_FLAG</span> <span class="o">==</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">tunnel</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+        <span class="k">return</span> <span class="kc">True</span></div></div>
+
+<div class="viewcode-block" id="Conn"><a class="viewcode-back" href="../../index.html#dq.dbMysql.Conn">[문서]</a><span class="k">class</span> <span class="nc">Conn</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Mysql Connection관리 </span>
+<span class="sd">    pymysql 모듈을 사용하여 mysql 커넥션을 관리함.</span>
+<span class="sd">    예제 :</span>
+
+<span class="sd">        conn = Conn(p_db_nm)</span>
+<span class="sd">        conn.ssh.start()</span>
+<span class="sd">        conn.sshDbConn()</span>
+<span class="sd">        conn.param_replace = False  # SQL STRING % 관련해서 무시함. </span>
+<span class="sd">        conn.curType = &#39;list&#39;       # &#39;list&#39;, &#39;dict&#39; 중에 sql resultset을 list형태로 return함 </span>
+<span class="sd">        ...   </span>
+<span class="sd">        sql2 = &quot;SELECT ...&quot; </span>
+<span class="sd">        rows2 = conn.execute(sql2,{&#39;tbl_nm&#39; : tbl_nm , &#39;cpy_nm&#39; : cpy_nm })</span>
+<span class="sd">        ...</span>
+<span class="sd">        conn.close()</span>
+<span class="sd">    &quot;&quot;&quot;</span>    
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">db</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">db</span> <span class="o">=</span> <span class="n">db</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">server_info</span> <span class="o">=</span> <span class="n">conn_info</span><span class="o">.</span><span class="n">server_infos</span><span class="p">[</span><span class="n">db</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ssh</span> <span class="o">=</span> <span class="n">Ssh</span><span class="p">(</span><span class="n">db</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conn</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">curType</span> <span class="o">=</span> <span class="s1">&#39;dict&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">param_replace</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cols</span> <span class="o">=</span> <span class="kc">None</span>
+
+<div class="viewcode-block" id="Conn.sshDbConn"><a class="viewcode-back" href="../../index.html#dq.dbMysql.Conn.sshDbConn">[문서]</a>    <span class="k">def</span> <span class="nf">sshDbConn</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;ssh 터널링을 이용하여 db접속을 수행함.</span>
+<span class="sd">        :returns: 정상 수행시 True</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">server_info</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">server_info</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conn</span> <span class="o">=</span> <span class="n">pymysql</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;127.0.0.1&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ssh</span><span class="o">.</span><span class="n">tunnel</span><span class="o">.</span><span class="n">local_bind_port</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="n">server_info</span><span class="p">[</span><span class="s2">&quot;source_db_user&quot;</span><span class="p">],</span> <span class="n">password</span><span class="o">=</span><span class="n">server_info</span><span class="p">[</span><span class="s1">&#39;source_db_pwd&#39;</span><span class="p">],</span> <span class="n">charset</span><span class="o">=</span><span class="s1">&#39;UTF8&#39;</span><span class="p">)</span>  
+        <span class="k">return</span> <span class="kc">True</span> </div>
+
+<div class="viewcode-block" id="Conn.dbConn"><a class="viewcode-back" href="../../index.html#dq.dbMysql.Conn.dbConn">[문서]</a>    <span class="k">def</span> <span class="nf">dbConn</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;ssh 터널링 없이 일반적인 db접속을 수행함.</span>
+<span class="sd">        :returns: 정상 수행시 True</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">server_info</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">server_info</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conn</span> <span class="o">=</span> <span class="n">pymysql</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="n">server_info</span><span class="p">[</span><span class="s2">&quot;source_endpoint&quot;</span><span class="p">],</span> <span class="n">port</span><span class="o">=</span><span class="n">server_info</span><span class="p">[</span><span class="s2">&quot;source_db_port&quot;</span><span class="p">],</span> <span class="n">user</span><span class="o">=</span><span class="n">server_info</span><span class="p">[</span><span class="s2">&quot;source_db_user&quot;</span><span class="p">],</span> <span class="n">password</span><span class="o">=</span><span class="n">server_info</span><span class="p">[</span><span class="s1">&#39;source_db_pwd&#39;</span><span class="p">],</span> <span class="n">charset</span><span class="o">=</span><span class="s1">&#39;UTF8&#39;</span><span class="p">)</span>  
+        <span class="k">return</span> <span class="kc">True</span> </div>
+
+
+<div class="viewcode-block" id="Conn.execute"><a class="viewcode-back" href="../../index.html#dq.dbMysql.Conn.execute">[문서]</a>    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">sql</span><span class="p">,</span><span class="n">sql_params</span> <span class="o">=</span><span class="p">{}):</span>
+        <span class="sd">&quot;&quot;&quot;sql을 수행하고 resultset을 list or dict형태로 return함 </span>
+<span class="sd">        :returns: 정상수행시 resultset, 오류시 None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cols</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">curType</span> <span class="o">==</span> <span class="s1">&#39;dict&#39;</span><span class="p">):</span>
+                <span class="n">curs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">(</span><span class="n">pymysql</span><span class="o">.</span><span class="n">cursors</span><span class="o">.</span><span class="n">DictCursor</span><span class="p">)</span>
+            <span class="k">else</span> <span class="p">:</span>
+                <span class="n">curs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="c1">#curs = self.conn.cursor() </span>
+            <span class="c1"># % string 오류 해결 </span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">param_replace</span> <span class="p">:</span>
+                <span class="n">sqlStr</span> <span class="o">=</span> <span class="nb">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">sql</span><span class="p">,</span><span class="s1">&#39;%&#39;</span><span class="p">,</span><span class="s1">&#39;</span><span class="si">%%</span><span class="s1">&#39;</span><span class="p">)</span>        
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">sqlStr</span> <span class="o">=</span> <span class="n">sql</span>
+            <span class="n">curs</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sqlStr</span><span class="p">,</span><span class="n">sql_params</span><span class="p">)</span>
+            <span class="n">rows</span> <span class="o">=</span> <span class="n">curs</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+            <span class="k">try</span><span class="p">:</span> 
+                <span class="bp">self</span><span class="o">.</span><span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">curs</span><span class="o">.</span><span class="n">description</span><span class="p">]</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span> <span class="p">:</span>
+                <span class="k">pass</span>
+            <span class="k">return</span> <span class="n">rows</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="n">curs</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">return</span> <span class="kc">None</span></div>
+
+<div class="viewcode-block" id="Conn.select_db"><a class="viewcode-back" href="../../index.html#dq.dbMysql.Conn.select_db">[문서]</a>    <span class="k">def</span> <span class="nf">select_db</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">schema</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Mysql에서 database를 선택함.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="o">.</span><span class="n">select_db</span><span class="p">(</span><span class="n">schema</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Conn.commit"><a class="viewcode-back" href="../../index.html#dq.dbMysql.Conn.commit">[문서]</a>    <span class="k">def</span> <span class="nf">commit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;commit명령을 수행함.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="Conn.close"><a class="viewcode-back" href="../../index.html#dq.dbMysql.Conn.close">[문서]</a>    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;DB Connection을 끊고 ssh터널링이 있을경우 해당 자원을 해제함.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">conn</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ssh</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ssh</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span></div></div>
+
+<div class="viewcode-block" id="get_db_sch_nm"><a class="viewcode-back" href="../../index.html#dq.dbMysql.get_db_sch_nm">[문서]</a><span class="k">def</span> <span class="nf">get_db_sch_nm</span><span class="p">(</span><span class="n">p_db_nm</span><span class="p">,</span><span class="n">p_sch_nm</span><span class="p">,</span><span class="n">env</span><span class="o">=</span><span class="s1">&#39;dev&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;스키마명으로 통해서 해당 db접속 서버명을 가져옴.</span>
+<span class="sd">    :Todo: 향후 별도 파일이나 메터 관리로 분리 고려</span>
+<span class="sd">    :returns: 정상수행시 (db명,스카마명)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">db_map</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1"># env =tst</span>
+     <span class="s1">&#39;elltgdtst&#39;</span> <span class="p">:</span> <span class="s1">&#39;ellttst1&#39;</span>
+    <span class="p">,</span><span class="s1">&#39;elltdptst&#39;</span> <span class="p">:</span> <span class="s1">&#39;ellttst1&#39;</span>
+    <span class="p">,</span><span class="s1">&#39;elltprtst&#39;</span> <span class="p">:</span> <span class="s1">&#39;ellttst2&#39;</span>
+    <span class="p">,</span><span class="s1">&#39;elltchtst&#39;</span> <span class="p">:</span> <span class="s1">&#39;ellttst2&#39;</span>
+    <span class="p">,</span><span class="s1">&#39;elltmbtst&#39;</span> <span class="p">:</span> <span class="s1">&#39;ellttst2&#39;</span>
+    <span class="p">,</span><span class="s1">&#39;elltettst&#39;</span> <span class="p">:</span> <span class="s1">&#39;ellttst3&#39;</span>
+    <span class="p">,</span><span class="s1">&#39;elltomtst&#39;</span> <span class="p">:</span> <span class="s1">&#39;ellttst3&#39;</span>
+    <span class="p">,</span><span class="s1">&#39;elltpytst&#39;</span> <span class="p">:</span> <span class="s1">&#39;ellttst3&#39;</span>
+    <span class="p">,</span><span class="s1">&#39;elltlotst&#39;</span> <span class="p">:</span> <span class="s1">&#39;ellttst3&#39;</span>
+    <span class="p">,</span><span class="s1">&#39;elltcctst&#39;</span> <span class="p">:</span> <span class="s1">&#39;ellttst4&#39;</span>
+    <span class="p">,</span><span class="s1">&#39;elltsetst&#39;</span> <span class="p">:</span> <span class="s1">&#39;ellttst4&#39;</span>
+    <span class="c1"># env_tst           </span>
+    <span class="p">,</span><span class="s1">&#39;elltgdprd&#39;</span> <span class="p">:</span> <span class="s1">&#39;elltprd1&#39;</span>
+    <span class="p">,</span><span class="s1">&#39;elltdpprd&#39;</span> <span class="p">:</span> <span class="s1">&#39;elltprd1&#39;</span>
+    <span class="p">,</span><span class="s1">&#39;elltprprd&#39;</span> <span class="p">:</span> <span class="s1">&#39;elltprd2&#39;</span>
+    <span class="p">,</span><span class="s1">&#39;elltchprd&#39;</span> <span class="p">:</span> <span class="s1">&#39;elltprd2&#39;</span>
+    <span class="p">,</span><span class="s1">&#39;elltmbprd&#39;</span> <span class="p">:</span> <span class="s1">&#39;elltprd2&#39;</span>
+    <span class="p">,</span><span class="s1">&#39;elltetprd&#39;</span> <span class="p">:</span> <span class="s1">&#39;elltprd3&#39;</span>
+    <span class="p">,</span><span class="s1">&#39;elltomprd&#39;</span> <span class="p">:</span> <span class="s1">&#39;elltprd3&#39;</span>
+    <span class="p">,</span><span class="s1">&#39;elltpyprd&#39;</span> <span class="p">:</span> <span class="s1">&#39;elltprd3&#39;</span>
+    <span class="p">,</span><span class="s1">&#39;elltloprd&#39;</span> <span class="p">:</span> <span class="s1">&#39;elltprd3&#39;</span>
+    <span class="p">,</span><span class="s1">&#39;elltccprd&#39;</span> <span class="p">:</span> <span class="s1">&#39;elltprd4&#39;</span>
+    <span class="p">,</span><span class="s1">&#39;elltseprd&#39;</span> <span class="p">:</span> <span class="s1">&#39;elltprd4&#39;</span>
+    <span class="p">}</span>
+    <span class="n">sch_nm</span> <span class="o">=</span> <span class="n">p_sch_nm</span> <span class="k">if</span> <span class="n">env</span> <span class="o">==</span> <span class="s1">&#39;dev&#39;</span> <span class="k">else</span> <span class="nb">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">p_sch_nm</span><span class="p">,</span><span class="s1">&#39;dev&#39;</span><span class="p">,</span><span class="n">env</span><span class="p">)</span>     
+    <span class="n">db_nm</span> <span class="o">=</span> <span class="n">p_db_nm</span> <span class="k">if</span> <span class="n">env</span> <span class="o">==</span> <span class="s1">&#39;dev&#39;</span> <span class="k">else</span> <span class="n">db_map</span><span class="p">[</span><span class="n">sch_nm</span><span class="p">]</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">db_nm</span><span class="p">,</span><span class="n">sch_nm</span><span class="p">)</span>            </div>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">metax</a></h1>
+
+
+
+
+
+
+
+
+<h3>탐색</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">모듈 코드</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>빠른 검색</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="바로 가기" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Wonseok You.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.7</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.11</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

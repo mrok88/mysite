@@ -351,6 +351,15 @@ class Djbs13FormView(FormView):
         context = super(Djbs13FormView, self).get_context_data(**kwargs)
         return context 
 
+class Djbs14FormView(FormView):
+    template_name = 'mdl2tbl/djbs14.html'    
+    def get_context_data(self, **kwargs): 
+        self.form_class = CompForm   
+        self.form_class.yws_gets = { 'title' : "개인정보 컬럼" }
+        self.form_class.yws_rows = Ora.get_man_col()
+        # context를 가져온다.
+        context = super(Djbs14FormView, self).get_context_data(**kwargs)
+        return context
 
 def erd_pview(request,pk="%"):
     if (pk == None or len(pk) <= 2) :

@@ -20,16 +20,17 @@ def get_tbl(p_tbl_nm = "GD"):
         #conn = pymysql.connect(host='localhost', user='wsyou', password='wsyou',db='test', charset='utf8')
         if ( p_tbl_nm in ( 'ltcm','ltcmst','ltcmat', 'ltcmpr')):
             server_info = conn_info.server_infos['ltcm']
-            source_tunnel = MakeTunnel(server_info["source_bastion_ip"],server_info["source_bastion_user"],server_info["source_bastion_pwd"],server_info["source_endpoint"])
-            TUNNEL_FLAG = 1
-            source_tunnel.start()
-            conn = pymysql.connect(host='127.0.0.1', port=source_tunnel.local_bind_port, user=server_info["source_db_user"], password=server_info['source_db_pwd'], charset='UTF8')
+            #source_tunnel = MakeTunnel(server_info["source_bastion_ip"],server_info["source_bastion_user"],server_info["source_bastion_pwd"],server_info["source_endpoint"])
+            #TUNNEL_FLAG = 1
+            #source_tunnel.start()
+            #conn = pymysql.connect(host='127.0.0.1', port=source_tunnel.local_bind_port, user=server_info["source_db_user"], password=server_info['source_db_pwd'], charset='UTF8')
+            conn = pymysql.connect(host=server_info["source_endpoint"], port=3306, user=server_info["source_db_user"], password=server_info['source_db_pwd'], charset='UTF8')
         else :
             server_info = conn_info.server_infos['elltdev']
-            source_tunnel = MakeTunnel(server_info["source_bastion_ip"],server_info["source_bastion_user"],server_info["source_bastion_pwd"],server_info["source_endpoint"])
-            TUNNEL_FLAG = 1
-            source_tunnel.start()
-            conn = pymysql.connect(host='127.0.0.1', port=source_tunnel.local_bind_port, user=server_info["source_db_user"], password=server_info['source_db_pwd'], charset='UTF8')            
+            #source_tunnel = MakeTunnel(server_info["source_bastion_ip"],server_info["source_bastion_user"],server_info["source_bastion_pwd"],server_info["source_endpoint"])
+            #TUNNEL_FLAG = 1
+            #source_tunnel.start()
+            conn = pymysql.connect(host=server_info["source_endpoint"], port=3306, user=server_info["source_db_user"], password=server_info['source_db_pwd'], charset='UTF8')            
         try:
             curs = conn.cursor(pymysql.cursors.DictCursor)
             sql = """select table_schema `SCHEMA`
@@ -69,8 +70,8 @@ where table_schema in ( 'x'
     finally:
         if conn is not None:
             conn.close()
-        if (TUNNEL_FLAG == 1):
-            source_tunnel.stop()            
+#        if (TUNNEL_FLAG == 1):
+#            source_tunnel.stop()            
     return None
 ##############################
 def MakeTunnel(bastion_ip,bastion_user,bastion_pwd,endpoint):
@@ -90,19 +91,21 @@ def get_qry( db , sql, sql_params = {} ):
     try:
         if ( db in ( 'ltcm','ltcmst','ltcmat', 'ltcmpr')):
             server_info = conn_info.server_infos['ltcm']
-            source_tunnel = MakeTunnel(server_info["source_bastion_ip"],server_info["source_bastion_user"],server_info["source_bastion_pwd"],server_info["source_endpoint"])
-            TUNNEL_FLAG = 1
-            source_tunnel.start()
+            #source_tunnel = MakeTunnel(server_info["source_bastion_ip"],server_info["source_bastion_user"],server_info["source_bastion_pwd"],server_info["source_endpoint"])
+            #TUNNEL_FLAG = 1
+            #source_tunnel.start()
             #conn = pymysql.connect(host='127.0.0.1', port = 4309, user='b2_dba', password='qwer1234',db='ltcmdba', charset='utf8')
-            conn = pymysql.connect(host='127.0.0.1', port=source_tunnel.local_bind_port, user=server_info["source_db_user"], password=server_info['source_db_pwd'], charset='UTF8')
+            #conn = pymysql.connect(host='127.0.0.1', port=source_tunnel.local_bind_port, user=server_info["source_db_user"], password=server_info['source_db_pwd'], charset='UTF8')
+            conn = pymysql.connect(host=server_info["source_endpoint"], port=3306, user=server_info["source_db_user"], password=server_info['source_db_pwd'], charset='UTF8')
         else :
             #conn = pymysql.connect(host='127.0.0.1', port = 3409, user='b2_dba', password='qwer1234',db='dbadev', charset='utf8')
-            server_info = conn_info.server_infos['elltdev']
-            source_tunnel = MakeTunnel(server_info["source_bastion_ip"],server_info["source_bastion_user"],server_info["source_bastion_pwd"],server_info["source_endpoint"])
-            TUNNEL_FLAG = 1
-            source_tunnel.start()
+            #server_info = conn_info.server_infos['elltdev']
+            #source_tunnel = MakeTunnel(server_info["source_bastion_ip"],server_info["source_bastion_user"],server_info["source_bastion_pwd"],server_info["source_endpoint"])
+            #TUNNEL_FLAG = 1
+            #source_tunnel.start()
             #conn = pymysql.connect(host='127.0.0.1', port = 4309, user='b2_dba', password='qwer1234',db='ltcmdba', charset='utf8')
-            conn = pymysql.connect(host='127.0.0.1', port=source_tunnel.local_bind_port, user=server_info["source_db_user"], password=server_info['source_db_pwd'], charset='UTF8')            
+            #conn = pymysql.connect(host='127.0.0.1', port=source_tunnel.local_bind_port, user=server_info["source_db_user"], password=server_info['source_db_pwd'], charset='UTF8')
+            conn = pymysql.connect(host=server_info["source_endpoint"], port=3306, user=server_info["source_db_user"], password=server_info['source_db_pwd'], charset='UTF8')
         try:
             curs = conn.cursor(pymysql.cursors.DictCursor)          
             curs.execute(sql,sql_params)

@@ -24,6 +24,7 @@ urlpatterns = [
     url(r'djbs11', views.Djbs11FormView.as_view(), name='djbs11'),
     url(r'djbs12', views.Djbs12FormView.as_view(), name='djbs12'),
     url(r'djbs13', views.Djbs13FormView.as_view(), name='djbs13'),
+    url(r'djbs14', views.Djbs14FormView.as_view(), name='djbs14'),
     url(r'form', views.DefaultFormView.as_view(), name='form'),
     url(r'test/', views.tbl_list, name='tbl_list'),
     url(r'cds/', views.cd_list, name='cd_list'),    

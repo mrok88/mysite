@@ -18,7 +18,6 @@ def vrfy_task(message, verbose_name="vrfy_task"):
     return ret       
     #except Exception as e:
     #    logger.debug('[ERROR]vrfy_task. Error={0}'.format(e))
-
 @background(schedule=0)
 def vrfy_task_aurora(message, verbose_name="vrfy_task_aurora"):
     #try:

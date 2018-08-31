@@ -93,10 +93,16 @@ def get_emp_col():
 ##############################
 def get_cust_col():
     '''
-    곡객명 대상 컬럼목록
+    고객명 대상 컬럼목록
     '''
     return get_qry("SELECT * FROM DA05.고객명")    
 
+##############################
+def get_man_col():
+    '''
+    개인정보 대상 컬럼목록
+    '''
+    return get_qry("SELECT * FROM DA05.개인정보")   
 ##############################
 def get_cd_defi():
     '''

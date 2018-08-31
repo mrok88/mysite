@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+{% load humanize %}
+{% block title %}{{ form.yws_gets.title }}{% endblock %} 
+
+{% block include_datatable %}
+{% include "datatable.html" %}
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h3>{{ form.yws_gets.title }}</h3>
+    <hr>
+    <div id="container" class="dataTables_wrapper">
+            <table id="example" class="display table table-striped table-bordered" cellspacing="0" width="100%" >
+                <thead>
+                    <tr>
+                        <td><B>모델명</B></td>
+                        <td><B>한글명</B></td>
+                        <td><B>테이블</B></td>
+                        <td><B>속성명</B></td>
+                        <td><B>컬럼명</B></td>
+                        <td><B>데이터타입</B></td>
+                        <td><B>도메인명</B></td>
+                        <td><B>개인정보유형</B></td>
+                    </tr>
+                </thead>
+                <!-- 이 부분이 바뀌었습니다 -->
+                <tbody>
+                    {% for row in form.yws_rows %}
+                    <tr>
+                        <td> {{ row.MDL_NM }} </td>
+                        <td> {{ row.ENT_NM }} </td>
+                        <td> {{ row.TBL_NM }} </td>
+                        <td> {{ row.ATTR_NM }} </td>
+                        <td> {{ row.COL_NM }} </td>
+                        <td> {{ row.DT }} </td>
+                        <td> {{ row.DMN_NM }} </td>                 
+                        <td> {{ row.MAN_INFO }} </td> 
+                    </tr>
+                    {% endfor %}
+                <!-- 여기까지 -->
+                <tbody>
+        </table>
+    </div>
+</div>
+<script type="text/javascript" class="init">
+$(document).ready(function() {
+    $('#example').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ],
+        "paging":   false,
+        "ordering" : true,
+        "order": [[ 2, "asc" ]],
+        "info":     true
+    } );
+} );
+</script>
+{% endblock content %}

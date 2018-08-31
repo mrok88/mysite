@@ -12,7 +12,9 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 
 import os
 import sys
-
+################## Sphinx setting  ##################
+import django
+#import os
 ################## mysql connection ################## 
 import pymysql
 pymysql.install_as_MySQLdb()
@@ -52,13 +54,14 @@ INSTALLED_APPS = [
     'bootstrap3',    
     'djng',             #django-angular
     'easy_thumbnails',  # optional, if ImageField is used
-    'background_task', # batch job 관련 library
+    'background_task',  # batch job 관련 library
     'demo',    
     'blog',	
     'polls',
     'mdl2tbl',
     'mdl2tbl.templatetags.post_extras',
     'dq',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
@@ -152,6 +155,25 @@ FORM_RENDERER = 'djng.forms.renderers.DjangoAngularBootstrap3Templates'
 # non-bootstraip3
 #FORM_RENDERER = 'djng.forms.renderers.DjangoAngularTemplates'
 
+############################# batch job 관련 설정 시작 #############################
+# MAX_ATTEMPTS - controls how many times a task will be attempted (default 25)
+# MAX_RUN_TIME - maximum possible task run time, 
+#                after which tasks will be unlocked and tried again (default 3600 seconds)
+# BACKGROUND_TASK_RUN_ASYNC - If True, will run the tasks asynchronous. 
+#                This means the tasks will be processed in parallel (at the same time)
+#                instead of processing one by one (one after the other).
+BACKGROUND_TASK_RUN_ASYNC = True
+# BACKGROUND_TASK_ASYNC_THREADS - Specifies number of concurrent threads.
+#                Default is multiprocessing.cpu_count().
+BACKGROUND_TASK_ASYNC_THREADS = 2
+# BACKGROUND_TASK_PRIORITY_ORDERING - Control the ordering of tasks in the queue.
+#                Default is "DESC" (tasks with a higher number are processed first). 
+#                Choose "ASC" to switch to the “niceness” ordering. 
+#                A niceness of −20 is the highest priority and 19 is the lowest priority.
+BACKGROUND_TASK_PRIORITY_ORDERING = "ASC"
+############################# batch job 관련 설정 종료 #############################
+
+
 # LOGGING = {
 #     'version': 1,
 #     'disable_existing_loggers': False,
@@ -195,3 +217,8 @@ FORM_RENDERER = 'djng.forms.renderers.DjangoAngularBootstrap3Templates'
 #         },
 #     },
 # }
+
+GRAPH_MODELS = {
+  'all_applications': True,
+  'group_models': True,
+}

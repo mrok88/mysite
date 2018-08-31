@@ -63,7 +63,6 @@ def _post_tasks(request):
  
 
 ########################## vrfy start ########################## 
-
 def vrfy_list(request, template_name='vrfy_list.html'):
     gets = request.GET
     #print(gets)
@@ -79,14 +78,14 @@ def vrfy_list(request, template_name='vrfy_list.html'):
     data['object_list'] = vrfys
     data['gets'] = gets
     return render(request, template_name, data)
-
+#---------------------------------------------------------------------
 def vrfy_create(request, template_name='vrfy_form.html'):
     form = VrfyForm(request.POST or None)
     if form.is_valid():
         form.save()
         return redirect('dq:vrfy_list')
     return render(request, template_name, {'form':form})
-
+#---------------------------------------------------------------------
 def vrfy_update(request, pk,template_name='vrfy_form.html'):    
     vrfy = get_object_or_404(Vrfy, pk=pk)
     form = VrfyForm(request.POST or None, instance=vrfy)
@@ -94,20 +93,21 @@ def vrfy_update(request, pk,template_name='vrfy_form.html'):
         form.save()
         return redirect('dq:vrfy_list')
     return render(request, template_name, {'form':form,'row' : vrfy })
-
+#---------------------------------------------------------------------
 def vrfy_delete(request, pk):
     vrfy= get_object_or_404(Vrfy, pk=pk)    
     if vrfy != None :
         vrfy.delete()
         return redirect('dq:vrfy_list')
     return HttpResponse(status=405)
-
+#---------------------------------------------------------------------
 def vrfy_run(request, pk,template_name='vrfy_run.html'): 
     '''직접 수행된 결과를 보여준다'''   
     vrfy = get_object_or_404(Vrfy, pk=pk)
     sqlStr = vrfy.CMD_CNTS
     print('*'*40)
     print("시작시간 : %s" % datetime.datetime.now() )
+    print('env=>','dev')
     print("작업번호 : %s" % vrfy.VRFY_NO)
     print("작업명  : %s" % vrfy.VRFY_NM)
     # print("작업내용 :\n %s" % sqlStr)
@@ -125,7 +125,7 @@ def vrfy_run(request, pk,template_name='vrfy_run.html'):
         print(e)
     vrfyLog_create(vrfy,rets)
     return render(request, template_name, {'row' : vrfy ,'msg' : msg })
-
+############################## SQL 수행 ###########################
 def run_sql(db,schema,sqlStr):
     ret = None
     strt_dttm = timezone.now()
@@ -190,13 +190,14 @@ def vrfy_tasks(request):
                     'ret'  : 'NOT_OK'
                 } 
     return HttpResponse(json.dumps(context), content_type="application/json")
-
+######################################################################
 def vrfy_job(pk,env='dev'):
     '''TASK에 의해 수행되면 검증번호pk 작업을 수행한다.'''    
     vrfy = get_object_or_404(Vrfy, pk=pk)
     sqlStr = vrfy.CMD_CNTS
     print('*'*40)
-    print("시작시간 : %s" % datetime.datetime.now() )    
+    print("시작시간 : %s" % datetime.datetime.now() )  
+    print('env=>',env)  
     print("작업번호 : %s" % vrfy.VRFY_NO)
     print("작업명  : %s" % vrfy.VRFY_NM)
     # print("작업내용 :\n %s" % sqlStr)
@@ -206,8 +207,8 @@ def vrfy_job(pk,env='dev'):
         if ( vrfy.CMD_TYPE_CD == 'AURORA_SQL'):
             rets = run_sql(dbNm,schNm,sqlStr)
             ret = rets['ret']
-            print("수행결과 : %s" % ret)
-            print("종료시간 : %s" % datetime.datetime.now() )   
+            print("수행결과 : %s" % ret)  
+            print("종료시간 : %s" % datetime.datetime.now() ) 
             msg['ret'] =  'OK'
             msg['run_sql_ret'] = ret
         else:
@@ -221,22 +222,27 @@ def vrfy_job(pk,env='dev'):
 ########################## 오로라 검증 스케쥴 ########################## 
 @csrf_exempt
 def vrfy_tasks_aurora(request):
-    if request.method == 'POST':
-        env = request.POST['env']
-        print('*'*40)        
-        print('env=>',env)
-        print('*'*40)   
-        vrfy_task_aurora({'env' : env })
-        return JsonResponse({'ret' : 'OK'}, status=302)
-    else:
-        return JsonResponse({'ret' : 'NOK_OK'}, status=405)   
+    try:
+        if request.method == 'POST':
+            env = request.POST['env']
+            if env not in [ 'dev','tst','prd'] :
+                raise Exception('env is %s , env must be 1 of dev,tst,prd!!' % env)
+            print('*'*40)
+            print('오로라 데이터 품질 검증 배치 수행')
+            print('env=>',env)
+            print('*'*40)   
+            vrfy_task_aurora({'env' : env })
+            return JsonResponse({'ret' : 'OK'}, status=302)
+    except Exception as e :    
+        return JsonResponse({'ret' : 'NOK_OK', 'msg' : e }, status=405)   
 
 def vrfy_job_aurora(env):
     '''명령유형코드중 AURORA_SQL을 찾아서 모두 수행한다.'''
     vs = Vrfy.objects.filter(Q(CMD_TYPE_CD = 'AURORA_SQL') & Q(USE_YN = 'Y') )
     for i in vs:
         vrfy_job(i.VRFY_NO,env)
-    return True        
+    return True
+
 ########################## vrfy Log ##########################
 def vrfyLog_list(request, template_name='vrfyLog_list.html'):
     gets = request.GET
@@ -275,7 +281,7 @@ def vrfyLog_list(request, template_name='vrfyLog_list.html'):
     data['form'] = form
     return render(request, template_name, data)
 
-
+#---------------------------------------------------------------------
 def vrfyLog_create(vrfy,rets,env='dev'):
     print("Start vrfyLog save")    
     try:
@@ -298,7 +304,7 @@ def vrfyLog_create(vrfy,rets,env='dev'):
         return None
     else : 
         return vl
-        
+#---------------------------------------------------------------------        
 def vrfyLog_save(vl,env='dev'):
     '''pymysql을 이용해서  log를 별도의 db session으로 저잫함.'''
     sqlTmpl = '''insert into DQ_VRFYLOG (
@@ -411,7 +417,6 @@ def vrfyLog_ajax(request):
                 }     
     return HttpResponse(json.dumps(context), content_type="application/json")
 ########################## 데이터 복제본 추적관리  ##########################
-
 def tblCpy_list(request, template_name='tblCpy_list.html'):
     gets = request.GET
     #print(gets)
@@ -427,8 +432,7 @@ def tblCpy_list(request, template_name='tblCpy_list.html'):
     data['object_list'] = tblCpys
     data['gets'] = gets
     return render(request, template_name, data)
-
-    
+#---------------------------------------------------------------------   
 def tblCpy_list2(request, template_name='tblCpy_list2.html'):
     form = None
     try:
@@ -443,14 +447,14 @@ def tblCpy_list2(request, template_name='tblCpy_list2.html'):
         print(e)
         rets = { 'ret' : "NOT_OK" , 'rows' : None, 'cols' : None , 'form' : form }    
     return render(request, template_name, rets)    
-
+#---------------------------------------------------------------------
 def tblCpy_create(request, template_name='tblCpy_form.html'):
     form = TableCopyForm(request.POST or None)
     if form.is_valid():
         form.save()
         return redirect('dq:tblCpy_list')
     return render(request, template_name, {'form':form})
-
+#---------------------------------------------------------------------
 def tblCpy_update(request, pk,template_name='tblCpy_form.html'):    
     tblCpy = get_object_or_404(TableCopy, pk=pk)
     form = TableCopyForm(request.POST or None, instance=tblCpy)
@@ -458,14 +462,14 @@ def tblCpy_update(request, pk,template_name='tblCpy_form.html'):
         form.save()
         return redirect('dq:tblCpy_list')
     return render(request, template_name, {'form':form,'row' : tblCpy })
-
+#---------------------------------------------------------------------
 def tblCpy_delete(request, pk):
     tblCpy= get_object_or_404(TableCopy, pk=pk)    
     if tblCpy != None :
         tblCpy.delete()
         return redirect('dq:tblCpy_list')
     return HttpResponse(status=405)
-
+#---------------------------------------------------------------------
 def tblCpy_ajax(request):
     pk = request.GET['pk']
     if request.GET.get('env'):
@@ -481,7 +485,6 @@ def tblCpy_ajax(request):
     return HttpResponse(json.dumps(context), content_type="application/json")
 
 ########################## ilm ########################## 
-
 def ilm_list(request, template_name='ilm_list.html'):
     gets = request.GET
     #print(gets)
@@ -497,14 +500,14 @@ def ilm_list(request, template_name='ilm_list.html'):
     data['object_list'] = objs
     data['gets'] = gets
     return render(request, template_name, data)
-
+#---------------------------------------------------------------------
 def ilm_create(request, template_name='ilm_form.html'):
     form = IlmForm(request.POST or None)
     if form.is_valid():
         form.save()
         return redirect('dq:ilm_list')
     return render(request, template_name, {'form':form})
-
+#---------------------------------------------------------------------
 def ilm_update(request, pk,template_name='ilm_form.html'):    
     obj = get_object_or_404(Ilm, pk=pk)
     form = IlmForm(request.POST or None, instance=obj)
@@ -512,7 +515,7 @@ def ilm_update(request, pk,template_name='ilm_form.html'):
         form.save()
         return redirect('dq:ilm_list')
     return render(request, template_name, {'form':form,'row' : obj })
-
+#---------------------------------------------------------------------
 def ilm_delete(request, pk):
     obj = get_object_or_404(Ilm, pk=pk)    
     if obj != None :
@@ -539,14 +542,14 @@ def vrfy_Cmd_list(request, template_name='vrfy_Cmd_list.html'):
     data['object_list'] = vrfy_Cmds
     data['gets'] = gets
     return render(request, template_name, data)
-
+#---------------------------------------------------------------------
 def vrfy_Cmd_create(request, template_name='vrfy_Cmd_form.html'):
     form = vrfy_CmdForm(request.POST or None)
     if form.is_valid():
         form.save()
         return redirect('dq:vrfy_Cmd_list')
     return render(request, template_name, {'form':form})
-
+#---------------------------------------------------------------------
 def vrfy_Cmd_update(request, pk,template_name='vrfy_Cmd_form.html'):    
     vrfy_Cmd = get_object_or_404(Vrfy_Cmd, pk=pk)
     form = vrfy_CmdForm(request.POST or None, instance=vrfy_Cmd)
@@ -554,7 +557,7 @@ def vrfy_Cmd_update(request, pk,template_name='vrfy_Cmd_form.html'):
         form.save()
         return redirect('dq:vrfy_Cmd_list')
     return render(request, template_name, {'form':form,'row' : vrfy_Cmd })
-
+#---------------------------------------------------------------------
 def vrfy_Cmd_delete(request, pk):
     vrfy_Cmd = get_object_or_404(Vrfy_Cmd, pk=pk)    
     if vrfy_Cmd != None :
